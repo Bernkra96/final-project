@@ -1,6 +1,4 @@
-import { cache } from 'sharp';
 import { sql } from './connect';
-
 import { User } from './createTableusers';
 
 export type UserWithPasswordHash = User & {
@@ -8,12 +6,13 @@ export type UserWithPasswordHash = User & {
 };
 
 export const createUser = cache(
-  async (username: string, passordHash: string) => {
+  async (username: string, passwordHash: string) => {
     const [user] = await sql<User[]>`
-      INSERT INTO users
+      INSERT INTO
+        users
         (username, password_hash)
       VALUES
-        (${username.toLowerCase()}, ${passordHash})
+        (${username.toLowerCase()}, ${passwordHash})
       RETURNING
         id,
         username
@@ -21,6 +20,17 @@ export const createUser = cache(
     return user;
   },
 );
+
+export const getusers = cache(async () => {
+  const users = await sql<User[]>`
+    SELECT
+      id,
+      username
+    FROM
+      users
+  `;
+  return users;
+});
 
 export const getUserByUsername = cache(async (username: string) => {
   const [user] = await sql<User[]>`
@@ -38,13 +48,15 @@ export const getUserByUsername = cache(async (username: string) => {
 export const getUserWithPasswordHashByUsername = cache(
   async (username: string) => {
     const [user] = await sql<UserWithPasswordHash[]>`
-    SELECT
-      *
-    FROM
-      users
-    WHERE
-      username = ${username.toLowerCase()}
-  `;
+      SELECT
+        id,
+        username,
+        password_hash as "passwordHash"
+      FROM
+        users
+      WHERE
+        username = ${username.toLowerCase()}
+    `;
     return user;
   },
 );

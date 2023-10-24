@@ -1,24 +1,21 @@
-'use server';
-
-import { NextResponse, NextRequest } from 'next/server';
-
+import crypto from 'node:crypto';
+import bcrypt from 'bcrypt';
+import { cookies } from 'next/headers';
+import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { bcrypt } from 'bcrypt';
-import {
-  createUser,
-  getUserByUsername,
-  getUserWithPasswordHashByUsername,
-} from '../../../../database/users';
-import { User } from '../../../../database/createTableusers';
+// import { createSession } from '../../../../database/sessions';
+import { getUserWithPasswordHashByUsername } from '../../../../database/users';
+
+// import { secureCookieOptions } from '../../../../util/cookies';
 
 const loginSchema = z.object({
   username: z.string().min(3),
   password: z.string().min(3),
 });
 
-export type loginResponseBodyPost =
+export type LoginResponseBodyPost =
   | {
-      user: User;
+      user: { username: string };
     }
   | {
       errors: { message: string }[];
@@ -26,10 +23,16 @@ export type loginResponseBodyPost =
 
 export async function POST(
   request: NextRequest,
-): Promise<NextResponse<loginResponseBodyPost>> {
+): Promise<NextResponse<LoginResponseBodyPost>> {
+  // Task: Implement the user login workflow
+
+  // 5. Return the logged in user
+
+  // 1. Get the user data from the request
   const body = await request.json();
 
-  const result = registerSchema.safeParse(body);
+  // 2. Validate the user data
+  const result = loginSchema.safeParse(body);
 
   if (!result.success) {
     return NextResponse.json(
@@ -40,29 +43,67 @@ export async function POST(
     );
   }
 
-  const UserWithPasswordHash = await getUserWithPasswordHashByUsername(
+  // 3. verify the user credentials
+  const userWithPasswordHash = await getUserWithPasswordHashByUsername(
     result.data.username,
-    UserWithPasswordHash.passordHash,
   );
 
-  if (user) {
+  if (!userWithPasswordHash) {
     return NextResponse.json(
-      { errors: [{ message: 'username is already taken' }] },
+      { errors: [{ message: 'username or password not valid' }] },
       { status: 403 },
     );
   }
-  const passwordHash = await bcrypt.hash(result.data.password, 12);
 
-  const newUser = await createUser(result.data.username, passwordHash);
+  // 4. Validate the user password by comparing with hashed password
+  const isPasswordValid = await bcrypt.compare(
+    result.data.password,
+    userWithPasswordHash.passwordHash,
+  );
 
-  if (!newUser) {
+  if (!isPasswordValid) {
     return NextResponse.json(
-      { errors: [{ message: 'Error creating the new user' }] },
-      { status: 406 },
+      { errors: [{ message: 'username or password not valid' }] },
+      {
+        status: 401,
+      },
     );
   }
 
+  // At this stage we already confirm that the user is who they say they are
+
+  //  Coming in subsequent lecture
+  // 4. Create a token
+  // const token = crypto.randomBytes(100).toString('base64');
+
+  // 5. Create the session record
+  //const session = await createSession//  (userWithPasswordHash.id, token);
+
+  //if (!session) {
+  // return NextResponse.json(
+  //   { errors: [{ message: 'Error creating the new session' }] },
+  //  {
+  //    status: 401,
+  // },
+  // );
+  // }
+
+  // 6. Send the new cookie in the headers
+
+  // cookies().set({
+  //   name: 'sessionToken',
+  //   value: session.token,
+  //   httpOnly: true,
+  //   path: '/',
+  //   secure: process.env.NODE_ENV === 'production',
+  //   maxAge: 60 * 60 * 48, // Expires in 24 hours,
+  //   sameSite: 'lax', // this prevents CSRF attacks
+  // });
+
+  // 6. Return the new user information without the password hash
   return NextResponse.json({
-    user: newUser,
+    user: {
+      username: userWithPasswordHash.username,
+    },
   });
 }

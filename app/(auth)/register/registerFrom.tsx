@@ -17,7 +17,7 @@ export default function RegisterFrom() {
       }),
     });
 
-    const data = response.json();
+    const data = await response.json();
     console.log('Check : ', data);
   }
 
