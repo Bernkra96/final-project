@@ -1,3 +1,4 @@
+import { cache } from 'react';
 import { sql } from './connect';
 import { User } from './createTableusers';
 
