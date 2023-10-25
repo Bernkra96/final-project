@@ -3,10 +3,5 @@ import { createUser, getusers } from '../database/users';
 import styles from './page.module.css';
 
 export default async function Home() {
-  return (
-    <main className={styles.main}>
-      Hallo
-      <div> {JSON.stringify(users)} </div>
-    </main>
-  );
+  return <main className={styles.main}>Hallo</main>;
 }
