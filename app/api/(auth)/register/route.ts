@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { getUserWithPasswordHashByUsername } from '../../../../database/users';
 
 // import { createSession } from '../../../../database/sessions';
-//const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 // import { secureCookieOptions } from '../../../../util/cookies';
 
 const loginSchema = z.object({

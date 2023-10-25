@@ -1,5 +1,4 @@
-import crypto from 'node:crypto';
-// import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
