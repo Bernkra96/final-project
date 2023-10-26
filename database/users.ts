@@ -11,14 +11,14 @@ export const createUser = cache(
     const [user] = await sql<User[]>`
       INSERT INTO
         users
-        (username, paswordHash )
+        (username, password_hash)
       VALUES
         (${username.toLowerCase()},
         ${JSON.stringify(passwordHash)})
       RETURNING
         id,
         username,
-        paswordHash
+        password_hash
     `;
     return user;
   },
@@ -54,7 +54,7 @@ export const getUserWithPasswordHashByUsername = cache(
       SELECT
         id,
         username,
-        paswordHash as "paswordHash"
+        password_hash "paswordHash"
       FROM
         users
       WHERE
