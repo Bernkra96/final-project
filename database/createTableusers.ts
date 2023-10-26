@@ -12,11 +12,11 @@ export async function up(sql: Sql) {
     CREATE TABLE users (
       id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     username varchar(80) NOT NULL UNIQUE,
-    password_hash varchar(80) NOT NULL);
+    passwordHash varchar(80) NOT NULL);
   `;
 }
 
-// CREATE TABLE users (id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,username varchar(80) NOT NULL UNIQUE,paswordHash varchar(80) NOT NULL);
+// CREATE TABLE users (id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,username varchar(80) NOT NULL UNIQUE,pasword_hash varchar(80) NOT NULL);
 
 export async function down(sql: Sql) {
   await sql`
