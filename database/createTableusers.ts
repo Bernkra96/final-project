@@ -1,5 +1,4 @@
 import { Sql } from 'postgres';
-import { sql } from './connect';
 
 export type User = {
   id: number;

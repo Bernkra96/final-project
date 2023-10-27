@@ -17,8 +17,8 @@ export const createUser = cache(
         ${JSON.stringify(passwordHash)})
       RETURNING
         id,
-        username,
-        password_hash
+        username
+
     `;
     return user;
   },
