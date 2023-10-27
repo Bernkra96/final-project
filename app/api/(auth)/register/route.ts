@@ -13,13 +13,14 @@ const registerSchema = z.object({
   password: z.string().min(3),
 });
 
-export type LoginResponseBodyPost =
+export type RegisterResponseBodyPost =
   | {
-      user: { username: string };
+      user: User;
     }
   | {
       errors: { message: string }[];
     };
+
 export async function POST(
   request: NextRequest,
 ): Promise<NextResponse<RegisterResponseBodyPost>> {

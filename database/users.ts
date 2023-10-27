@@ -6,29 +6,31 @@ export type UserWithPasswordHash = User & {
   passordHash: string;
 };
 
+export type UserNote = {
+  noteId: number;
+  textContent: string;
+  username: string;
+};
+
 export const createUser = cache(
   async (username: string, passwordHash: string) => {
     const [user] = await sql<User[]>`
-      INSERT INTO
-        users
+      INSERT INTO users
         (username, password_hash)
       VALUES
-        (${username.toLowerCase()},
-        ${JSON.stringify(passwordHash)})
+        (${username.toLowerCase()}, ${passwordHash})
       RETURNING
         id,
         username
-
     `;
     return user;
   },
 );
-
 export const getusers = cache(async () => {
   const users = await sql<User[]>`
     SELECT
      id,
-     username
+     username,
     FROM
       users
   `;

@@ -1,3 +1,4 @@
+import { Console } from 'node:console';
 import crypto from 'node:crypto';
 import bcrypt from 'bcrypt';
 import { cookies } from 'next/headers';
@@ -5,7 +6,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createSession } from '../../../../database/sessions';
 import { getUserWithPasswordHashByUsername } from '../../../../database/users';
-import { User } from '../../../../migrations/00000-crateUsersTable';
 import { secureCookieOptions } from '../../../../util/cookies';
 
 const loginSchema = z.object({
@@ -26,14 +26,12 @@ export async function POST(
 ): Promise<NextResponse<LoginResponseBodyPost>> {
   // Task: Implement the user login workflow
 
-  // 5. Return the logged in user
-
   // 1. Get the user data from the request
   const body = await request.json();
-
+  console.log('Log in 01');
   // 2. Validate the user data
   const result = loginSchema.safeParse(body);
-
+  console.log('Log in 02.1');
   if (!result.success) {
     return NextResponse.json(
       { errors: result.error.issues },
@@ -42,25 +40,33 @@ export async function POST(
       },
     );
   }
+  console.log('Log in 02.2');
 
   // 3. verify the user credentials
   const userWithPasswordHash = await getUserWithPasswordHashByUsername(
     result.data.username,
   );
-
+  console.log('Log in 3.1');
+  console.log(result);
   if (!userWithPasswordHash) {
     return NextResponse.json(
       { errors: [{ message: 'username or password not valid' }] },
       { status: 403 },
     );
   }
+  console.log('Log in 3.2');
+  console.log(userWithPasswordHash.passordHash);
+  console.log(userWithPasswordHash.passwordHash);
+  console.log(userWithPasswordHash);
 
   // 4. Validate the user password by comparing with hashed password
   const isPasswordValid = await bcrypt.compare(
     result.data.password,
-    userWithPasswordHash.passwordHash,
+    userWithPasswordHash.paswordHash,
   );
-
+  console.log(result);
+  console.log(userWithPasswordHash);
+  console.log('Log in 4.1');
   if (!isPasswordValid) {
     return NextResponse.json(
       { errors: [{ message: 'username or password not valid' }] },
@@ -73,12 +79,12 @@ export async function POST(
   // At this stage we already confirm that the user is who they say they are
 
   //  Coming in subsequent lecture
-  //  4. Create a token
+  // 4. Create a token
   const token = crypto.randomBytes(100).toString('base64');
-
+  console.log('Log in 4.2');
   // 5. Create the session record
   const session = await createSession(userWithPasswordHash.id, token);
-
+  console.log('Log in 5.1');
   if (!session) {
     return NextResponse.json(
       { errors: [{ message: 'Error creating the new session' }] },
@@ -87,12 +93,25 @@ export async function POST(
       },
     );
   }
+  console.log('Log in 5.2');
+  // 6. Send the new cookie in the headers
+
+  // cookies().set({
+  //   name: 'sessionToken',
+  //   value: session.token,
+  //   httpOnly: true,
+  //   path: '/',
+  //   secure: process.env.NODE_ENV === 'production',
+  //   maxAge: 60 * 60 * 48, // Expires in 24 hours,
+  //   sameSite: 'lax', // this prevents CSRF attacks
+  // });
+
   cookies().set({
     name: 'sessionToken',
     value: session.token,
     ...secureCookieOptions,
   });
-
+  console.log('Log in 5.3');
   // 6. Return the new user information without the password hash
   return NextResponse.json({
     user: {
