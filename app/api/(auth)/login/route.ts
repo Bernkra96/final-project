@@ -77,7 +77,7 @@ export async function POST(
   const token = crypto.randomBytes(100).toString('base64');
 
   // 5. Create the session record
-  const session = await createSession; //  (userWithPasswordHash.id, token);
+  const session = await createSession(userWithPasswordHash.id, token);
 
   if (!session) {
     return NextResponse.json(
@@ -95,6 +95,8 @@ export async function POST(
 
   // 6. Return the new user information without the password hash
   return NextResponse.json({
-    user: newUser,
+    user: {
+      username: userWithPasswordHash.username,
+    },
   });
 }
