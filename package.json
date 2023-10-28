@@ -6,20 +6,28 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate": "ley --require tsm"
   },
   "dependencies": {
-    "next": "13.5.6",
-    "react": "^18",
-    "react-dom": "^18",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "next": "latest",
+    "postgres": "^3.4.0",
+    "react": "latest",
+    "react-dom": "latest",
     "sass": "^1.69.4",
-    "sharp": "^0.32.6"
+    "sharp": "^0.32.6",
+    "tsm": "^2.3.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.1",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
     "eslint-config-upleveled": "^5.1.0",
+    "ley": "^0.8.1",
     "stylelint": "^15.11.0",
     "stylelint-config-upleveled": "^1.0.2",
     "typescript": "^5"
