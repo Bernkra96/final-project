@@ -1,5 +1,8 @@
+import { type } from 'os';
 import LoginFrom from './llogInFrom';
 
-export default function LoginPage() {
-  return <LoginFrom />;
+type Props = { searchParams?: string | string[] };
+
+export default function LoginPage({ searchParams }: Props) {
+  return <LoginFrom returnTo={searchParams.returnTo} />;
 }
