@@ -31,6 +31,8 @@ export default function RegisterFrom() {
     }
 
     router.push(`/profile/${data.user.username}`);
+
+    router.refresh();
   }
 
   return (
