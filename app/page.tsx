@@ -4,7 +4,7 @@ import styles from './page.module.css';
 export default async function Home() {
   const users = [];
 
-  // users.push(await getusers());
+  //  users.push(await getusers());
 
   //  console.log(users);
   return (

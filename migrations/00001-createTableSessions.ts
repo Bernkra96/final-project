@@ -22,3 +22,4 @@ export async function down(sql: Sql) {
   DROP TABLE sessions
 `;
 }
+ 
