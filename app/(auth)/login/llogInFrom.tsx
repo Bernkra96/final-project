@@ -30,7 +30,7 @@ export default function LoginFrom(props: Props) {
     // console.log('Check : ', data);
 
     if ('errors' in data) {
-      setErrror('test');
+      setErrror(`Error `);
 
       return;
     }
@@ -52,16 +52,16 @@ export default function LoginFrom(props: Props) {
     <>
       <form onSubmit={async (event) => await handelregister(event)}>
         <label>
-          <input onChange={(e) => setUsername(e.currentTarget.value)} />
           User Name
+          <input onChange={(e) => setUsername(e.currentTarget.value)} />
         </label>
 
         <label>
+          Password
           <input
             type="password"
             onChange={(e) => setPassword(e.currentTarget.value)}
           />
-          Password
         </label>
 
         <button>Regster</button>
