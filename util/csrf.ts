@@ -1,1 +1,15 @@
-import Tokens  from ('csrf');
+import Tokens from 'csrf';
+
+const tokens = new Tokens();
+
+export function createCsrfSecret() {
+  return tokens.secretSync();
+}
+
+export function createTokenFromSecret(secret: string) {
+  return tokens.create(secret);
+}
+
+export function validateTokenAgainstSecret(secret: string, token: string) {
+  return tokens.verify(secret, token);
+}

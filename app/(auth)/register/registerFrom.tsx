@@ -7,7 +7,7 @@ import { RegisterResponseBodyPost } from '../../api/(auth)/register/route';
 export default function RegisterFrom() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setErrror] = useState('');
+  const [error, setError] = useState('');
 
   const router = useRouter();
 
@@ -26,7 +26,8 @@ export default function RegisterFrom() {
     console.log('Check : ', data);
 
     if ('errors' in data) {
-      setErrror(data.errors);
+      setError(`Error `);
+
       return;
     }
 
@@ -36,21 +37,24 @@ export default function RegisterFrom() {
   }
 
   return (
-    <form onSubmit={async (event) => await handelregister(event)}>
-      <label>
-        <input onChange={(e) => setUsername(e.currentTarget.value)} />
-        UserName
-      </label>
+    <>
+      <form onSubmit={async (event) => await handelregister(event)}>
+        <label>
+          <input onChange={(e) => setUsername(e.currentTarget.value)} />
+          UserName
+        </label>
 
-      <label>
-        <input
-          type="password"
-          onChange={(e) => setPassword(e.currentTarget.value)}
-        />
-        Password
-      </label>
+        <label>
+          <input
+            type="password"
+            onChange={(e) => setPassword(e.currentTarget.value)}
+          />
+          Password
+        </label>
 
-      <button>Regster</button>
-    </form>
+        <button>Regster</button>
+      </form>
+      <p> {error} </p>
+    </>
   );
 }

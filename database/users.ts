@@ -82,3 +82,30 @@ export const getUserBySessionToken = cache(async (token: string) => {
   `;
   return user;
 });
+
+export const deleteUserbyName = cache(async (username: string) => {
+  const [user] = await sql<{ id: number; username: string }[]>`
+    DELETE FROM
+      users
+    WHERE
+      users.username = ${username}
+
+
+  `;
+  return user;
+});
+
+export const updateUser = cache(
+  async (oldUsername: string, username: string) => {
+    const [user] = await sql<User[]>`
+    UPDATE users
+    SET
+     username= ${username}
+    WHERE
+      username= ${oldUsername},
+    RETURNING  id,
+        username
+  `;
+    return user;
+  },
+);

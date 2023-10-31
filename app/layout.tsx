@@ -45,6 +45,7 @@ export default async function RootLayout(
               <>
                 <div> Hallo {user.username}</div>
                 <LogoutButton />
+                <Link href={`/profile/${user.username}`}>Profile </Link>
               </>
             ) : (
               <>

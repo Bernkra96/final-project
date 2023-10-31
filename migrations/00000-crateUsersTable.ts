@@ -4,6 +4,7 @@ export type User = {
   id: number;
   username: string;
   passwordHash: string;
+  score: number;
 };
 
 export async function up(sql: Sql) {
@@ -11,7 +12,8 @@ export async function up(sql: Sql) {
     CREATE TABLE users (
       id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     username varchar(80) NOT NULL UNIQUE,
-    password_hash varchar(80) NOT NULL);
+    password_hash varchar(80) NOT NULL,
+    score INTEGER NOT NULL);
   `;
 }
 
