@@ -2,8 +2,10 @@ import { Sql } from 'postgres';
 
 export type Comment = {
   id: number;
-  username: string;
-  passwordHash: string;
+  userId: number;
+  post: string;
+  postTime: number;
+  postId: number;
   score: number;
 };
 
@@ -11,8 +13,8 @@ export async function up(sql: Sql) {
   await sql`
  CREATE TABLE comments (
     id BIGINT NOT NULL,
-    Userid INTEGER NOT NULL,
-    postid BIGINT NOT NULL,
+    user_id INTEGER NOT NULL,
+    post_id BIGINT NOT NULL,
     post TEXT NOT NULL,
     post_time TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
     score INTEGER NOT NULL

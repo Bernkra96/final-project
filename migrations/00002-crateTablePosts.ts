@@ -2,8 +2,12 @@ import { Sql } from 'postgres';
 
 export type Post = {
   id: number;
-  username: string;
-  passwordHash: string;
+  userId: number;
+
+  title: string;
+  post: string;
+  postTime: number;
+  image: string;
   score: number;
 };
 
@@ -14,7 +18,7 @@ CREATE TABLE posts(
     user_id BIGINT NOT NULL,
     title VARCHAR(255) NOT NULL,
     post TEXT NULL,
-    post_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
+    post_time TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
     image TEXT NULL,
     score INTEGER NOT NULL
 );
