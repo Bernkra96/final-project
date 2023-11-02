@@ -1,22 +1,24 @@
 import { Sql } from 'postgres';
 
 export type Comment = {
+  postId: number;
   id: number;
-  userId: number;
+  user_id: number;
+  post_id: number;
   post: string;
   postTime: number;
-  postId: number;
+
   score: number;
 };
 
 export async function up(sql: Sql) {
   await sql`
  CREATE TABLE comments (
-    id BIGINT NOT NULL,
+    id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     user_id INTEGER NOT NULL,
-    post_id BIGINT NOT NULL,
+    post_id INTEGER NOT NULL,
     post TEXT NOT NULL,
-    post_time TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
+    post_time timestamp NOT NULL DEFAULT NOW(),
     score INTEGER NOT NULL
     );
   `;
