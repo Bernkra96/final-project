@@ -1,12 +1,8 @@
-import { getImageSize } from 'next/dist/server/image-optimizer';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { map } from 'zod';
 import { User } from '../../database/createTableusers';
 import { getAllPosts, getAllPostswithUserName } from '../../database/posts';
-import { getUserByUserId } from '../../database/users';
-import Home from '../page';
 import Ceradepost from './CeradePostFrom';
 
 export default async function newPostspage() {

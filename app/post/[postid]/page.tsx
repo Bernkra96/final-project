@@ -1,11 +1,14 @@
 import { cookies } from 'next/headers';
 import Link from 'next/link';
-import { createComment, getAllComments } from '../../../database/commnts';
+import { number } from 'zod';
+import { getAllComments } from '../../../database/commnts';
 import { getPostpostidwithUserName } from '../../../database/posts';
 import { getUserBySessionToken } from '../../../database/users';
-import CeradepCommnt from './ceadteCommentFrom';
+import CreateComment from './ceadteCommentFrom';
 
-export default async function ItemProfilePage(props) {
+export default async function ItemProfilePage(props: {
+  params: { postid: any };
+}) {
   const itemId = Number(props.params.postid);
   const posts = await getPostpostidwithUserName(itemId);
   const allcomments = await getAllComments();
@@ -14,7 +17,7 @@ export default async function ItemProfilePage(props) {
   const userid = Number(user?.id);
 
   const comments = allcomments.filter((comment) => comment.postId === itemId);
-  await createComment(userid, itemId, 'Test', 0);
+  // await createComment(userid, itemId, 'Test', 0);
   console.log(comments);
 
   return (
@@ -33,8 +36,8 @@ export default async function ItemProfilePage(props) {
           </li>
         ))}
       </ul>
+      <CreateComment postid={itemId} />
       <h3> Comments</h3>
-
       <ul>
         {comments.map(async (comment) => (
           <li key={comment.id}>

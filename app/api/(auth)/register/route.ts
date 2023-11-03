@@ -77,7 +77,7 @@ export async function POST(
   const token = crypto.randomBytes(100).toString('base64');
 
   // 5. Create the session record
-  const session = await createSession(newUser.id, token, 0);
+  const session = await createSession(newUser.id, token);
 
   if (!session) {
     return NextResponse.json(
