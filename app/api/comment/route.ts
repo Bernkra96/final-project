@@ -1,26 +1,22 @@
 import { error } from 'console';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import router from 'next/router';
 import { NextRequest, NextResponse } from 'next/server';
 import { string, z } from 'zod';
-import { deleteCommintByPostId } from '../../../database/commnts';
 import {
-  createPost,
-  deletePost,
-  getpostByPostId,
-  getUserIdfromPost,
-} from '../../../database/posts';
-import {
-  getUserBySessionToken,
-  getUserByUserId,
-} from '../../../database/users';
-import { Post } from '../../../migrations/00002-crateTablePosts';
+  createComment,
+  deleteCommintByCommentId,
+  deleteCommintByPostId,
+} from '../../../database/commnts';
+import { getpostByPostId } from '../../../database/posts';
+import { getUserBySessionToken } from '../../../database/users';
 
-export type PostResponseBodyPost = {
-  post: Post;
+export type CommentResponseBodyPost = {
+  comment: Comment;
 };
 {
-  {
+  errors: {
     message: string;
   }
   [];
@@ -28,9 +24,11 @@ export type PostResponseBodyPost = {
 
 export async function POST(
   request: NextRequest,
-): Promise<NextResponse<PostResponseBodyPost>> {
+): Promise<NextResponse<CommentResponseBodyPost>> {
   const body = await request.json();
-
+  console.log(body);
+  const postid = body.postid.postid;
+  console.log(postid);
   const tokenCookie = cookies().get('sessionToken');
   if (!tokenCookie) {
     return NextResponse.json(
@@ -47,15 +45,9 @@ export async function POST(
   }
   const userId = user.id;
 
-  const newPost = await createPost(
-    userId,
-    body.title,
-    body.post,
-    body.Image,
-    0,
-  );
+  const newComment = await createComment(userId, postid, body.post, 0);
 
-  if (!newPost) {
+  if (!newComment) {
     return NextResponse.json(
       { errors: [{ message: 'Failed to create post' }] },
       { status: 500 },
@@ -63,19 +55,22 @@ export async function POST(
   }
 
   return NextResponse.json({
-    post: newPost,
-  } as PostResponseBodyPost);
+    comment: newComment,
+  } as CommentResponseBodyPost);
 }
 
 export async function DELETE(
   request: NextRequest,
-): Promise<NextResponse<PostResponseBodyPost>> {
+): Promise<NextResponse<CommentResponseBodyPost>> {
   const body = await request.json();
-  const userIdPage = body.PostuserId;
+  const userIdPage = body.id;
   const postId = body.postId;
-  console.log('oust id', body);
-  console.log('post id2', postId);
-  console.log('post id3', userIdPage);
+  let commentId = body.commentId;
+
+  console.log('id', body);
+  console.log('id2', postId);
+  console.log('id3', userIdPage);
+  console.log('id3', commentId);
 
   const userpuostid = await getpostByPostId(postId);
 
@@ -93,26 +88,20 @@ export async function DELETE(
       { status: 401 },
     );
   }
+  commentId = user.id;
   console.log(
-    'post id4',
+    'id4',
     user.id,
     userIdPage,
     user.id !== userIdPage,
     userpuostid,
+
+    commentId,
   );
 
-  if (user.id == userIdPage) {
-    return NextResponse.json(
-      { errors: [{ message: 'Wrong user' }] },
-      { status: 401 },
-    );
-  }
-  const deleteCommint = await deleteCommintByPostId(postId);
-
-  const deletetPost = await deletePost(postId);
-
+  const deleteCommint = await deleteCommintByCommentId(Number(userIdPage.id));
+  console.log('id5', deleteCommint);
   return NextResponse.json({
-    post: deletetPost,
-    deleteCommint,
-  } as PostResponseBodyPost);
+    comment: deleteCommint,
+  } as unknown as CommentResponseBodyPost);
 }

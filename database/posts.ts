@@ -51,6 +51,18 @@ export const getAllPosts = cache(async () => {
   return posts;
 });
 
+export const getpostByPostId = cache(async (postid: number) => {
+  const post = await sql<Post[]>`
+    SELECT
+      *
+    FROM
+      posts
+    WHERE
+      id = ${postid}
+  `;
+  return post;
+});
+
 export const getAllPostswithUserName = cache(async () => {
   const posts = await sql<Post[]>`
     SELECT
@@ -85,6 +97,28 @@ export const getPostpostidwithUserName = cache(async (postid: number) => {
     INNER JOIN users ON posts.user_id = users.id
     WHERE
       posts.id = ${postid}
+  `;
+  return post;
+});
+
+export const getUserIdfromPost = cache(async (postid: number) => {
+  const post = await sql<Post[]>`
+    SELECT
+      user_id
+    FROM
+      posts
+    WHERE
+      id = ${postid}
+  `;
+  return post;
+});
+
+export const deletePost = cache(async (postid: number) => {
+  const post = await sql<Post[]>`
+    DELETE FROM
+      posts
+    WHERE
+      id = ${postid}
   `;
   return post;
 });

@@ -4,7 +4,9 @@ import { number } from 'zod';
 import { getAllComments } from '../../../database/commnts';
 import { getPostpostidwithUserName } from '../../../database/posts';
 import { getUserBySessionToken } from '../../../database/users';
+import DeletePost from '../../newposts/delidepostButton';
 import CreateComment from './ceadteCommentFrom';
+import CommntDelide from './DelideCommentButton';
 
 export default async function ItemProfilePage(props: {
   params: { postid: any };
@@ -33,6 +35,7 @@ export default async function ItemProfilePage(props: {
               <p>{post.username}</p>
             </Link>
             <p>{post.score} </p>
+            <DeletePost id={Number(post.id)} PostuserId={userid} />
           </li>
         ))}
       </ul>
@@ -43,6 +46,8 @@ export default async function ItemProfilePage(props: {
           <li key={comment.id}>
             <h3>{comment.post}</h3>
             <p>{comment.score} </p>
+
+            <CommntDelide id={comment.id} />
           </li>
         ))}
       </ul>

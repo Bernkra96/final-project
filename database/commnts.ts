@@ -92,3 +92,21 @@ export const getCommentsByPostIdwithUserName = cache(
     return comments;
   },
 );
+
+export const deleteCommintByPostId = cache(async (post_id: number) => {
+  await sql`
+    DELETE FROM
+      comments
+    WHERE
+      post_id = ${post_id}
+  `;
+});
+
+export const deleteCommintByCommentId = cache(async (id: number) => {
+  await sql`
+    DELETE FROM
+      comments
+    WHERE
+      id = ${id}
+  `;
+});

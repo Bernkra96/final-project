@@ -4,18 +4,19 @@ import React from 'react';
 import { User } from '../../database/createTableusers';
 import { getAllPosts, getAllPostswithUserName } from '../../database/posts';
 import Ceradepost from './CeradePostFrom';
+import DeletePost from './delidepostButton';
 
 export default async function newPostspage() {
   const posts = await getAllPostswithUserName();
 
   return (
     <>
+      <Ceradepost />
       <h2> New Posts </h2>
 
-      <Ceradepost />
       <ul>
         {posts.map(async (post) => (
-          <li key={post.id}>
+          <li key={`post-${post.id}`}>
             <Link href={{ pathname: '/post/' + post.id }}>
               <h3>{post.title}</h3>
               <p>{post.post}</p>
@@ -26,6 +27,8 @@ export default async function newPostspage() {
               </Link>
               <p>{post.id} </p>
             </Link>
+
+            <DeletePost id={post.id} PostuserId={post.userId} />
           </li>
         ))}
       </ul>
