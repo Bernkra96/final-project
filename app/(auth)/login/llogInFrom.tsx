@@ -6,7 +6,10 @@ import { useState } from 'react';
 import { getSafeReturnToPath } from '../../../util/validation';
 import { LoginResponseBodyPost } from '../../api/(auth)/login/route';
 
-type Props = { searchParams?: string | string[] };
+type Props = {
+  returnTo: string | string[] | undefined;
+  searchParams?: string | string[];
+};
 
 export default function LoginFrom(props: Props) {
   const [username, setUsername] = useState('');

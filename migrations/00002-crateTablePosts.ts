@@ -1,20 +1,25 @@
 import { Sql } from 'postgres';
 
 export type Post = {
-  id: number;
   username: string;
-  passwordHash: string;
+  id: number;
+  userId: number;
+
+  title: string;
+  post: string;
+  postTime: number;
+  image: string;
   score: number;
 };
 
 export async function up(sql: Sql) {
   await sql`
 CREATE TABLE posts(
-    id BIGINT NOT NULL,
+    id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     user_id BIGINT NOT NULL,
     title VARCHAR(255) NOT NULL,
     post TEXT NULL,
-    post_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
+    post_time timestamp NOT NULL DEFAULT NOW(),
     image TEXT NULL,
     score INTEGER NOT NULL
 );

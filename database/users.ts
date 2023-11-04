@@ -13,15 +13,16 @@ export type UserNote = {
 };
 
 export const createUser = cache(
-  async (username: string, passwordHash: string) => {
+  async (username: string, passwordHash: string, score: number) => {
     const [user] = await sql<User[]>`
       INSERT INTO users
-        (username, password_hash)
+        (username, password_hash, score)
       VALUES
-        (${username.toLowerCase()}, ${passwordHash})
+        (${username.toLowerCase()}, ${passwordHash}, ${score})
       RETURNING
         id,
-        username
+        username,
+        score
     `;
     return user;
   },
@@ -46,6 +47,19 @@ export const getUserByUsername = cache(async (username: string) => {
       users
     WHERE
       username = ${username.toLowerCase()}
+  `;
+  return user;
+});
+
+export const getUserByUserId = cache(async (userId: number) => {
+  const [user] = await sql<User[]>`
+    SELECT
+      id,
+      username
+    FROM
+      users
+    WHERE
+      id = ${userId}
   `;
   return user;
 });

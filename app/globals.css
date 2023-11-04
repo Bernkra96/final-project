@@ -1,0 +1,32 @@
+* {
+  background-color: greenyellow;
+  border-radius: 10px;
+  text-align: center;
+  padding: auto;
+}
+.page {
+  background-color: darkgrey;
+  padding: auto;
+  border-radius: 10px;
+}
+
+ul {
+  list-style-type: none;
+  background-color: rgb(7, 209, 0);
+  padding: auto;
+
+  border-radius: 10px;
+}
+
+li {
+  display: inline;
+  padding: auto;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+link {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: auto;
+}
