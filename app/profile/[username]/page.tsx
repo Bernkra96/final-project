@@ -27,6 +27,12 @@ export default async function userProfilePage({ params }: Props) {
   return (
     <div>
       <h3> Profle of {params.username}</h3>
+
+      <DeleteuserButton
+        UserName={params.username}
+        ID={user?.id}
+        Token={tokenCooke}
+      />
     </div>
   );
 }

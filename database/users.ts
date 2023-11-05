@@ -27,6 +27,7 @@ export const createUser = cache(
     return user;
   },
 );
+
 export const getusers = cache(async () => {
   const users = await sql<User[]>`
     SELECT
@@ -123,3 +124,13 @@ export const updateUser = cache(
     return user;
   },
 );
+
+export const DeliteUserbyId = cache(async (id: number) => {
+  const [user] = await sql<{ id: number; username: string }[]>`
+    DELETE FROM
+      users
+    WHERE
+      users.id = ${id}
+  `;
+  return user;
+});
