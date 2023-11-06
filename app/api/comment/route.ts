@@ -8,6 +8,8 @@ import {
   createComment,
   deleteCommintByCommentId,
   deleteCommintByPostId,
+  getCommentByCommentId,
+  getUserIdperCommentId,
 } from '../../../database/commnts';
 import { getpostByPostId } from '../../../database/posts';
 import { getUserBySessionToken } from '../../../database/users';
@@ -27,8 +29,8 @@ export async function POST(
 ): Promise<NextResponse<CommentResponseBodyPost>> {
   const body = await request.json();
   console.log(body);
-  const postid = body.postid.postid;
-  console.log(postid);
+  const postID = body.postid.postid;
+  console.log(postID);
   const tokenCookie = cookies().get('sessionToken');
   if (!tokenCookie) {
     return NextResponse.json(
@@ -45,7 +47,7 @@ export async function POST(
   }
   const userId = user.id;
 
-  const newComment = await createComment(userId, postid, body.post, 0);
+  const newComment = await createComment(userId, postID, body.post, 0);
 
   if (!newComment) {
     return NextResponse.json(
@@ -63,45 +65,66 @@ export async function DELETE(
   request: NextRequest,
 ): Promise<NextResponse<CommentResponseBodyPost>> {
   const body = await request.json();
-  const userIdPage = body.id;
+  const userIdPage = body.id.userIdPage;
   const postId = body.postId;
-  let commentId = body.commentId;
+  let commentId = body.id.id;
 
-  console.log('id', body);
+  console.log('id01', body);
   console.log('id2', postId);
   console.log('id3', userIdPage);
   console.log('id3', commentId);
 
-  const userpuostid = await getpostByPostId(postId);
+  const commentData = await getCommentByCommentId(commentId);
 
+  console.log('id3.5', commentData[0].userId);
+  const commentuserId = await getUserIdperCommentId(commentId);
+
+  console.log('id3.5.5', commentuserId);
   const tokenCookie = cookies().get('sessionToken');
   if (!tokenCookie) {
     return NextResponse.json(
-      { errors: [{ message: 'Session token not found' }] },
+      { errors: [{ message: 'Session token not found' }] } as {
+        errors: { message: string }[];
+      },
       { status: 401 },
     );
   }
   const user = await getUserBySessionToken(tokenCookie.value);
   if (!user) {
     return NextResponse.json(
-      { errors: [{ message: 'User not found' }] },
+      { errors: [{ message: 'User not found' }] } as {
+        errors: { message: string }[];
+      },
       { status: 401 },
     );
   }
-  commentId = user.id;
-  console.log(
-    'id4',
-    user.id,
-    userIdPage,
-    user.id !== userIdPage,
-    userpuostid,
+  const userId = user.id;
 
-    commentId,
-  );
+  const comment = await getCommentByCommentId(commentId);
 
-  const deleteCommint = await deleteCommintByCommentId(Number(userIdPage.id));
-  console.log('id5', deleteCommint);
+  if (comment.length === 0) {
+    return NextResponse.json(
+      { errors: [{ message: 'Comment not found' }] } as {
+        errors: { message: string }[];
+      },
+      { status: 404 },
+    );
+  }
+
+  const commentUserId = commentData[0].userId;
+
+  if (userId !== commentUserId) {
+    return NextResponse.json(
+      { errors: [{ message: 'No permission' }] } as {
+        errors: { message: string }[];
+      },
+      { status: 401 },
+    );
+  }
+
+  const deleteCommint = await deleteCommintByCommentId(commentId);
+
   return NextResponse.json({
     comment: deleteCommint,
-  } as unknown as CommentResponseBodyPost);
+  } as CommentResponseBodyPost);
 }

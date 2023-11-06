@@ -6,7 +6,11 @@ import { CommentResponseBodyPost } from '../../api/comment/route';
 
 type Props = { searchParams?: string | string[]; id: number };
 
-export default function CommntDelide(id: number) {
+export default function CommntDelide(
+  id: number,
+  userIdPage: number,
+  Token: string,
+) {
   const [title, setTitle] = useState('');
   const [post, setPost] = useState('');
   const [image, setImage] = useState('');
@@ -17,9 +21,7 @@ export default function CommntDelide(id: number) {
 
     const response = await fetch('/api/comment', {
       method: 'DELETE',
-      body: JSON.stringify({
-        id,
-      }),
+      body: JSON.stringify({ id, userIdPage, Token }),
     });
 
     const data: CommentResponseBodyPost = await response.json();

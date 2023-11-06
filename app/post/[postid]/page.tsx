@@ -17,6 +17,7 @@ export default async function ItemProfilePage(props: {
   const tokenCooke = cookies().get('sessionToken');
   const user = await getUserBySessionToken(tokenCooke.value);
   const userid = Number(user?.id);
+  const SeactionIDUSER = tokenCooke?.value;
 
   const comments = allcomments.filter((comment) => comment.postId === itemId);
   // await createComment(userid, itemId, 'Test', 0);
@@ -27,15 +28,19 @@ export default async function ItemProfilePage(props: {
       <h3> Post</h3>
       <ul>
         {posts.map(async (post) => (
-          <li key={post.id}>
+          <li key={`post-${post.id}`}>
             <h3>{post.title}</h3>
             <p>{post.post}</p>
             <p>{post.image}</p>
-            <Link href={'/'}>
+            <Link href={`/profile/${post.username}`}>
               <p>{post.username}</p>
             </Link>
             <p>{post.score} </p>
-            <DeletePost id={Number(post.id)} PostuserId={userid} />
+            <DeletePost
+              id={post.id}
+              PostuserId={post.userId}
+              Token={SeactionIDUSER}
+            />
           </li>
         ))}
       </ul>
@@ -47,7 +52,11 @@ export default async function ItemProfilePage(props: {
             <h3>{comment.post}</h3>
             <p>{comment.score} </p>
 
-            <CommntDelide id={comment.id} />
+            <CommntDelide
+              id={comment.id}
+              userIdPage={comment.user_id}
+              Token={SeactionIDUSER}
+            />
           </li>
         ))}
       </ul>

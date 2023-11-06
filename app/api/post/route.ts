@@ -71,15 +71,21 @@ export async function DELETE(
   request: NextRequest,
 ): Promise<NextResponse<PostResponseBodyPost>> {
   const body = await request.json();
-  const userIdPage = body.PostuserId;
-  const postId = body.postId;
+  const sideData = body.id;
+  const userIdPage = sideData.PostuserId;
+  const postId = sideData.id;
+  const tokenFromPage = sideData.Token;
   console.log('oust id', body);
-  console.log('post id2', postId);
+  console.log('oust id1', sideData);
+  console.log('post id2'), sideData.PostuserId;
   console.log('post id3', userIdPage);
+  console.log('post id3.5', tokenFromPage);
 
   const userpuostid = await getpostByPostId(postId);
-
+  console.log('post id3.6', userpuostid[0]);
   const tokenCookie = cookies().get('sessionToken');
+  const cookieToken = tokenCookie?.value;
+  console.log('post id3.7', tokenCookie, cookieToken);
   if (!tokenCookie) {
     return NextResponse.json(
       { errors: [{ message: 'Session token not found' }] },
@@ -93,17 +99,25 @@ export async function DELETE(
       { status: 401 },
     );
   }
+  const userID = user.id;
   console.log(
     'post id4',
     user.id,
-    userIdPage,
-    user.id !== userIdPage,
-    userpuostid,
+    userIdPage.toString(),
+    userID !== userIdPage,
+    userpuostid.user_id,
   );
 
-  if (user.id == userIdPage) {
+  if (userID != userIdPage) {
     return NextResponse.json(
-      { errors: [{ message: 'Wrong user' }] },
+      { errors: [{ message: 'Wrong user USEU ID' }] },
+      { status: 401 },
+    );
+  }
+
+  if (cookieToken !== tokenFromPage) {
+    return NextResponse.json(
+      { errors: [{ message: 'Wrong user Tocken' }] },
       { status: 401 },
     );
   }

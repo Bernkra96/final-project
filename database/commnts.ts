@@ -93,6 +93,30 @@ export const getCommentsByPostIdwithUserName = cache(
   },
 );
 
+export const getUserIdperCommentId = cache(async (id: number) => {
+  const comments = await sql<Comment[]>`
+    SELECT
+      user_id
+    FROM
+      comments
+    WHERE
+      id = ${id}
+  `;
+  return comments;
+});
+
+export const getCommentByCommentId = cache(async (id: number) => {
+  const comments = await sql<Comment[]>`
+    SELECT
+      *
+    FROM
+      comments
+    WHERE
+      id = ${id}
+  `;
+  return comments;
+});
+
 export const deleteCommintByPostId = cache(async (post_id: number) => {
   await sql`
     DELETE FROM

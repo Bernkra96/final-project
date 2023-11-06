@@ -81,8 +81,50 @@ export async function DELETE(
 export async function PATCH(
   request: NextRequest,
 ): Promise<NextResponse<ProfileResponseBodyPost>> {
-  const tst = 'userWithPasswordHash.username';
   const body = await request.json();
+
+  const LodeData = body.username;
+  const userName = LodeData.username;
+  const id = LodeData.ID;
+  const userToken = LodeData.Token;
+
+  console.log('Push Test', body);
+  console.log('DELIDE Test02', '/ ', LodeData.UserName);
+  console.log('Pusch Test03', LodeData, '/');
+
+  if (!userToken) {
+    return NextResponse.json(
+      { errors: [{ message: 'Session token not found' }] },
+      { status: 401 },
+    );
+  }
+  const user = await getUserBySessionToken(userToken);
+  if (!userName) {
+    return NextResponse.json(
+      { errors: [{ message: 'User not found' }] },
+      { status: 401 },
+    );
+  }
+  if (!user) {
+    return NextResponse.json(
+      { errors: [{ message: 'User not found' }] },
+      { status: 401 },
+    );
+  }
+
+  if (user.username !== userName) {
+    return NextResponse.json(
+      { errors: [{ message: 'No pemiston' }] },
+      { status: 401 },
+    );
+  }
+
+  if (user.id !== id) {
+    return NextResponse.json(
+      { errors: [{ message: 'No pemiston' }] },
+      { status: 401 },
+    );
+  }
 
   return NextResponse.json({
     user: body,

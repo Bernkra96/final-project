@@ -1,14 +1,13 @@
 'use client';
 
-import { cookies } from 'next/headers';
 import React, { useState } from 'react';
 import { ProfileResponseBodyPost } from '../../api/profile/route';
 
-export default function EditFrom() {
-  const token = cookies().get('sessionToken');
-  const [username, setUsername] = useState('');
-
-  console.log('token', token);
+export default function EditFrom(UserName: string, ID: number, Token: string) {
+  const [newUsername, setNewUsername] = useState('');
+  const id = ID;
+  const token = Token;
+  const username = UserName;
 
   async function handelUserUpdate(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -16,7 +15,10 @@ export default function EditFrom() {
     const response = await fetch('/api/profile', {
       method: 'PATCH',
       body: JSON.stringify({
-        token,
+        NewUserName: newUsername,
+        UserName: username,
+        ID: id,
+        Token: token,
       }),
     });
 
@@ -33,7 +35,7 @@ export default function EditFrom() {
     <form onSubmit={async (event) => await handelUserUpdate(event)}>
       <label>
         User Name
-        <input onChange={(e) => e.currentTarget.value} />
+        <input onChange={(e) => setNewUsername(e.currentTarget.value)} />
       </label>
       <button>Edit</button>
     </form>
