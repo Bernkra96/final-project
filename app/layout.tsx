@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { ReactNode } from 'react';
+import { isAdmin } from '../database/admins';
 import { getUserBySessionToken } from '../database/users';
 import LogoutButton from './(auth)/logout/logoutButton';
 
@@ -28,7 +29,7 @@ export default async function RootLayout(
 
   const user =
     tokenSeession && (await getUserBySessionToken(tokenSeession.value));
-
+  const isadmin = await isAdmin(user?.id);
   console.log('tokenSeession user', user);
 
   return (
@@ -47,6 +48,7 @@ export default async function RootLayout(
                 <LogoutButton />
                 <Link href={`/profile/${user.username}`}>Profile </Link>
                 <Link href="/newposts">Newposts </Link>
+                {isadmin ? <Link href="/admin">Admin </Link> : null}
               </>
             ) : (
               <>

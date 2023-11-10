@@ -2,6 +2,7 @@ import { Console } from 'console';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { string } from 'zod';
+import { isAdmin } from '../../../database/admins';
 import { deleteSessionByToken } from '../../../database/sessions';
 import { DeliteUserbyId, getUserBySessionToken } from '../../../database/users';
 import { User } from '../../../migrations/00000-crateUsersTable';
@@ -24,6 +25,9 @@ export async function DELETE(
   const userName = LodeData.UserName;
   const id = LodeData.ID;
   const userToken = LodeData.Token;
+  const user = await getUserBySessionToken(body.id.Token);
+  const admin = await isAdmin(user?.id);
+  console.log('commnt id3.8', user?.id, admin?.user_id);
 
   console.log('DELIDE Test', body);
   console.log(
@@ -43,32 +47,33 @@ export async function DELETE(
   }
   const user = await getUserBySessionToken(userToken);
   if (!userName) {
-    return NextResponse.json(
-      { errors: [{ message: 'User not found' }] },
-      { status: 401 },
-    );
-  }
-  if (!user) {
-    return NextResponse.json(
-      { errors: [{ message: 'User not found' }] },
-      { status: 401 },
-    );
-  }
+    if (!admin?.level > 1) {
+      return NextResponse.json(
+        { errors: [{ message: 'User not found' }] },
+        { status: 401 },
+      );
+    }
+    if (!user) {
+      return NextResponse.json(
+        { errors: [{ message: 'User not found' }] },
+        { status: 401 },
+      );
+    }
 
-  if (user.username !== userName) {
-    return NextResponse.json(
-      { errors: [{ message: 'No pemiston' }] },
-      { status: 401 },
-    );
-  }
+    if (user.username !== userName) {
+      return NextResponse.json(
+        { errors: [{ message: 'No pemiston' }] },
+        { status: 401 },
+      );
+    }
 
-  if (user.id !== id) {
-    return NextResponse.json(
-      { errors: [{ message: 'No pemiston' }] },
-      { status: 401 },
-    );
+    if (user.id !== id) {
+      return NextResponse.json(
+        { errors: [{ message: 'No pemiston' }] },
+        { status: 401 },
+      );
+    }
   }
-
   const delesetUser = await DeliteUserbyId(Number(id));
   if (userToken) await deleteSessionByToken(userToken);
   await cookies().set('sessionToken', '', { maxAge: -1 });
@@ -105,6 +110,7 @@ export async function PATCH(
       { status: 401 },
     );
   }
+
   if (!user) {
     return NextResponse.json(
       { errors: [{ message: 'User not found' }] },

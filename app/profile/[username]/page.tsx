@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation';
 import React from 'react';
+import { isAdmin } from '../../../database/admins';
 import {
   getPostpostidwithUserName,
   getPostswithUserid,
@@ -10,6 +11,7 @@ import {
   getUserByUsername,
 } from '../../../database/users';
 import { getCookie } from '../../../util/cookies';
+import { editpermiston } from '../../../util/editpermiston';
 import DeleteuserButton from './DelideButton';
 import EditFrom from './EditFrom';
 
@@ -36,14 +38,21 @@ export default async function userProfilePage({ params }: Props) {
   //}
 
   return (
-    <div>
+    <>
       <h3> Profle of {params.username}</h3>
-
-      <DeleteuserButton
-        UserName={params.username}
-        ID={user?.id}
-        Token={tokenCooke}
-      />
+      {(await isAdmin(proflieUserid)) ? <p>Is Admin</p> : null}
+      {(await editpermiston(
+        proflieUserid,
+        user?.id,
+        tokenCooke,
+        proflieUserid,
+      )) ? (
+        <DeleteuserButton
+          UserName={params.username}
+          ID={user?.id}
+          Token={tokenCooke}
+        />
+      ) : null}
 
       <h3>UserPosts</h3>
       <ul>
@@ -53,9 +62,19 @@ export default async function userProfilePage({ params }: Props) {
             <p>{post.post}</p>
 
             <p>{post.score} </p>
+
+            <ul>
+              {profliePosts.map(async (post) => (
+                <li key={post.id}>
+                  <h3>{post.title}</h3>
+                  <p>{post.post}</p>
+                  <p>{post.score} </p>
+                </li>
+              ))}
+            </ul>
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 }

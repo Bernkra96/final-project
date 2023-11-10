@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import router from 'next/router';
 import { NextRequest, NextResponse } from 'next/server';
 import { string, z } from 'zod';
+import { isAdmin } from '../../../database/admins';
 import {
   createComment,
   deleteCommintByCommentId,
@@ -68,6 +69,9 @@ export async function DELETE(
   const userIdPage = body.id.userIdPage;
   const postId = body.postId;
   let commentId = body.id.id;
+  const user = await getUserBySessionToken(body.id.Token);
+  const admin = await isAdmin(user.id);
+  console.log('commnt id3.8', user.id, admin?.user_id);
 
   console.log('id01', body);
   console.log('id2', postId);
@@ -76,7 +80,7 @@ export async function DELETE(
 
   const commentData = await getCommentByCommentId(commentId);
 
-  console.log('id3.5', commentData[0].userId);
+  console.log('id3.5', admin?.level > 1);
   const commentuserId = await getUserIdperCommentId(commentId);
 
   console.log('id3.5.5', commentuserId);
@@ -89,39 +93,39 @@ export async function DELETE(
       { status: 401 },
     );
   }
-  const user = await getUserBySessionToken(tokenCookie.value);
-  if (!user) {
-    return NextResponse.json(
-      { errors: [{ message: 'User not found' }] } as {
-        errors: { message: string }[];
-      },
-      { status: 401 },
-    );
+  if (!admin?.level > 1) {
+    if (!user) {
+      return NextResponse.json(
+        { errors: [{ message: 'User not found' }] } as {
+          errors: { message: string }[];
+        },
+        { status: 401 },
+      );
+    }
+    const userId = user.id;
+
+    const comment = await getCommentByCommentId(commentId);
+
+    if (comment.length === 0) {
+      return NextResponse.json(
+        { errors: [{ message: 'Comment not found' }] } as {
+          errors: { message: string }[];
+        },
+        { status: 404 },
+      );
+    }
+
+    const commentUserId = commentData[0].userId;
+
+    if (userId !== commentUserId) {
+      return NextResponse.json(
+        { errors: [{ message: 'No permission' }] } as {
+          errors: { message: string }[];
+        },
+        { status: 401 },
+      );
+    }
   }
-  const userId = user.id;
-
-  const comment = await getCommentByCommentId(commentId);
-
-  if (comment.length === 0) {
-    return NextResponse.json(
-      { errors: [{ message: 'Comment not found' }] } as {
-        errors: { message: string }[];
-      },
-      { status: 404 },
-    );
-  }
-
-  const commentUserId = commentData[0].userId;
-
-  if (userId !== commentUserId) {
-    return NextResponse.json(
-      { errors: [{ message: 'No permission' }] } as {
-        errors: { message: string }[];
-      },
-      { status: 401 },
-    );
-  }
-
   const deleteCommint = await deleteCommintByCommentId(commentId);
 
   return NextResponse.json({

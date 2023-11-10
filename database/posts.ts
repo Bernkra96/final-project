@@ -50,7 +50,7 @@ export const getAllPosts = cache(async () => {
   `;
   return posts;
 });
-
+//  SELECT       *    FROM     posts;
 export const getpostByPostId = cache(async (postid: number) => {
   const post = await sql<Post[]>`
     SELECT

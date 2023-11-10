@@ -10,19 +10,21 @@ export type Post = {
   postTime: number;
   image: string;
   score: number;
+  display_id: number;
 };
 
 export async function up(sql: Sql) {
   await sql`
-CREATE TABLE posts(
-    id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+CREATE TABLE posts (
+  id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     user_id BIGINT NOT NULL,
     title VARCHAR(255) NOT NULL,
     post TEXT NULL,
     post_time timestamp NOT NULL DEFAULT NOW(),
     image TEXT NULL,
-    score INTEGER NOT NULL
-);
+    score INTEGER NOT NULL,
+    display_id BIGINT NULL
+    );
   `;
 }
 export async function down(sql: Sql) {

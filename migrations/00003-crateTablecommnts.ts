@@ -9,6 +9,7 @@ export type Comment = {
   postTime: number;
 
   score: number;
+  display_id: number;
 };
 
 export async function up(sql: Sql) {
@@ -19,7 +20,8 @@ export async function up(sql: Sql) {
     post_id INTEGER NOT NULL,
     post TEXT NOT NULL,
     post_time timestamp NOT NULL DEFAULT NOW(),
-    score INTEGER NOT NULL
+    score INTEGER NOT NULL,
+    display_id BIGINT NULL
     );
   `;
 }
