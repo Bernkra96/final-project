@@ -42,6 +42,10 @@ export default function Ceradepost(props: Props) {
           Post:
           <input onChange={(e) => setPost(e.currentTarget.value)} />
         </label>
+        <label>
+          Iamge:
+          <input onChange={(e) => setImage(e.currentTarget.value)} />
+        </label>
 
         <button>Make Post</button>
       </form>

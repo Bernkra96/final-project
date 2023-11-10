@@ -8,9 +8,9 @@ import { PostResponseBodyPost } from '../api/post/route';
 type Props = { searchParams?: string | string[]; id: number };
 
 export default function DeletePost(
-  props: Props,
   id: number,
   PostuserId: number,
+  Token: string,
 ) {
   const [title, setTitle] = useState('');
   const [post, setPost] = useState('');
@@ -19,12 +19,13 @@ export default function DeletePost(
 
   async function handelPostDelete(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
+    console.log('Post Button page delite ', PostuserId, id, Token);
     const response = await fetch('/api/post', {
       method: 'DELETE',
       body: JSON.stringify({
-        postId: props.id,
+        id,
         PostuserId,
+        Token,
       }),
     });
 

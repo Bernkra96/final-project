@@ -50,7 +50,7 @@ export const getAllPosts = cache(async () => {
   `;
   return posts;
 });
-
+//  SELECT       *    FROM     posts;
 export const getpostByPostId = cache(async (postid: number) => {
   const post = await sql<Post[]>`
     SELECT
@@ -99,6 +99,18 @@ export const getPostpostidwithUserName = cache(async (postid: number) => {
       posts.id = ${postid}
   `;
   return post;
+});
+
+export const getPostswithUserid = cache(async (userid: number) => {
+  const posts = await sql<Post[]>`
+    SELECT
+      *
+    FROM
+      posts
+    WHERE
+      user_id = ${userid}
+  `;
+  return posts;
 });
 
 export const getUserIdfromPost = cache(async (postid: number) => {

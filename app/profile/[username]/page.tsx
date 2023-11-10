@@ -1,8 +1,17 @@
 import { redirect } from 'next/navigation';
 import React from 'react';
+import { isAdmin } from '../../../database/admins';
+import {
+  getPostpostidwithUserName,
+  getPostswithUserid,
+} from '../../../database/posts';
 import { getValidSessionByToken } from '../../../database/sessions';
-import { getUserBySessionToken } from '../../../database/users';
+import {
+  getUserBySessionToken,
+  getUserByUsername,
+} from '../../../database/users';
 import { getCookie } from '../../../util/cookies';
+import { editpermiston } from '../../../util/editpermiston';
 import DeleteuserButton from './DelideButton';
 import EditFrom from './EditFrom';
 
@@ -20,13 +29,52 @@ export default async function userProfilePage({ params }: Props) {
   }
   const user = await getUserBySessionToken(tokenCooke);
 
+  const proflieUser = await getUserByUsername(params.username);
+  const proflieUserid = proflieUser?.id;
+  const profliePosts = await getPostswithUserid(Number(proflieUserid));
+
   // if (!session || user?.username != params.username) {
   //   redirect('/');
   //}
 
   return (
-    <div>
+    <>
       <h3> Profle of {params.username}</h3>
-    </div>
+      {(await isAdmin(proflieUserid)) ? <p>Is Admin</p> : null}
+      {(await editpermiston(
+        proflieUserid,
+        user?.id,
+        tokenCooke,
+        proflieUserid,
+      )) ? (
+        <DeleteuserButton
+          UserName={params.username}
+          ID={user?.id}
+          Token={tokenCooke}
+        />
+      ) : null}
+
+      <h3>UserPosts</h3>
+      <ul>
+        {profliePosts.map(async (post) => (
+          <li key={post.id}>
+            <h3>{post.title}</h3>
+            <p>{post.post}</p>
+
+            <p>{post.score} </p>
+
+            <ul>
+              {profliePosts.map(async (post) => (
+                <li key={post.id}>
+                  <h3>{post.title}</h3>
+                  <p>{post.post}</p>
+                  <p>{post.score} </p>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }

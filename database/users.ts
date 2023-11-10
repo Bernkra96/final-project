@@ -6,32 +6,31 @@ export type UserWithPasswordHash = User & {
   passordHash: string;
 };
 
-export type UserNote = {
-  noteId: number;
-  textContent: string;
-  username: string;
-};
-
+// INSERT INTO users (username, password_hash, score) VALUES (${username.toLowerCase()}, ${passwordHash}, ${score) RETURNING id, username,score
 export const createUser = cache(
   async (username: string, passwordHash: string, score: number) => {
     const [user] = await sql<User[]>`
-      INSERT INTO users
-        (username, password_hash, score)
-      VALUES
-        (${username.toLowerCase()}, ${passwordHash}, ${score})
-      RETURNING
-        id,
-        username,
-        score
+    INSERT INTO users
+    (username, password_hash, score)
+  VALUES
+    (${username.toLowerCase()}, ${passwordHash}, ${score})
+  RETURNING
+    id,
+    username,
+    score
     `;
     return user;
   },
 );
+
 export const getusers = cache(async () => {
   const users = await sql<User[]>`
     SELECT
      id,
      username,
+      score,
+      fitstlogin
+
     FROM
       users
   `;
@@ -123,3 +122,13 @@ export const updateUser = cache(
     return user;
   },
 );
+
+export const DeliteUserbyId = cache(async (id: number) => {
+  const [user] = await sql<{ id: number; username: string }[]>`
+    DELETE FROM
+      users
+    WHERE
+      users.id = ${id}
+  `;
+  return user;
+});

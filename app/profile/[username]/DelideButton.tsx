@@ -1,19 +1,23 @@
-import { cookies } from 'next/headers';
+'use client';
+
 import React from 'react';
+import { getCookie } from '../../../util/cookies';
 import { ProfileResponseBodyPost } from '../../api/profile/route';
 
-type Props = { searchParams?: string | string[] };
-
-export default function DeleteuserButton(props: Props) {
+export default function DeleteuserButton(
+  UserName: string,
+  ID: number,
+  Token: string,
+) {
   async function handeldele(event: React.FormEvent<HTMLFormElement>) {
-    const token = await cookies().get('sessionToken');
     event.preventDefault();
-    console.log('token', token);
-
+    console.log('UserName Button page delite ', UserName, ID, Token);
     const response = await fetch('/api/profile', {
       method: 'DELETE',
       body: JSON.stringify({
-        token,
+        UserName,
+        ID,
+        Token,
       }),
     });
 
@@ -22,7 +26,7 @@ export default function DeleteuserButton(props: Props) {
   }
 
   return (
-    <form onSubmit={handeldele}>
+    <form onSubmit={async (event) => await handeldele(event)}>
       <button type="submit">Delete User</button>
     </form>
   );
