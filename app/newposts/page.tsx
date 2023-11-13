@@ -41,20 +41,19 @@ export default async function newPostspage() {
                   alt="Picture of the author"
                 />
               ) : null}
-
-              {(await editpermiston(
-                post.userId,
-                user?.id,
-                tokenCookie,
-                post.id,
-              )) ? (
-                <DeletePost
-                  id={post.id}
-                  PostuserId={post.userId}
-                  Token={SeactionIDUSER}
-                />
-              ) : null}
             </Link>
+            {(await editpermiston(
+              post.userId,
+              user?.id,
+              tokenCookie?.value,
+              post.id,
+            )) ? (
+              <DeletePost
+                id={post.id}
+                PostuserId={post.userId}
+                Token={SeactionIDUSER}
+              />
+            ) : null}
           </li>
         ))}
       </ul>
