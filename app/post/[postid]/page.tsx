@@ -1,4 +1,5 @@
 import { cookies } from 'next/headers';
+import Image from 'next/image';
 import Link from 'next/link';
 import { number } from 'zod';
 import { getAllComments } from '../../../database/commnts';
@@ -32,7 +33,16 @@ export default async function ItemProfilePage(props: {
           <li key={`post-${post.id}`}>
             <h3>{post.title}</h3>
             <p>{post.post}</p>
-            <p>{post.image}</p>
+            {post.image ? (
+              <Image
+                src={post.image}
+                width={500}
+                height={500}
+                unoptimized={true}
+                alt="Picture of the author"
+              />
+            ) : null}
+
             <Link href={`/profile/${post.username}`}>
               <p>{post.username}</p>
             </Link>

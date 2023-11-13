@@ -24,44 +24,37 @@ export default async function newPostspage() {
       <ul>
         {posts.map(async (post) => (
           <li key={`post-${post.id}`}>
-            <Link href={{ pathname: '/post/' + post.id }}>
+            <Link href={`/post/${post.id}`}>
               <h3>{post.title}</h3>
               <p>{post.post}</p>
-              <p>{post.image}</p>
-
               <Link href={`/profile/${post.username}`}>
                 <p>{post.username}</p>
               </Link>
               <p>{post.id} </p>
-              <Link href={{ pathname: '/post/' + post.id }}>
-                <h3>{post.title}</h3>
-                <p>{post.post}</p>
-                {post.image ? (
-                  <Image
-                    src={post.image}
-                    alt="post image"
-                    width={500}
-                    height={500}
-                  />
-                ) : null}
-                <Link href={`/profile/${post.username}`}>
-                  <p>{post.username}</p>
-                </Link>
-                <p>{post.id} </p>
-              </Link>
+
+              {post.image ? (
+                <Image
+                  src={post.image}
+                  width={500}
+                  height={500}
+                  unoptimized={true}
+                  alt="Picture of the author"
+                />
+              ) : null}
+
+              {(await editpermiston(
+                post.userId,
+                user?.id,
+                tokenCookie,
+                post.id,
+              )) ? (
+                <DeletePost
+                  id={post.id}
+                  PostuserId={post.userId}
+                  Token={SeactionIDUSER}
+                />
+              ) : null}
             </Link>
-            {(await editpermiston(
-              post.userId,
-              user?.id,
-              tokenCookie,
-              post.id,
-            )) ? (
-              <DeletePost
-                id={post.id}
-                PostuserId={post.userId}
-                Token={SeactionIDUSER}
-              />
-            ) : null}
           </li>
         ))}
       </ul>

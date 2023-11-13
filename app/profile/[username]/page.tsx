@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import { isAdmin } from '../../../database/admins';
@@ -60,18 +61,16 @@ export default async function userProfilePage({ params }: Props) {
           <li key={post.id}>
             <h3>{post.title}</h3>
             <p>{post.post}</p>
-
+            {post.image ? (
+              <Image
+                src={post.image}
+                width={500}
+                height={500}
+                unoptimized={true}
+                alt="Picture of the author"
+              />
+            ) : null}
             <p>{post.score} </p>
-
-            <ul>
-              {profliePosts.map(async (post) => (
-                <li key={post.id}>
-                  <h3>{post.title}</h3>
-                  <p>{post.post}</p>
-                  <p>{post.score} </p>
-                </li>
-              ))}
-            </ul>
           </li>
         ))}
       </ul>
