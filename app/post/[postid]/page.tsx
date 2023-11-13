@@ -2,7 +2,12 @@ import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 import { number } from 'zod';
-import { getAllComments } from '../../../database/commnts';
+import {
+  getAllComments,
+  getCommentByCommentId,
+  getCommentsByPostId,
+  getCommentsByPostIdwithUserName,
+} from '../../../database/commnts';
 import { getPostpostidwithUserName } from '../../../database/posts';
 import { getUserBySessionToken } from '../../../database/users';
 import { editpermiston } from '../../../util/editpermiston';
@@ -15,15 +20,15 @@ export default async function ItemProfilePage(props: {
 }) {
   const itemId = Number(props.params.postid);
   const posts = await getPostpostidwithUserName(itemId);
-  const allcomments = await getAllComments();
-  const tokenCooke = cookies().get('sessionToken');
-  const user = await getUserBySessionToken(tokenCooke.value);
-  const userid = Number(user?.id);
-  const SeactionIDUSER = tokenCooke?.value;
+  const postid = Number(posts[0]?.id);
+  const comments = await getCommentsByPostId(postid);
 
-  const comments = allcomments.filter((comment) => comment.postId === itemId);
-  // await createComment(userid, itemId, 'Test', 0);
-  console.log(comments);
+  const tokenCooke = cookies().get('sessionToken');
+  const seactionIdUser = String(tokenCooke?.value);
+  const user = await getUserBySessionToken(seactionIdUser);
+  const userid = Number(user?.id);
+
+  console.log('tokenCookie', tokenCooke, seactionIdUser);
 
   return (
     <>
@@ -33,6 +38,7 @@ export default async function ItemProfilePage(props: {
           <li key={`post-${post.id}`}>
             <h3>{post.title}</h3>
             <p>{post.post}</p>
+            <p> {post.id}</p>
             {post.image ? (
               <Image
                 src={post.image}
@@ -50,13 +56,13 @@ export default async function ItemProfilePage(props: {
             {(await editpermiston(
               post.userId,
               userid,
-              tokenCooke?.value,
+              seactionIdUser,
               post.id,
             )) ? (
               <DeletePost
                 id={post.id}
                 PostuserId={post.userId}
-                Token={SeactionIDUSER}
+                Token={seactionIdUser}
               />
             ) : null}
           </li>
@@ -66,19 +72,22 @@ export default async function ItemProfilePage(props: {
       <h3> Comments</h3>
       <ul>
         {comments.map(async (comment) => (
-          <li key={comment.id}>
-            <h3>{comment.post}</h3>
-            <p>{comment.score} </p>
+          <li key={`commentid-${comment.id}`}>
+            <p>{comment.id}</p>
+            <p>Uder Id {comment.userId}</p>
+
+            <p>{comment.post}</p>
+            <p>{comment.score}</p>
             {(await editpermiston(
               comment.userId,
               userid,
-              tokenCooke?.value,
+              seactionIdUser,
               comment.id,
             )) ? (
               <CommntDelide
                 id={comment.id}
                 userIdPage={comment.user_id}
-                Token={SeactionIDUSER}
+                Token={seactionIdUser}
               />
             ) : null}
           </li>

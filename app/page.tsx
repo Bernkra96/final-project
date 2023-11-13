@@ -30,7 +30,6 @@ export default async function Home() {
   return (
     <main className={styles.main}>
       <h1> Main Home </h1>
-      <NewPostsPage />
     </main>
   );
 }
