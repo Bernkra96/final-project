@@ -1,15 +1,15 @@
 import { v2 as cloudinary } from 'cloudinary';
 
-cloudinary.config({
-  cloud_name: 'dlr9keice',
-  api_key: '645629856326964',
-  api_secret: '5TAsAz4g_wksgo9SvPf0ijeY29A',
-});
-
-cloudinary.v2.uploader.upload(
-  'https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg',
-  { public_id: 'olympic_flag' },
-  function (error, result) {
-    console.log(result);
-  },
-);
+export function setCloudinaryEnvVars() {
+  if (process.env.NODE_ENV === 'production' || process.env.CI) {
+    cloudinary.config({
+      cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+      secure: true,
+    });
+    return;
+  }
+}
+// Replacement for unmaintained dotenv-safe package
+//

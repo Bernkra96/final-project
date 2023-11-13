@@ -43,7 +43,7 @@ export default function Ceradepost(props: Props) {
           <input onChange={(e) => setPost(e.currentTarget.value)} />
         </label>
         <label>
-          Iamge:
+          Iamge URL:
           <input onChange={(e) => setImage(e.currentTarget.value)} />
         </label>
 

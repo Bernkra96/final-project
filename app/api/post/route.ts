@@ -32,6 +32,7 @@ export async function POST(
   request: NextRequest,
 ): Promise<NextResponse<PostResponseBodyPost>> {
   const body = await request.json();
+  console.log('post id', body);
 
   const tokenCookie = cookies().get('sessionToken');
   if (!tokenCookie) {
@@ -53,7 +54,7 @@ export async function POST(
     userId,
     body.title,
     body.post,
-    body.Image,
+    body.image,
     0,
   );
 
