@@ -12,10 +12,11 @@ import DeletePost from './delidepostButton';
 export default async function newPostspage() {
   const posts = await getAllPostswithUserName();
   const tokenCookie = await cookies().get('sessionToken');
-  const SeactionIDUSER = tokenCookie?.value;
-  const user = await getUserBySessionToken(tokenCookie?.value);
+  const seactionIdUser = String(tokenCookie?.value);
+  const user = await getUserBySessionToken(seactionIdUser);
+  const userId = Number(user?.id);
 
-  console.log('tokenCookie', tokenCookie, SeactionIDUSER);
+  console.log('tokenCookie', tokenCookie, seactionIdUser);
   return (
     <>
       <Ceradepost />
@@ -41,20 +42,19 @@ export default async function newPostspage() {
                   alt="Picture of the author"
                 />
               ) : null}
-
-              {(await editpermiston(
-                post.userId,
-                user?.id,
-                tokenCookie,
-                post.id,
-              )) ? (
-                <DeletePost
-                  id={post.id}
-                  PostuserId={post.userId}
-                  Token={SeactionIDUSER}
-                />
-              ) : null}
             </Link>
+            {(await editpermiston(
+              post.userId,
+              userId,
+              seactionIdUser,
+              post.id,
+            )) ? (
+              <DeletePost
+                id={post.id}
+                PostuserId={post.userId}
+                Token={seactionIdUser}
+              />
+            ) : null}
           </li>
         ))}
       </ul>

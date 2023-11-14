@@ -48,7 +48,18 @@ export const getAllComments = cache(async () => {
   `;
   return comments;
 });
-
+//  SELECT * FROM comments WHERE post_id = ${post_id} ;
+export const getCommentsByPostId = cache(async (post_id: number) => {
+  const comments = await sql<Comment[]>`
+    SELECT
+      *
+    FROM
+      comments
+    WHERE
+      post_id = ${post_id}
+  `;
+  return comments;
+});
 export const getAllCommentswithUserName = cache(async () => {
   const comments = await sql<Comment[]>`
     SELECT
@@ -68,6 +79,8 @@ export const getAllCommentswithUserName = cache(async () => {
   `;
   return comments;
 });
+
+//    SELECT comments.id, comments.user_id, comments.post_id, comments.post,comments.post_time,comments.score,users.username FROM comments INNER JOINusers ON comments.user_id = users.id WHERE comments.id = ${post_id}
 
 export const getCommentsByPostIdwithUserName = cache(
   async (post_id: number) => {

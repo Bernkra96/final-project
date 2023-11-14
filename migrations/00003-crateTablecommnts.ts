@@ -7,7 +7,6 @@ export type Comment = {
   post_id: number;
   post: string;
   postTime: number;
-
   score: number;
   display_id: number;
 };

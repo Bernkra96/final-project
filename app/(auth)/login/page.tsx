@@ -1,6 +1,6 @@
+import { type } from 'node:os';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { type } from 'os';
 import { getValidSessionByToken } from '../../../database/sessions';
 import EditFrom from '../../profile/[username]/EditFrom';
 import LoginFrom from './llogInFrom';
@@ -17,9 +17,5 @@ export default async function LoginPage({ searchParams }: Props) {
     redirect('/');
   }
   console.log(session);
-  return (
-    <>
-      <LoginFrom returnTo={searchParams.returnTo} />
-    </>
-  );
+  return <LoginFrom returnTo={''} />;
 }
