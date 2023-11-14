@@ -1,8 +1,6 @@
-import { type } from 'node:os';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getValidSessionByToken } from '../../../database/sessions';
-import EditFrom from '../../profile/[username]/EditFrom';
 import LoginFrom from './llogInFrom';
 
 type Props = { searchParams?: string | string[] };

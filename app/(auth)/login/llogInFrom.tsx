@@ -67,7 +67,7 @@ export default function LoginFrom(props: Props) {
           />
         </label>
 
-        <button>Regster</button>
+        <button>Login</button>
       </form>
       <p> {error} </p>
     </>

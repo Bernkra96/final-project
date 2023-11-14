@@ -23,22 +23,20 @@ export default async function RootLayout(
   },
   props: Props,
 ) {
-  const cookieStore = cookies();
   const tokenSeession = cookies().get('sessionToken');
   console.log('tokenSeession', tokenSeession);
 
   const user =
     tokenSeession && (await getUserBySessionToken(tokenSeession.value));
-  const isadmin = await isAdmin(user?.id);
+  const userId = Number(user?.id);
+  const isadmin = await isAdmin(userId);
   console.log('tokenSeession user', user);
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        {' '}
         <nav>
           <div>
-            {' '}
             <Link href="/">Home</Link>{' '}
           </div>
           <div>

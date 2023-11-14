@@ -1,6 +1,5 @@
 'use client';
 
-import { SearchParamsContext } from 'next/dist/shared/lib/hooks-client-context.shared-runtime';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { PostResponseBodyPost } from '../api/post/route';
@@ -36,15 +35,25 @@ export default function Ceradepost(props: Props) {
       <form onSubmit={async (event) => await handelregister(event)}>
         <label>
           Title:
-          <input onChange={(e) => setTitle(e.currentTarget.value)} />
+          <input
+            placeholder="Your Title "
+            onChange={(e) => setTitle(e.currentTarget.value)}
+          />
         </label>
         <label>
           Post:
-          <input onChange={(e) => setPost(e.currentTarget.value)} />
+          <textarea
+            rows={2}
+            placeholder="Your Post"
+            onChange={(e) => setPost(e.currentTarget.value)}
+          />
         </label>
         <label>
           Iamge URL:
-          <input onChange={(e) => setImage(e.currentTarget.value)} />
+          <input
+            placeholder="Your ImageUrl "
+            onChange={(e) => setImage(e.currentTarget.value)}
+          />
         </label>
 
         <button>Make Post</button>

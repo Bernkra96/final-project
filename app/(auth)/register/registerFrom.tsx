@@ -40,16 +40,18 @@ export default function RegisterFrom() {
     <>
       <form onSubmit={async (event) => await handelregister(event)}>
         <label>
+          {' '}
+          User Name
           <input onChange={(e) => setUsername(e.currentTarget.value)} />
-          UserName
         </label>
 
         <label>
+          {' '}
+          Password
           <input
             type="password"
             onChange={(e) => setPassword(e.currentTarget.value)}
           />
-          Password
         </label>
 
         <button>Regster</button>

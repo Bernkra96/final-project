@@ -2,8 +2,7 @@ import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { User } from '../../database/createTableusers';
-import { getAllPosts, getAllPostswithUserName } from '../../database/posts';
+import { getAllPostswithUserName } from '../../database/posts';
 import { getUserBySessionToken } from '../../database/users';
 import { editpermiston } from '../../util/editpermiston';
 import Ceradepost from './CeradePostFrom';
@@ -28,9 +27,9 @@ export default async function newPostspage() {
             <Link href={`/post/${post.id}`}>
               <h3>{post.title}</h3>
               <p>{post.post}</p>
-              <Link href={`/profile/${post.username}`}>
-                <p>{post.username}</p>
-              </Link>
+
+              <p>{post.username}</p>
+
               <p>{post.id} </p>
 
               {post.image ? (

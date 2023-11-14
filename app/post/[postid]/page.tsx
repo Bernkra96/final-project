@@ -28,8 +28,6 @@ export default async function ItemProfilePage(props: {
   const user = await getUserBySessionToken(seactionIdUser);
   const userid = Number(user?.id);
 
-  console.log('tokenCookie', tokenCooke, seactionIdUser);
-
   return (
     <>
       <h3> Post</h3>
