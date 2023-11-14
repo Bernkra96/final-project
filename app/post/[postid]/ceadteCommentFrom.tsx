@@ -36,10 +36,13 @@ export default function CreateComment(postid: number) {
       <form onSubmit={async (event) => await handelpost(event)}>
         <label>
           Post:
-          <input onChange={(e) => setPost(e.currentTarget.value)} />
+          <textare
+            rows={2}
+            placeholder="Your Comment"
+            onChange={(e) => setPost(e.currentTarget.value)}
+          />
         </label>
-
-        <button>Make Post</button>
+        <button>Make Comment</button>
       </form>
     </>
   );
