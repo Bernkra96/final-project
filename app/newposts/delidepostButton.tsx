@@ -5,13 +5,13 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { PostResponseBodyPost } from '../api/post/route';
 
-type Props = { searchParams?: string | string[]; id: number };
+type Props = {
+  id: number;
+  PostuserId: number;
+  Token: string;
+};
 
-export default function DeletePost(
-  id: number,
-  PostuserId: number,
-  Token: string,
-) {
+export default function DeletePost({ id, PostuserId, Token }: Props) {
   const [title, setTitle] = useState('');
   const [post, setPost] = useState('');
   const [image, setImage] = useState('');

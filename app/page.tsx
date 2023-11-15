@@ -10,7 +10,6 @@ import { setCloudinaryEnvVars } from '../util/cloudinary';
 import LoginPage from './(auth)/login/page';
 import RegisterPage from './(auth)/register/page';
 import NewPostsPage from './newposts/page';
-import styles from './page.module.css';
 
 export default async function Home() {
   const tokenSeession = cookies().get('sessionToken'); // get sessionToken from cookies
@@ -23,7 +22,7 @@ export default async function Home() {
   // chanege bedewen login/register and newposts
 
   return (
-    <main className={styles.main}>
+    <main>
       <h1> Main Home </h1>
 
       {user ? (
