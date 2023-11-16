@@ -44,9 +44,7 @@ export default function LoginFrom(props: Props) {
     // return;
     // }
 
-    router.push(
-      getSafeReturnToPath(props.returnTo) || `/profile/${data.user.username}`,
-    );
+    router.push(`/profile/${data.user.username}`);
 
     router.refresh();
   }
@@ -54,20 +52,22 @@ export default function LoginFrom(props: Props) {
   return (
     <>
       <form onSubmit={async (event) => await handelregister(event)}>
-        <label>
-          User Name
-          <input onChange={(e) => setUsername(e.currentTarget.value)} />
-        </label>
+        <input
+          onChange={(e) => setUsername(e.currentTarget.value)}
+          placeholder="User Name"
+          className="mx-auto justify-center p-3 border-2 border-gray-300 rounded-md"
+        />
 
-        <label>
-          Password
-          <input
-            type="password"
-            onChange={(e) => setPassword(e.currentTarget.value)}
-          />
-        </label>
+        <input
+          type="password"
+          onChange={(e) => setPassword(e.currentTarget.value)}
+          placeholder="Password"
+          className="mx-auto justify-center p-3 border-2 border-gray-300 rounded-md"
+        />
 
-        <button>Regster</button>
+        <button className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          Login
+        </button>
       </form>
       <p> {error} </p>
     </>

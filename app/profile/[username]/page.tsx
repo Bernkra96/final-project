@@ -39,9 +39,11 @@ export default async function userProfilePage({ params }: Props) {
   //}
 
   return (
-    <>
-      <h3> Profle of {params.username}</h3>
-      {(await isAdmin(proflieUserid)) ? <p>Is Admin</p> : null}
+    <div className=" mx-auto  max-w-7xl items-center p-6   bg-gray-100 ">
+      <h3 className=" items text-center "> Profle of {params.username}</h3>
+      {(await isAdmin(proflieUserid)) ? (
+        <p className=" items text-center ">Is Admin</p>
+      ) : null}
       {(await editpermiston(
         proflieUserid,
         user?.id,
@@ -55,18 +57,21 @@ export default async function userProfilePage({ params }: Props) {
         />
       ) : null}
 
-      <h3>UserPosts</h3>
-      <ul>
+      <h3 className=" items text-center ">UserPosts</h3>
+      <ul className=" justify-center items items-center ">
         {profliePosts.map(async (post) => (
-          <li key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.post}</p>
+          <li
+            key={post.id}
+            className="flex flex-col justify-center items-center  bg-green-50
+          rounded-lg shadow-lg py-5 px-6 sm:py-6 sm:px-10"
+          >
+            <h3 className="mx-auto justify-center p-1 ">{post.title}</h3>
+            <p className="mx-auto justify-center p-1 ">{post.post}</p>
             {post.image ? (
-              <Image
+              <img
                 src={post.image}
-                width={500}
-                height={500}
-                unoptimized={true}
+
+                className="h-50 w-50 flex-none  bg-gray-50"
                 alt="Picture of the author"
               />
             ) : null}
@@ -74,6 +79,6 @@ export default async function userProfilePage({ params }: Props) {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

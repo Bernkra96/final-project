@@ -3,18 +3,14 @@
 import { SearchParamsContext } from 'next/dist/shared/lib/hooks-client-context.shared-runtime';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import { string } from 'zod';
 import { PostResponseBodyPost } from '../api/post/route';
 
-type Props = {
-  id: number;
-  PostuserId: number;
-  Token: string;
-};
-
-export default function DeletePost({ id, PostuserId, Token }: Props) {
-  const [title, setTitle] = useState('');
-  const [post, setPost] = useState('');
-  const [image, setImage] = useState('');
+export default function DeletePost(
+  id: number,
+  PostuserId: number,
+  Token: string,
+) {
   const router = useRouter();
 
   async function handelPostDelete(event: React.FormEvent<HTMLFormElement>) {
@@ -38,7 +34,9 @@ export default function DeletePost({ id, PostuserId, Token }: Props) {
 
   return (
     <form onSubmit={async (event) => await handelPostDelete(event)}>
-      <button>Post Delite</button>
+      <button className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+        Post Delite
+      </button>
     </form>
   );
 }

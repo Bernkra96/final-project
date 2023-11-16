@@ -31,14 +31,14 @@ export default async function ItemProfilePage(props: {
   console.log('tokenCookie', tokenCooke, seactionIdUser);
 
   return (
-    <>
-      <h3> Post</h3>
+    <div className=" mx-auto  items-center p-6 lg:px-12  bg-gray-100 max-w-8x1 ">
+      <h3 className="mx-auto justify-center p-1 "> Post</h3>
       <ul>
         {posts.map(async (post) => (
           <li key={`post-${post.id}`}>
-            <h3>{post.title}</h3>
-            <p>{post.post}</p>
-            <p> {post.id}</p>
+            <h3 className="mx-auto justify-center p-1 ">{post.title}</h3>
+            <p className="mx-auto justify-center p-1 ">{post.post}</p>
+            <p className="mx-auto justify-center p-1 "> {post.id}</p>
             {post.image ? (
               <Image
                 src={post.image}
@@ -50,9 +50,9 @@ export default async function ItemProfilePage(props: {
             ) : null}
 
             <Link href={`/profile/${post.username}`}>
-              <p>{post.username}</p>
+              <p className="mx-auto justify-center p-1 ">{post.username}</p>
             </Link>
-            <p>{post.score} </p>
+            <p className="mx-auto justify-center p-1 ">{post.score} </p>
             {(await editpermiston(
               post.userId,
               userid,
@@ -69,14 +69,16 @@ export default async function ItemProfilePage(props: {
         ))}
       </ul>
       <CreateComment postid={itemId} />
-      <h3> Comments</h3>
-      <ul>
+      <h3 className="mx-auto justify-center p-1 "> Comments</h3>
+      <ul className=" justify-center items items-center ">
         {comments.map(async (comment) => (
           <li key={`commentid-${comment.id}`}>
-            <p>{comment.id}</p>
-            <p>Uder Id {comment.userId}</p>
+            <p className="mx-auto justify-center p-1 ">{comment.id}</p>
+            <p className="mx-auto justify-center p-1 ">
+              Uder Id {comment.user_id}
+            </p>
 
-            <p>{comment.post}</p>
+            <p className="mx-auto justify-center p-1 ">{comment.post}</p>
             <p>{comment.score}</p>
             {(await editpermiston(
               comment.userId,
@@ -93,6 +95,6 @@ export default async function ItemProfilePage(props: {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

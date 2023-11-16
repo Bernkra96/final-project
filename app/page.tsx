@@ -22,20 +22,22 @@ export default async function Home() {
   // chanege bedewen login/register and newposts
 
   return (
-    <main>
-      <h1> Main Home </h1>
+    <main className=" mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-0 ">
+      <div className="mx-auto justify-between p-6 lg:px-4 ">
+        <h1 className="mx-auto justify-center p-6 lg:px-4 "> Main Home </h1>
 
-      {user ? (
-        <NewPostsPage />
-      ) : (
-        <>
-          Register
-          <RegisterPage />
-          <br />
-          Login
-          <LoginPage />
-        </>
-      )}
+        {user ? (
+          <NewPostsPage />
+        ) : (
+          <>
+            <p className="mx-auto justify-center p-1 ">Register</p>
+            <RegisterPage />
+            <br />
+            <p className="mx-auto justify-center p-1 ">Login</p>
+            <LoginPage />
+          </>
+        )}
+      </div>
     </main>
   );
 }

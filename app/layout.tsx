@@ -1,14 +1,11 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import { isAdmin } from '../database/admins';
 import { getUserBySessionToken } from '../database/users';
 import LogoutButton from './(auth)/logout/logoutButton';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',

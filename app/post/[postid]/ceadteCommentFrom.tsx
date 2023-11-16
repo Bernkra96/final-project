@@ -30,20 +30,25 @@ export default function CreateComment(postid: number) {
 
   console.log('postid', postid);
   return (
-    <>
-      <h2> Make New Comment </h2>
+    <div className="  mx-auto   items-center  rounded-lg  ">
+      <h2 className="mx-auto justify-center p-1 "> Make New Comment </h2>
 
-      <form onSubmit={async (event) => await handelpost(event)}>
-        <label>
-          Post:
-          <textare
-            rows={2}
-            placeholder="Your Comment"
-            onChange={(e) => setPost(e.currentTarget.value)}
-          />
-        </label>
-        <button>Make Comment</button>
+      <form
+        onSubmit={async (event) => await handelpost(event)}
+        className=" mx-auto   items-center  p-6 lg:px-0 rounded-lg  "
+      >
+        <textarea
+          rows={2}
+          cols={50}
+          placeholder="Your Comment"
+          onChange={(e) => setPost(e.currentTarget.value)}
+          className="mx-auto justify-center p-3 border-2 border-gray-300 rounded-md"
+        />
+
+        <button className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          Make Comment
+        </button>
       </form>
-    </>
+    </div>
   );
 }
