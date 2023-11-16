@@ -33,9 +33,13 @@ export default async function ItemProfilePage(props: {
   return (
     <div className=" mx-auto  items-center p-6 lg:px-12  bg-gray-100 max-w-8x1 ">
       <h3 className="mx-auto justify-center p-1 "> Post</h3>
-      <ul>
+      <ul className=" justify-center items items-center ">
         {posts.map(async (post) => (
-          <li key={`post-${post.id}`}>
+          <li
+            key={`post-${post.id}`}
+            className="flex flex-col justify-center items-center  bg-green-50
+        rounded-lg shadow-lg py-5 px-6 sm:py-6 sm:px-10"
+          >
             <h3 className="mx-auto justify-center p-1 ">{post.title}</h3>
             <p className="mx-auto justify-center p-1 ">{post.post}</p>
             <p className="mx-auto justify-center p-1 "> {post.id}</p>
@@ -68,14 +72,21 @@ export default async function ItemProfilePage(props: {
           </li>
         ))}
       </ul>
-      <CreateComment postid={itemId} />
+      <CreateComment
+        postid={itemId}
+        className=" justify-center items items-center "
+      />
       <h3 className="mx-auto justify-center p-1 "> Comments</h3>
       <ul className=" justify-center items items-center ">
         {comments.map(async (comment) => (
-          <li key={`commentid-${comment.id}`}>
+          <li
+            key={`commentid-${comment.id}`}
+            className="flex flex-col justify-center items-center  bg-green-50
+            rounded-lg shadow-lg py-5 px-6 sm:py-6 sm:px-10"
+          >
             <p className="mx-auto justify-center p-1 ">{comment.id}</p>
             <p className="mx-auto justify-center p-1 ">
-              Uder Id {comment.user_id}
+              Uder Id :{comment.user_id}
             </p>
 
             <p className="mx-auto justify-center p-1 ">{comment.post}</p>
@@ -90,6 +101,7 @@ export default async function ItemProfilePage(props: {
                 id={comment.id}
                 userIdPage={comment.user_id}
                 Token={seactionIdUser}
+                className="mx-auto justify-center p-1 "
               />
             ) : null}
           </li>

@@ -42,26 +42,26 @@ export default async function RootLayout(
             <div className="mx-auto flex   p-6 ">
               {user ? (
                 <>
-                  <div className="mt-1 block font-semibold text-gray-900">
+                  <div className="mt-1 block font-semibold text-green-500 mx-auto justify-center p-1 ">
                     Hallo {user.username}
                   </div>
                   <LogoutButton />
                   <Link
                     href={`/profile/${user.username}`}
-                    className="mt-1 block font-semibold text-gray-900"
+                    className="mt-1 block font-semibold text-gray-900 mx-auto justify-center p-1 "
                   >
                     Profile
                   </Link>
                   <Link
                     href="/newposts"
-                    className="mt-1 block font-semibold text-gray-900"
+                    className="mt-1 block font-semibold text-gray-900 mx-auto justify-center p-1 "
                   >
                     Newposts
                   </Link>
                   {isadmin ? (
                     <Link
                       href="/admin"
-                      className="mt-1 block font-semibold text-gray-900"
+                      className="mt-1 block font-semibold text-gray-900 mx-auto justify-center p-1 "
                     >
                       Admin
                     </Link>
@@ -71,13 +71,13 @@ export default async function RootLayout(
                 <>
                   <Link
                     href="/register"
-                    className="mt-1 block font-semibold text-gray-900"
+                    className="mt-1 block font-semibold text-gray-900 mx-auto justify-center p-1 "
                   >
                     Register
                   </Link>
                   <Link
                     href="/login"
-                    className="mt-1 block font-semibold text-gray-900"
+                    className="mt-1 block font-semibold text-gray-900 mx-auto justify-center p-1"
                   >
                     Log in
                   </Link>
