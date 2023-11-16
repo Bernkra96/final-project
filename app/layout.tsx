@@ -32,31 +32,62 @@ export default async function RootLayout(
   return (
     <html lang="en">
       <body>
-        {' '}
-        <nav>
-          <div>
-            {' '}
-            <Link href="/">Home</Link>{' '}
-          </div>
-          <div>
-            {user ? (
-              <>
-                <div> Hallo {user.username}</div>
-                <LogoutButton />
-                <Link href={`/profile/${user.username}`}>Profile </Link>
-                <Link href="/newposts">Newposts </Link>
-                {isadmin ? <Link href="/admin">Admin </Link> : null}
-              </>
-            ) : (
-              <>
-                <Link href="/register">Register </Link>
-                <Link href="/login">Log in</Link>{' '}
-              </>
-            )}
-          </div>
-        </nav>
-        {children}
+        <header className="bg-white" aria-label="Global">
+          <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+            <div className="mx-auto  p-6 ">
+              <Link href="/" className="mt-1 block font-semibold text-gray-900">
+                Home
+              </Link>
+            </div>
+            <div className="mx-auto flex   p-6 ">
+              {user ? (
+                <>
+                  <div className="mt-1 block font-semibold text-gray-900">
+                    Hallo {user.username}
+                  </div>
+                  <LogoutButton />
+                  <Link
+                    href={`/profile/${user.username}`}
+                    className="mt-1 block font-semibold text-gray-900"
+                  >
+                    Profile
+                  </Link>
+                  <Link
+                    href="/newposts"
+                    className="mt-1 block font-semibold text-gray-900"
+                  >
+                    Newposts
+                  </Link>
+                  {isadmin ? (
+                    <Link
+                      href="/admin"
+                      className="mt-1 block font-semibold text-gray-900"
+                    >
+                      Admin
+                    </Link>
+                  ) : null}
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/register"
+                    className="mt-1 block font-semibold text-gray-900"
+                  >
+                    Register
+                  </Link>
+                  <Link
+                    href="/login"
+                    className="mt-1 block font-semibold text-gray-900"
+                  >
+                    Log in
+                  </Link>
+                </>
+              )}
+            </div>
+          </nav>
+        </header>
       </body>
+      {children}
     </html>
   );
 }
