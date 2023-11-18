@@ -18,34 +18,32 @@ export default async function newPostspage() {
 
   console.log('tokenCookie', tokenCookie, seactionIdUser);
   return (
-    <div className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  bg-gray-100 ">
+    <div className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
       <Ceradepost />
-      <h2 className=" items text-center "> New Posts </h2>
+      <h2 className=" items text-center font-extrabold  text-green-400">
+        {' '}
+        New Posts{' '}
+      </h2>
 
       <ul className=" justify-center items items-center ">
         {posts.map(async (post) => (
           <li
             key={`post-${post.id}`}
-            className="flex flex-col justify-center items-center  bg-green-50
-             rounded-lg shadow-lg py-5 px-6 sm:py-6 sm:px-10"
+            className="flex flex-col justify-center items-center  rounded-lg bg-green-50
+            py-5 px-6 sm:py-6 sm:px-10"
           >
             <div
-              className="flex flex-col justify-center items-center  bg-green-100
+              className="flex flex-col justify-center items-center  bg-green-100 w-full
              rounded-lg shadow-lg py-5 px-6 "
             >
               <Link
                 className="mx-auto justify-center p-6 lg:px-4 "
                 href={`/post/${post.id}`}
               >
-                <h3 className="mx-auto justify-center p-1 ">{post.title}</h3>
+                <h3 className="mx-auto justify-center p-1  font-bold text-green-400  ">
+                  {post.title}
+                </h3>
                 <p className="mx-auto justify-center p-1 ">{post.post}</p>
-                <Link
-                  className="mx-auto justify-center p-1 "
-                  href={`/profile/${post.username}`}
-                >
-                  <p className="mx-auto justify-center p-1 ">{post.username}</p>
-                </Link>
-                <p className="mx-auto justify-center p-1 ">{post.id} </p>
 
                 {post.image ? (
                   <img
@@ -54,6 +52,14 @@ export default async function newPostspage() {
                     alt="Picture of the author"
                   />
                 ) : null}
+
+                <p className="mx-auto justify-center p-1  text-green-700   ">
+                  Post from {post.username}
+                </p>
+
+                <p className="mx-auto justify-center p-1  text-green-700   ">
+                  Post Nr: {post.id}{' '}
+                </p>
               </Link>
               {(await editpermiston(
                 post.userId,

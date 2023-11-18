@@ -32,7 +32,10 @@ export default function Ceradepost(props: Props) {
 
   return (
     <div className="  mx-auto  max-w-7xl items-center p-6 rounded-lg shadow-lg  ">
-      <h2 className="mx-auto center p-1 "> Make New Post </h2>
+      <h2 className=" items text-center font-extrabold  text-green-400">
+        {' '}
+        Make New Post{' '}
+      </h2>
       <form
         className=" mx-auto   items-center  p-6 lg:px-0 rounded-lg  "
         onSubmit={async (event) => await handelregister(event)}
@@ -44,27 +47,25 @@ export default function Ceradepost(props: Props) {
           <input
             placeholder="Your Title "
             onChange={(e) => setTitle(e.currentTarget.value)}
-            className="mx-auto justify-center p-3 border-2 border-gray-300 rounded-md"
+            className="mx-auto justify-center p-3 border-2 border-gray-300 rounded-md  w-11/12"
           />
 
           <textarea
-            rows={2}
-            cols={50}
             placeholder="Your Post"
             onChange={(e) => setPost(e.currentTarget.value)}
-            className="mx-auto justify-center p-3 border-2 border-gray-300 rounded-md"
+            className="mx-auto justify-center p-3 border-2 border-gray-300 rounded-md  w-11/12"
           />
 
           <input
             placeholder="Your ImageUrl "
             onChange={(e) => setImage(e.currentTarget.value)}
-            className="mx-auto justify-center p-3 border-2 border-gray-300 rounded-md"
+            className=" justify-center p-3 border-2 border-gray-300 rounded-md  w-11/12"
           />
-        </div>
 
-        <button className="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
-          Make Post
-        </button>
+          <button className=" mx-auto flex  justify-center rounded-md bg-green-600 p-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600  w-11/12">
+            Make Post
+          </button>
+        </div>
       </form>
     </div>
   );

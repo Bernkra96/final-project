@@ -40,9 +40,14 @@ export default async function userProfilePage({ params }: Props) {
 
   return (
     <div className=" mx-auto  max-w-7xl items-center p-6   bg-gray-100 ">
-      <h3 className=" items text-center "> Profle of {params.username}</h3>
+      <h3 className=" items text-center font-extrabold  text-green-400">
+        {' '}
+        Profle of {params.username}
+      </h3>
       {(await isAdmin(proflieUserid)) ? (
-        <p className=" items text-center ">Is Admin</p>
+        <p className="  items text-center font-extrabold  text-orange-400 ">
+          Is Admin
+        </p>
       ) : null}
       {(await editpermiston(
         proflieUserid,
@@ -57,7 +62,9 @@ export default async function userProfilePage({ params }: Props) {
         />
       ) : null}
 
-      <h3 className=" items text-center ">UserPosts</h3>
+      <h3 className=" items text-center font-extrabold  text-green-400">
+        UserPosts
+      </h3>
       <ul className=" justify-center items items-center ">
         {profliePosts.map(async (post) => (
           <li
@@ -70,7 +77,6 @@ export default async function userProfilePage({ params }: Props) {
             {post.image ? (
               <img
                 src={post.image}
-
                 className="h-50 w-50 flex-none  bg-gray-50"
                 alt="Picture of the author"
               />

@@ -32,7 +32,7 @@ export default async function ItemProfilePage(props: {
 
   return (
     <div className=" mx-auto  items-center p-6 lg:px-12  bg-gray-100 max-w-8x1 ">
-      <h3 className="mx-auto justify-center p-1 "> Post</h3>
+      <h3 className="mx-auto justify-center p-1 text-center  "> Post</h3>
       <ul className=" justify-center items items-center ">
         {posts.map(async (post) => (
           <li
@@ -44,11 +44,9 @@ export default async function ItemProfilePage(props: {
             <p className="mx-auto justify-center p-1 ">{post.post}</p>
             <p className="mx-auto justify-center p-1 "> {post.id}</p>
             {post.image ? (
-              <Image
+              <img
                 src={post.image}
-                width={500}
-                height={500}
-                unoptimized={true}
+                className="h-30 w-30 flex-none  bg-gray-50"
                 alt="Picture of the author"
               />
             ) : null}
@@ -76,7 +74,7 @@ export default async function ItemProfilePage(props: {
         postid={itemId}
         className=" justify-center items items-center "
       />
-      <h3 className="mx-auto justify-center p-1 "> Comments</h3>
+      <h3 className="mx-auto justify-center p-1 text-center "> Comments</h3>
       <ul className=" justify-center items items-center ">
         {comments.map(async (comment) => (
           <li

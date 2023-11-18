@@ -33,9 +33,12 @@ export default async function RootLayout(
     <html lang="en">
       <body>
         <header className="bg-white" aria-label="Global">
-          <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+          <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 ">
             <div className="mx-auto  p-6 ">
-              <Link href="/" className="mt-1 block font-semibold text-gray-900">
+              <Link
+                href="/"
+                className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+              >
                 Home
               </Link>
             </div>
@@ -48,20 +51,20 @@ export default async function RootLayout(
                   <LogoutButton />
                   <Link
                     href={`/profile/${user.username}`}
-                    className="mt-1 block font-semibold text-gray-900 mx-auto justify-center p-1 "
+                    className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                   >
                     Profile
                   </Link>
                   <Link
                     href="/newposts"
-                    className="mt-1 block font-semibold text-gray-900 mx-auto justify-center p-1 "
+                    className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                   >
                     Newposts
                   </Link>
                   {isadmin ? (
                     <Link
                       href="/admin"
-                      className="mt-1 block font-semibold text-gray-900 mx-auto justify-center p-1 "
+                      className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                     >
                       Admin
                     </Link>
@@ -71,13 +74,13 @@ export default async function RootLayout(
                 <>
                   <Link
                     href="/register"
-                    className="mt-1 block font-semibold text-gray-900 mx-auto justify-center p-1 "
+                    className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                   >
                     Register
                   </Link>
                   <Link
                     href="/login"
-                    className="mt-1 block font-semibold text-gray-900 mx-auto justify-center p-1"
+                    className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                   >
                     Log in
                   </Link>
