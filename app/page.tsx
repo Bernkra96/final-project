@@ -10,7 +10,6 @@ import { setCloudinaryEnvVars } from '../util/cloudinary';
 import LoginPage from './(auth)/login/page';
 import RegisterPage from './(auth)/register/page';
 import NewPostsPage from './newposts/page';
-import styles from './page.module.css';
 
 export default async function Home() {
   const tokenSeession = cookies().get('sessionToken'); // get sessionToken from cookies
@@ -23,20 +22,20 @@ export default async function Home() {
   // chanege bedewen login/register and newposts
 
   return (
-    <main className={styles.main}>
-      <h1> Main Home </h1>
-
-      {user ? (
-        <NewPostsPage />
-      ) : (
-        <>
-          Register
-          <RegisterPage />
-          <br />
-          Login
-          <LoginPage />
-        </>
-      )}
+    <main className=" mx-auto flex max-w-7xl items-center justify-between p-6 ">
+      <div className="mx-auto justify-between p-6 lg:px-4 ">
+        {user ? (
+          <NewPostsPage />
+        ) : (
+          <>
+            <p className="mx-auto justify-center p-1 ">Register</p>
+            <RegisterPage />
+            <br />
+            <p className="mx-auto justify-center p-1 ">Login</p>
+            <LoginPage />
+          </>
+        )}
+      </div>
     </main>
   );
 }
