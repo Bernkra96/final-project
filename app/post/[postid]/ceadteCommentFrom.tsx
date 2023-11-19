@@ -31,8 +31,7 @@ export default function CreateComment(postid: number) {
   console.log('postid', postid);
   return (
     <div className="  mx-auto   items-center  rounded-lg  ">
-      <h2 className="mx-auto justify-center p-1 text-center ">
-        {' '}
+      <h2 className="items text-center font-extrabold  text-green-400">
         Make New Comment{' '}
       </h2>
 

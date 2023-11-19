@@ -31,17 +31,18 @@ export default function Ceradepost(props: Props) {
   }
 
   return (
-    <div className="  mx-auto  max-w-7xl items-center p-6 rounded-lg shadow-lg  ">
-      <h2 className=" items text-center font-extrabold  text-green-400">
+    <div className="  mx-auto  max-w-7xl items-center p-6 rounded-lg  bg-green-50">
+      <h2 className=" items text-center font-extrabold text-green-400">
         {' '}
         Make New Post{' '}
       </h2>
       <form
-        className=" mx-auto   items-center  p-6 lg:px-0 rounded-lg  "
+        className=" w flex-col justify-center items-center  shadow-lg rounded-lg bg-green-100
+        py-5 px-6 sm:py-6 sm:px"
         onSubmit={async (event) => await handelregister(event)}
       >
         <div
-          className="flex flex-col justify-center items-center  bg-green-50
+          className="flex flex-col justify-center items-center  bg-green-100
              rounded-lg  py-5 px-6 sm:py-6 sm:px-10  "
         >
           <input

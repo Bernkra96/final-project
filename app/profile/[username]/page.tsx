@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import { isAdmin } from '../../../database/admins';
@@ -13,6 +14,7 @@ import {
 } from '../../../database/users';
 import { getCookie } from '../../../util/cookies';
 import { editpermiston } from '../../../util/editpermiston';
+import DeletePost from '../../newposts/delidepostButton';
 import DeleteuserButton from './DelideButton';
 import EditFrom from './EditFrom';
 
@@ -31,7 +33,7 @@ export default async function userProfilePage({ params }: Props) {
   const user = await getUserBySessionToken(tokenCooke);
 
   const proflieUser = await getUserByUsername(params.username);
-  const proflieUserid = proflieUser?.id;
+  const proflieUserid = Number(proflieUser?.id);
   const profliePosts = await getPostswithUserid(Number(proflieUserid));
 
   // if (!session || user?.username != params.username) {
@@ -39,9 +41,8 @@ export default async function userProfilePage({ params }: Props) {
   //}
 
   return (
-    <div className=" mx-auto  max-w-7xl items-center p-6   bg-gray-100 ">
+    <div>
       <h3 className=" items text-center font-extrabold  text-green-400">
-        {' '}
         Profle of {params.username}
       </h3>
       {(await isAdmin(proflieUserid)) ? (
@@ -70,18 +71,46 @@ export default async function userProfilePage({ params }: Props) {
           <li
             key={post.id}
             className="flex flex-col justify-center items-center  bg-green-50
-          rounded-lg shadow-lg py-5 px-6 sm:py-6 sm:px-10"
+            rounded-lg shadow-lg py-5 px-6 sm:py-6 sm:px-10"
           >
-            <h3 className="mx-auto justify-center p-1 ">{post.title}</h3>
-            <p className="mx-auto justify-center p-1 ">{post.post}</p>
-            {post.image ? (
-              <img
-                src={post.image}
-                className="h-50 w-50 flex-none  bg-gray-50"
-                alt="Picture of the author"
-              />
-            ) : null}
-            <p>{post.score} </p>
+            <div
+              className="flex flex-col justify-center items-center  bg-green-100 w-full
+             rounded-lg shadow-lg py-5 px-6 "
+            >
+              <Link
+                className="mx-auto justify-center p-6 lg:px-4 "
+                href={`/post/${post.id}`}
+              >
+                <h3 className="mx-auto justify-center p-1  font-bold text-green-400  ">
+                  {post.title}
+                </h3>
+                <p className="mx-auto justify-center p-1 ">{post.post}</p>
+
+                {post.image ? (
+                  <img
+                    src={post.image}
+                    className="h-50 w-50 flex-none  bg-gray-50"
+                    alt="Picture of the author"
+                  />
+                ) : null}
+
+                <p className="mx-auto justify-center p-1  text-green-700   ">
+                  Post Nr: {post.id}{' '}
+                </p>
+              </Link>
+              {(await editpermiston(
+                post.userId,
+                user?.id,
+                tokenCooke,
+                post.id,
+              )) ? (
+                <DeletePost
+                  id={post.id}
+                  PostuserId={post.userId}
+                  Token={tokenCooke}
+                />
+              ) : null}
+            </div>
           </li>
         ))}
       </ul>

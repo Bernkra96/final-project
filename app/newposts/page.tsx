@@ -34,7 +34,7 @@ export default async function newPostspage() {
           >
             <div
               className="flex flex-col justify-center items-center  bg-green-100 w-full
-             rounded-lg shadow-lg py-5 px-6 "
+              rounded-lg shadow-lg py-5 px-6 "
             >
               <Link
                 className="mx-auto justify-center p-6 lg:px-4 "
