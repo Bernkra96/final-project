@@ -31,68 +31,104 @@ export default async function ItemProfilePage(props: {
   console.log('tokenCookie', tokenCooke, seactionIdUser);
 
   return (
-    <>
-      <h3> Post</h3>
-      <ul>
+    <div className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
+      <h3 className="items text-center font-extrabold  text-green-400 ">
+        {' '}
+        Post
+      </h3>
+      <ul className=" justify-center items items-center ">
         {posts.map(async (post) => (
-          <li key={`post-${post.id}`}>
-            <h3>{post.title}</h3>
-            <p>{post.post}</p>
-            <p> {post.id}</p>
-            {post.image ? (
-              <Image
-                src={post.image}
-                width={500}
-                height={500}
-                unoptimized={true}
-                alt="Picture of the author"
-              />
-            ) : null}
+          <li
+            key={`post-${post.id}`}
+            className="flex flex-col justify-center items-center  rounded-lg bg-green-50
+            py-5 px-6 sm:py-6 sm:px-10"
+          >
+            <div
+              className="flex flex-col justify-center items-center  bg-green-100 w-full
+             rounded-lg shadow-lg py-5 px-6 "
+            >
+              <h3 className=" items text-center font-extrabold  text-green-400">
+                {post.title}
+              </h3>
+              <p className="mx-auto justify-center p-1 ">{post.post}</p>
+              <p className="mx-auto justify-center p-1  text-green-700   ">
+                {' '}
+                Post.id: {post.id}
+              </p>
+              {post.image ? (
+                <img
+                  src={post.image}
+                  className="h-30 w-30 flex-none  bg-gray-50"
+                  alt="Picture of the author"
+                />
+              ) : null}
 
-            <Link href={`/profile/${post.username}`}>
-              <p>{post.username}</p>
-            </Link>
-            <p>{post.score} </p>
-            {(await editpermiston(
-              post.userId,
-              userid,
-              seactionIdUser,
-              post.id,
-            )) ? (
-              <DeletePost
-                id={post.id}
-                PostuserId={post.userId}
-                Token={seactionIdUser}
-              />
-            ) : null}
+              <Link href={`/profile/${post.username}`}>
+                <p className="mx-auto justify-center p-1  text-green-700   ">
+                  Post by {post.username}
+                </p>
+              </Link>
+
+              {(await editpermiston(
+                post.userId,
+                userid,
+                seactionIdUser,
+                post.id,
+              )) ? (
+                <DeletePost
+                  id={post.id}
+                  PostuserId={post.userId}
+                  Token={seactionIdUser}
+                />
+              ) : null}
+            </div>
           </li>
         ))}
       </ul>
-      <CreateComment postid={itemId} />
-      <h3> Comments</h3>
-      <ul>
+
+      <CreateComment
+        postid={itemId}
+        className=" justify-center items items-center "
+      />
+      <h3 className="items text-center font-extrabold  text-green-400">
+        {' '}
+        Comments
+      </h3>
+      <ul className=" justify-center items items-center ">
         {comments.map(async (comment) => (
-          <li key={`commentid-${comment.id}`}>
-            <p>{comment.id}</p>
-            <p>Uder Id {comment.userId}</p>
+          <li
+            key={`commentid-${comment.id}`}
+            className="flex flex-col justify-center items-center  bg-green-50
+            rounded-lg shadow-lg py-5 px-6 sm:py-6 sm:px-10"
+          >
+            <div
+              className="flex flex-col justify-center items-center  bg-green-100 w-full
 
-            <p>{comment.post}</p>
-            <p>{comment.score}</p>
-            {(await editpermiston(
-              comment.userId,
-              userid,
-              seactionIdUser,
-              comment.id,
-            )) ? (
-              <CommntDelide
-                id={comment.id}
-                userIdPage={comment.user_id}
-                Token={seactionIdUser}
-              />
-            ) : null}
+              rounded-lg shadow-lg py-5 px-6 "
+            >
+              <p className="mx-auto justify-center p-1 ">{comment.post}</p>
+
+              <p className="mx-auto justify-center p-1  text-green-700   ">
+                Commend id :{comment.id}
+              </p>
+
+              {(await editpermiston(
+                comment.userId,
+                userid,
+                seactionIdUser,
+                comment.id,
+              )) ? (
+                <CommntDelide
+                  id={comment.id}
+                  userIdPage={comment.user_id}
+                  Token={seactionIdUser}
+                  className="mx-auto justify-center p-1 "
+                />
+              ) : null}
+            </div>
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }
