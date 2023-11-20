@@ -23,7 +23,7 @@ export default async function Home() {
 
   return (
     <main className=" mx-auto flex max-w-7xl items-center justify-between p-6 ">
-      <div className="mx-auto justify-between p-6 lg:px-4 ">
+      <section className="mx-auto justify-between p-6 lg:px-4 ">
         {user ? (
           <NewPostsPage />
         ) : (
@@ -35,7 +35,7 @@ export default async function Home() {
             <LoginPage />
           </>
         )}
-      </div>
+      </section>
     </main>
   );
 }

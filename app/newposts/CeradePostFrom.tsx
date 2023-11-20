@@ -31,7 +31,7 @@ export default function Ceradepost(props: Props) {
   }
 
   return (
-    <div className="  mx-auto  max-w-7xl items-center p-6 rounded-lg  bg-green-50">
+    <section className="  mx-auto  max-w-7xl items-center p-6 rounded-lg  bg-green-50">
       <h2 className=" items text-center font-extrabold text-green-400">
         {' '}
         Make New Post{' '}
@@ -41,7 +41,7 @@ export default function Ceradepost(props: Props) {
         py-5 px-6 sm:py-6 sm:px"
         onSubmit={async (event) => await handelregister(event)}
       >
-        <div
+        <section
           className="flex flex-col justify-center items-center  bg-green-100
              rounded-lg  py-5 px-6 sm:py-6 sm:px-10  "
         >
@@ -66,8 +66,8 @@ export default function Ceradepost(props: Props) {
           <button className=" mx-auto flex  justify-center rounded-md bg-green-600 p-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600  w-11/12">
             Make Post
           </button>
-        </div>
+        </section>
       </form>
-    </div>
+    </section>
   );
 }

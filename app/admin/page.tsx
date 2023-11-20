@@ -6,7 +6,7 @@ export default async function AdminPage() {
   const users = await getusers();
 
   return (
-    <div className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  bg-gray-100 ">
+    <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  bg-gray-100 ">
       <h1 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
         {' '}
         Admin Panal{' '}
@@ -17,7 +17,7 @@ export default async function AdminPage() {
             key={`user-${user.id}`}
             className="flex flex-col justify-center items-center  bg-green-50"
           >
-            <div
+            <section
               className="flex flex-col justify-center items-center  bg-green-100 w-full
              rounded-lg shadow-lg py-5 px-6 "
             >
@@ -36,10 +36,10 @@ export default async function AdminPage() {
                   </p>
                 ) : null}
               </Link>
-            </div>
+            </section>
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }

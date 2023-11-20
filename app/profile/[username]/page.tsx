@@ -41,7 +41,7 @@ export default async function userProfilePage({ params }: Props) {
   //}
 
   return (
-    <div>
+    <section>
       <h3 className=" items text-center font-extrabold  text-green-400">
         Profle of {params.username}
       </h3>
@@ -52,7 +52,7 @@ export default async function userProfilePage({ params }: Props) {
       ) : null}
       {(await editpermiston(
         proflieUserid,
-        user?.id,
+        Number(user?.id),
         tokenCooke,
         proflieUserid,
       )) ? (
@@ -73,7 +73,7 @@ export default async function userProfilePage({ params }: Props) {
             className="flex flex-col justify-center items-center  bg-green-50
             rounded-lg shadow-lg py-5 px-6 sm:py-6 sm:px-10"
           >
-            <div
+            <section
               className="flex flex-col justify-center items-center  bg-green-100 w-full
              rounded-lg shadow-lg py-5 px-6 "
             >
@@ -100,7 +100,7 @@ export default async function userProfilePage({ params }: Props) {
               </Link>
               {(await editpermiston(
                 post.userId,
-                user?.id,
+                Number(user?.id),
                 tokenCooke,
                 post.id,
               )) ? (
@@ -110,10 +110,10 @@ export default async function userProfilePage({ params }: Props) {
                   Token={tokenCooke}
                 />
               ) : null}
-            </div>
+            </section>
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }

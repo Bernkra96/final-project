@@ -120,8 +120,8 @@ export async function DELETE(
     userpuostid.user_id,
     admin?.level > 1,
   );
-  if (!admin?.level > 1) {
-    if (userID != userIdPage) {
+  if (!admin?.level && Number(admin?.level) > 1) {
+    if (userID !== userIdPage) {
       return NextResponse.json(
         { errors: [{ message: 'Wrong user USEU ID' }] },
         { status: 401 },

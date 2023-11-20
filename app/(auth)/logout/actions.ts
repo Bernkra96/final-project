@@ -10,4 +10,5 @@ export async function logout() {
 
   if (token) await deleteSessionByToken(token.value);
   cookieStore.set('sessionToken', '', { maxAge: -1 });
+  return { redirect: { destination: '/', permanent: false } };
 }
