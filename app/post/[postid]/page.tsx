@@ -31,7 +31,7 @@ export default async function ItemProfilePage(props: {
   console.log('tokenCookie', tokenCooke, seactionIdUser);
 
   return (
-    <div className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
+    <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
       <h3 className="items text-center font-extrabold  text-green-400 ">
         {' '}
         Post
@@ -43,7 +43,7 @@ export default async function ItemProfilePage(props: {
             className="flex flex-col justify-center items-center  rounded-lg bg-green-50
             py-5 px-6 sm:py-6 sm:px-10"
           >
-            <div
+            <section
               className="flex flex-col justify-center items-center  bg-green-100 w-full
              rounded-lg shadow-lg py-5 px-6 "
             >
@@ -58,8 +58,8 @@ export default async function ItemProfilePage(props: {
               {post.image ? (
                 <img
                   src={post.image}
-                  className="h-30 w-30 flex-none  bg-gray-50"
-                  alt="Picture of the author"
+                  className="h-30 w-30 flex-none bg-gray-50"
+                  alt=""
                 />
               ) : null}
 
@@ -81,7 +81,7 @@ export default async function ItemProfilePage(props: {
                   Token={seactionIdUser}
                 />
               ) : null}
-            </div>
+            </section>
           </li>
         ))}
       </ul>
@@ -101,7 +101,7 @@ export default async function ItemProfilePage(props: {
             className="flex flex-col justify-center items-center  bg-green-50
             rounded-lg shadow-lg py-5 px-6 sm:py-6 sm:px-10"
           >
-            <div
+            <section
               className="flex flex-col justify-center items-center  bg-green-100 w-full
 
               rounded-lg shadow-lg py-5 px-6 "
@@ -125,10 +125,10 @@ export default async function ItemProfilePage(props: {
                   className="mx-auto justify-center p-1 "
                 />
               ) : null}
-            </div>
+            </section>
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }

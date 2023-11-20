@@ -25,9 +25,9 @@ export async function DELETE(
   const userName = LodeData.UserName;
   const id = LodeData.ID;
   const userToken = LodeData.Token;
-  const user = await getUserBySessionToken(body.id.Token);
-  const admin = await isAdmin(user?.id);
-  console.log('commnt id3.8', user?.id, admin?.user_id);
+  const userByToken = await getUserBySessionToken(body.id.Token);
+  const admin = await isAdmin(Number(userByToken?.id));
+  console.log('commnt id3.8', userByToken?.id, admin?.user_id);
 
   console.log('DELIDE Test', body);
   console.log(
@@ -47,36 +47,35 @@ export async function DELETE(
   }
   const user = await getUserBySessionToken(userToken);
   if (!userName) {
-    if (!admin?.level > 1) {
-      return NextResponse.json(
-        { errors: [{ message: 'User not found' }] },
-        { status: 401 },
-      );
-    }
-    if (!user) {
-      return NextResponse.json(
-        { errors: [{ message: 'User not found' }] },
-        { status: 401 },
-      );
-    }
-
-    if (user.username !== userName) {
-      return NextResponse.json(
-        { errors: [{ message: 'No pemiston' }] },
-        { status: 401 },
-      );
-    }
-
-    if (user.id !== id) {
-      return NextResponse.json(
-        { errors: [{ message: 'No pemiston' }] },
-        { status: 401 },
-      );
-    }
+    return NextResponse.json(
+      { errors: [{ message: 'User not found' }] },
+      { status: 401 },
+    );
   }
-  const delesetUser = await DeliteUserbyId(Number(id));
-  if (userToken) await deleteSessionByToken(userToken);
-  await cookies().set('sessionToken', '', { maxAge: -1 });
+  if (!userByToken) {
+    return NextResponse.json(
+      { errors: [{ message: 'User not found' }] },
+      { status: 401 },
+    );
+  }
+
+  if (userByToken.username !== userName) {
+    return NextResponse.json(
+      { errors: [{ message: 'No pemiston' }] },
+      { status: 401 },
+    );
+  }
+
+  if (userByToken.id !== id) {
+    return NextResponse.json(
+      { errors: [{ message: 'No pemiston' }] },
+      { status: 401 },
+    );
+  }
+
+  //  const delesetUser = await DeliteUserbyId(Number(id));
+  // if (userToken) await deleteSessionByToken(String(userToken));
+  //  await cookies().set('sessionToken', '', { maxAge: -1 });
 
   return NextResponse.json({
     user: delesetUser,

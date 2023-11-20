@@ -30,7 +30,7 @@ export default function CreateComment(postid: number) {
 
   console.log('postid', postid);
   return (
-    <div className="  mx-auto   items-center  rounded-lg  ">
+    <section className="  mx-auto   items-center  rounded-lg  ">
       <h2 className="items text-center font-extrabold  text-green-400">
         Make New Comment{' '}
       </h2>
@@ -51,6 +51,6 @@ export default function CreateComment(postid: number) {
           Make Comment
         </button>
       </form>
-    </div>
+    </section>
   );
 }
