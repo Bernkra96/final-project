@@ -38,3 +38,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Craatetaple
 
 pnpm ley new <Name of table >.ts --esm
+
+2023-11-21T08:29:35.056 app[91857472c77498] otp [info] > ley --require tsm "up"
+
+2023-11-21T08:29:35.067 app[91857472c77498] otp [info]  ELIFECYCLE  Command failed.
+
+2023-11-21T08:29:35.067 app[91857472c77498] otp [info] sh: ley: not found

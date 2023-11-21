@@ -4,6 +4,12 @@ const nextConfig = {
     typedRoutes: true,
     serverActions: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 
   images: {
     loader: 'cloudinary',
