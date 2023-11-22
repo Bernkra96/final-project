@@ -52,6 +52,14 @@ export default async function newPostspage() {
                     alt=""
                   />
                 ) : null}
+
+                <p className="mx-auto justify-center p-1  text-green-700   ">
+                  Post from {post.username}
+                </p>
+
+                <p className="mx-auto justify-center p-1  text-green-700   ">
+                  Post Nr: {post.id}{' '}
+                </p>
               </Link>
               {(await editpermiston(
                 post.userId,

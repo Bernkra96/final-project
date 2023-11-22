@@ -44,10 +44,10 @@ export default function CreateComment(postid: number) {
           cols={50}
           placeholder="Your Comment"
           onChange={(e) => setPost(e.currentTarget.value)}
-          className="mx-auto justify-center p-3 border-2 item-center   flex border-gray-300 rounded-md  w-11/12"
+          className="mx-auto justify-center p-3 border-2 item-center   flex border-gray-300 rounded-md m-2 w-11/12"
         />
 
-        <button className="mx-auto flex  justify-center rounded-md bg-green-600 p-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600  w-11/12">
+        <button className="mx-auto flex  justify-center rounded-md bg-green-600 p-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 m-2 w-11/12">
           Make Comment
         </button>
       </form>

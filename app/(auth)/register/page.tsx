@@ -14,5 +14,17 @@ export default async function RegisterPage() {
   }
   console.log(session);
 
-  return <RegisterFrom />;
+  return (
+    <>
+      <h1 className=" items text-center font-extrabold  text-green-400">
+        {' '}
+        Welcomme to Canvas{' '}
+      </h1>
+      <h2 className=" items text-center font-extrabold  text-green-400">
+        {' '}
+        Makre a User Prfile{' '}
+      </h2>
+      <RegisterFrom />
+    </>
+  );
 }

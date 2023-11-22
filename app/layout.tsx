@@ -51,20 +51,20 @@ export default async function RootLayout(
                   <LogoutButton />
                   <Link
                     href={`/profile/${user.username}`}
-                    className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+                    className=" w-92% m-2 justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                   >
                     Profile
                   </Link>
                   <Link
                     href="/newposts"
-                    className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+                    className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 m-2"
                   >
                     Newposts
                   </Link>
                   {isadmin ? (
                     <Link
                       href="/admin"
-                      className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+                      className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 m-2"
                     >
                       Admin
                     </Link>
@@ -74,13 +74,13 @@ export default async function RootLayout(
                 <>
                   <Link
                     href="/register"
-                    className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+                    className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6 m-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                   >
                     Register
                   </Link>
                   <Link
                     href="/login"
-                    className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+                    className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6 m-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                   >
                     Log in
                   </Link>

@@ -17,6 +17,7 @@
     "cloudinary": "^1.41.0",
     "csrf": "^3.1.0",
     "dotenv": "^16.3.1",
+    "ley": "^0.8.1",
     "next": "latest",
     "postcss": "^8.4.31",
     "postgres": "^3.4.2",
@@ -35,7 +36,6 @@
     "@types/react-dom": "latest",
     "eslint-config-upleveled": "^5.1.1",
     "install": "^0.13.0",
-    "ley": "^0.8.1",
     "stylelint": "^15.11.0",
     "stylelint-config-upleveled": "^1.0.2",
     "typescript": "^5.2.2"

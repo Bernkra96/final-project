@@ -42,14 +42,14 @@ export default function RegisterFrom() {
         <input
           onChange={(e) => setUsername(e.currentTarget.value)}
           placeholder="User Name"
-          className="mx-auto justify-center p-3 border-2 border-gray-300 rounded-md"
+          className="mx-auto flex justify-center p-3 border-2 m-1 border-gray-300 rounded-md"
         />
 
         <input
           type="password"
           onChange={(e) => setPassword(e.currentTarget.value)}
           placeholder="Password"
-          className="mx-auto justify-center p-3 border-2 border-gray-300 rounded-md  "
+          className="mx-auto flex justify-center p-3 border-2 m-1 border-gray-300 rounded-md"
         />
 
         <button className="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
