@@ -64,7 +64,7 @@ export default async function userProfilePage({ params }: Props) {
       ) : null}
 
       <h3 className=" items text-center font-extrabold  text-green-400">
-        UserPosts
+        User Posts
       </h3>
       <ul className=" justify-center items items-center ">
         {profliePosts.map(async (post) => (
