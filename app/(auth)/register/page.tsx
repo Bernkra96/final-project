@@ -18,7 +18,7 @@ export default async function RegisterPage() {
     <>
       <h1 className=" items text-center font-extrabold  text-green-400">
         {' '}
-        Welcomme to Canvas{' '}
+        Welcomme to CanvasView{' '}
       </h1>
       <h2 className=" items text-center font-extrabold  text-green-400">
         {' '}
