@@ -20,10 +20,12 @@ export default async function newPostspage() {
   return (
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
       <Ceradepost />
-      <h2 className=" items text-center font-extrabold  text-green-400">
-        {' '}
-        New Posts{' '}
-      </h2>
+      <div>
+        <h2 className=" items text-center font-extrabold  text-green-400">
+          {' '}
+          New Posts{' '}
+        </h2>
+      </div>
 
       <ul className=" justify-center items items-center ">
         {posts.map(async (post) => (
@@ -54,7 +56,7 @@ export default async function newPostspage() {
                 ) : null}
 
                 <p className="mx-auto justify-center p-1  text-green-700   ">
-                  Post from {post.username}
+                  Post by {post.username}
                 </p>
 
                 <p className="mx-auto justify-center p-1  text-green-700   ">
