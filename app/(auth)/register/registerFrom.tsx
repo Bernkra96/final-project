@@ -26,7 +26,9 @@ export default function RegisterFrom() {
     // console.log('Check : ', data);
 
     if ('errors' in data) {
-      setError('Error: ' + data.errors[0].message);
+      setError(
+        'Error: ' + data.errors[0].message ? data.errors[0].message : ' Error',
+      );
 
       return;
     }
@@ -57,7 +59,11 @@ export default function RegisterFrom() {
           Register
         </button>
       </form>
-      <p className="text-sm font-fat text-red-500 px-3  py-1.5 "> {error} </p>
+      {error.length > 0 ? (
+        <p className=" w-full justify-center rounded-md bg-red-600  m-3 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-smfocus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+          {error}
+        </p>
+      ) : null}
     </>
   );
 }
