@@ -26,7 +26,7 @@ export default function RegisterFrom() {
     console.log('Check : ', data);
 
     if ('errors' in data) {
-      setError(`Error `);
+      setError('Error: ' + data.errors[0].message);
 
       return;
     }

@@ -33,12 +33,12 @@ export default function LoginFrom(props: Props) {
     // console.log('Check : ', data);
 
     if ('errors' in data) {
-      setErrror(`Error `);
+      setErrror('Error: ' + data.errors[0].message);
 
       return;
     }
-    console.log(error);
-    console.log(SearchParamsContext);
+    // console.log(error);
+    // console.log(SearchParamsContext);
     // if (props.returnTo) {
     // router.push(props.returnTo);
     // return;
