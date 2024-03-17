@@ -40,6 +40,7 @@ export default function RegisterFrom() {
     <>
       <form onSubmit={async (event) => await handelregister(event)}>
         <input
+          type="username"
           onChange={(e) => setUsername(e.currentTarget.value)}
           placeholder="User Name"
           className="mx-auto flex justify-center p-3 border-2 m-1 border-gray-300 rounded-md"
