@@ -23,7 +23,7 @@ export default function RegisterFrom() {
     });
 
     const data: RegisterResponseBodyPost = await response.json();
-    console.log('Check : ', data);
+    // console.log('Check : ', data);
 
     if ('errors' in data) {
       setError('Error: ' + data.errors[0].message);
@@ -57,7 +57,7 @@ export default function RegisterFrom() {
           Register
         </button>
       </form>
-      <p> {error} </p>
+      <p className="text-sm font-fat text-red-500 px-3  py-1.5 "> {error} </p>
     </>
   );
 }

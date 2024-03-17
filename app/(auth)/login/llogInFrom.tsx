@@ -70,7 +70,7 @@ export default function LoginFrom(props: Props) {
           Login
         </button>
       </form>
-      <p> {error} </p>
+      <p className="text-sm font-fat text-red-500 px-3  py-1.5 "> {error} </p>
     </>
   );
 }
