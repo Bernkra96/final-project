@@ -15,7 +15,7 @@ export default async function LoginPage({ searchParams }: Props) {
 
   if (session) {
     redirect('/');
-  }
+
   // console.log(session);
   return (
     <>
@@ -26,4 +26,5 @@ export default async function LoginPage({ searchParams }: Props) {
       <LoginFrom />
     </>
   );
-}
+
+ 
