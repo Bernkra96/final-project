@@ -28,10 +28,10 @@ export async function POST(
 
   // 1. Get the user data from the request
   const body = await request.json();
-  console.log('Log in 01');
+  // console.log('Log in 01');
   // 2. Validate the user data
   const result = loginSchema.safeParse(body);
-  console.log('Log in 02.1');
+  // console.log('Log in 02.1');
   if (!result.success) {
     return NextResponse.json(
       { errors: result.error.issues },
@@ -40,33 +40,35 @@ export async function POST(
       },
     );
   }
-  console.log('Log in 02.2');
+  // console.log('Log in 02.2');
 
   // 3. verify the user credentials
   const userWithPasswordHash = await getUserWithPasswordHashByUsername(
     result.data.username,
   );
-  console.log('Log in 3.1');
-  console.log(result);
+
+  // console.log('Log in 3.1');
+  // console.log(result);
+
   if (!userWithPasswordHash) {
     return NextResponse.json(
       { errors: [{ message: 'username or password not valid' }] },
       { status: 403 },
     );
   }
-  console.log('Log in 3.2');
-  console.log(userWithPasswordHash.passordHash);
-  console.log(userWithPasswordHash.passwordHash);
-  console.log(userWithPasswordHash);
+  // console.log('Log in 3.2');
+  // console.log(userWithPasswordHash.passordHash);
+  // console.log(userWithPasswordHash.passwordHash);
+  // console.log(userWithPasswordHash);
 
   // 4. Validate the user password by comparing with hashed password
   const isPasswordValid = await bcrypt.compare(
     result.data.password,
     userWithPasswordHash.paswordHash,
   );
-  console.log(result);
-  console.log(userWithPasswordHash);
-  console.log('Log in 4.1');
+  // console.log(result);
+  // console.log(userWithPasswordHash);
+  // console.log('Log in 4.1');
   if (!isPasswordValid) {
     return NextResponse.json(
       { errors: [{ message: 'username or password not valid' }] },
@@ -81,10 +83,10 @@ export async function POST(
   //  Coming in subsequent lecture
   // 4. Create a token
   const token = crypto.randomBytes(100).toString('base64');
-  console.log('Log in 4.2');
+  // console.log('Log in 4.2');
   // 5. Create the session record
   const session = await createSession(userWithPasswordHash.id, token);
-  console.log('Log in 5.1');
+  // console.log('Log in 5.1');
   if (!session) {
     return NextResponse.json(
       { errors: [{ message: 'Error creating the new session' }] },
@@ -93,7 +95,7 @@ export async function POST(
       },
     );
   }
-  console.log('Log in 5.2');
+  // console.log('Log in 5.2');
   // 6. Send the new cookie in the headers
 
   // cookies().set({
@@ -111,7 +113,7 @@ export async function POST(
     value: session.token,
     ...secureCookieOptions,
   });
-  console.log('Log in 5.3');
+  // console.log('Log in 5.3');
   // 6. Return the new user information without the password hash
   return NextResponse.json({
     user: {

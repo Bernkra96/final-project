@@ -15,7 +15,7 @@ export default function DeletePost(
 
   async function handelPostDelete(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log('Post Button page delite ', PostuserId, id, Token);
+   //  console.log('Post Button page delite ', PostuserId, id, Token);
     const response = await fetch('/api/post', {
       method: 'DELETE',
       body: JSON.stringify({
@@ -26,7 +26,7 @@ export default function DeletePost(
     });
 
     const data: PostResponseBodyPost = await response.json();
-    console.log('Check : ', data);
+    // console.log('Check : ', data);
 
     router.push(`/`);
     router.refresh();

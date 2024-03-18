@@ -22,7 +22,7 @@ export default function DeleteuserButton(
     });
 
     const data: ProfileResponseBodyPost = await response.json();
-    console.log('Check : ', data);
+    // console.log('Check : ', data);
   }
 
   return (

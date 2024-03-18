@@ -12,9 +12,9 @@ export async function editpermiston(
   const loginUser = await getUserBySessionToken(Token);
   const admin = await getadminbyuserid(userId);
 
-  console.log('admin', admin?.start, admin?.level);
+  // console.log('admin', admin?.start, admin?.level);
 
-  console.log('loginUser', loginUser?.id);
+  // console.log('loginUser', loginUser?.id);
 
   return loginUser?.id == PostuserId || Number(admin?.level) > 1;
 }

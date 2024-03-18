@@ -16,7 +16,7 @@ export default async function LoginPage({ searchParams }: Props) {
   if (session) {
     redirect('/');
   }
-  console.log(session);
+  // console.log(session);
   return (
     <>
       <h2 className="items text-center font-extrabold text-green-400">

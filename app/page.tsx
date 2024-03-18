@@ -14,7 +14,7 @@ import NewPostsPage from './newposts/page';
 
 export default async function Home() {
   const tokenSeession = cookies().get('sessionToken'); // get sessionToken from cookies
-  console.log('tokenSeession', tokenSeession);
+  // console.log('tokenSeession', tokenSeession);
   // get  user from database by sessionToken
 
   const user =
