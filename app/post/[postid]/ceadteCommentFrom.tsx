@@ -23,12 +23,12 @@ export default function CreateComment(postid: number) {
     });
 
     const data: CommentResponseBodyPost = await response.json();
-    console.log('Check : ', data);
+    // console.log('Check : ', data);
 
     router.refresh();
   }
 
-  console.log('postid', postid);
+  // console.log('postid', postid);
   return (
     <section className="  mx-auto   items-center  rounded-lg  ">
       <h2 className="items text-center font-extrabold  text-green-400">
