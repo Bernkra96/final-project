@@ -12,13 +12,13 @@ export default async function RegisterPage() {
   if (session) {
     redirect('/');
   }
-  // console.log(session);
+  console.log(session);
 
   return (
     <>
       <h1 className=" items text-center font-extrabold  text-green-400">
         {' '}
-        Welcomme to CanvasView{' '}
+        Welcomme to Canvas{' '}
       </h1>
       <h2 className=" items text-center font-extrabold  text-green-400">
         {' '}

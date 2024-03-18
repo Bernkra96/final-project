@@ -17,13 +17,5 @@ export default async function LoginPage({ searchParams }: Props) {
     redirect('/');
   }
   console.log(session);
-  return (
-    <>
-      <h2 className="items text-center font-extrabold text-green-400">
-        {' '}
-        Welcome Back{' '}
-      </h2>
-      <LoginFrom />
-    </>
-  );
+  return <LoginFrom returnTo={''} />;
 }
