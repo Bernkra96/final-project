@@ -53,7 +53,7 @@ export default async function ItemProfilePage(props: {
               <p className="mx-auto justify-center p-1 ">{post.post}</p>
               <p className="mx-auto justify-center p-1  text-green-700   ">
                 {' '}
-                Post.id: {post.id}
+                Post ID: {post.id}
               </p>
               {post.image ? (
                 <img
@@ -109,7 +109,7 @@ export default async function ItemProfilePage(props: {
               <p className="mx-auto justify-center p-1 ">{comment.post}</p>
 
               <p className="mx-auto justify-center p-1  text-green-700   ">
-                Commend id :{comment.id}
+                Commend ID: {comment.id}
               </p>
 
               {(await editpermiston(

@@ -33,12 +33,14 @@ export default function LoginFrom(props: Props) {
     // console.log('Check : ', data);
 
     if ('errors' in data) {
-      setErrror(`Error `);
+      setErrror(
+        'Error: ' + data.errors[0].message ? data.errors[0].message : ' Error',
+      );
 
       return;
     }
-    console.log(error);
-    console.log(SearchParamsContext);
+    // console.log(error);
+    // console.log(SearchParamsContext);
     // if (props.returnTo) {
     // router.push(props.returnTo);
     // return;
@@ -53,6 +55,7 @@ export default function LoginFrom(props: Props) {
     <>
       <form onSubmit={async (event) => await handelregister(event)}>
         <input
+          type="username"
           onChange={(e) => setUsername(e.currentTarget.value)}
           placeholder="User Name"
           className="mx-auto  flex justify-center p-3 border-2 m-1 border-gray-300 rounded-md"
@@ -69,7 +72,12 @@ export default function LoginFrom(props: Props) {
           Login
         </button>
       </form>
-      <p> {error} </p>
+
+      {error.length > 0 ? (
+        <p className=" w-full justify-center rounded-md bg-red-600  m-3 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-smfocus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+          {error}
+        </p>
+      ) : null}
     </>
   );
 }
