@@ -23,7 +23,7 @@ export default function EditFrom(UserName: string, ID: number, Token: string) {
     });
 
     const data: ProfileResponseBodyPost = await response.json();
-    console.log('Check : ', data);
+    // console.log('Check : ', data);
 
     // if (props.returnTo) {
     // router.push(props.returnTo);

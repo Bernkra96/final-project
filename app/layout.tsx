@@ -22,12 +22,12 @@ export default async function RootLayout(
 ) {
   const cookieStore = cookies();
   const tokenSeession = cookies().get('sessionToken');
-  console.log('tokenSeession', tokenSeession);
+  // console.log('tokenSeession', tokenSeession);
 
   const user =
     tokenSeession && (await getUserBySessionToken(tokenSeession.value));
   const isadmin = await isAdmin(user?.id);
-  console.log('tokenSeession user', user);
+  // console.log('tokenSeession user', user);
 
   return (
     <html lang="en">
@@ -45,7 +45,7 @@ export default async function RootLayout(
             <section className="mx-auto flex   p-6 ">
               {user ? (
                 <>
-                  <section className="mt-1 block font-semibold text-green-500 mx-auto justify-center p-1 ">
+                  <section className="mt-2.5 block font-semibold text-green-500 mx-auto justify-center p-1 ">
                     Hallo {user.username}
                   </section>
                   <LogoutButton />

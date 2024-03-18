@@ -29,9 +29,9 @@ export async function POST(
   request: NextRequest,
 ): Promise<NextResponse<CommentResponseBodyPost>> {
   const body = await request.json();
-  console.log(body);
+  // console.log(body);
   const postID = body.postid.postid;
-  console.log(postID);
+  // console.log(postID);
   const tokenCookie = cookies().get('sessionToken');
   if (!tokenCookie) {
     return NextResponse.json(
@@ -71,19 +71,19 @@ export async function DELETE(
   let commentId = body.id.id;
   const user = await getUserBySessionToken(body.id.Token);
   const admin = await isAdmin(user.id);
-  console.log('commnt id3.8', user.id, admin?.user_id);
+  // console.log('commnt id3.8', user.id, admin?.user_id);
 
-  console.log('id01', body);
-  console.log('id2', postId);
-  console.log('id3', userIdPage);
-  console.log('id3', commentId);
+  // console.log('id01', body);
+  // console.log('id2', postId);
+  // console.log('id3', userIdPage);
+  // console.log('id3', commentId);
 
   const commentData = await getCommentByCommentId(commentId);
 
-  console.log('id3.5', admin?.level > 1);
+  // console.log('id3.5', admin?.level > 1);
   const commentuserId = await getUserIdperCommentId(commentId);
 
-  console.log('id3.5.5', commentuserId);
+  // console.log('id3.5.5', commentuserId);
   const tokenCookie = cookies().get('sessionToken');
   if (!tokenCookie) {
     return NextResponse.json(

@@ -27,17 +27,17 @@ export async function DELETE(
   const userToken = LodeData.Token;
   const userByToken = await getUserBySessionToken(body.id.Token);
   const admin = await isAdmin(Number(userByToken?.id));
-  console.log('commnt id3.8', userByToken?.id, admin?.user_id);
+  // console.log('commnt id3.8', userByToken?.id, admin?.user_id);
 
-  console.log('DELIDE Test', body);
-  console.log(
-    'DELIDE Test02',
-    '/',
-    LodeData.ID,
-    LodeData.UserName,
-    LodeData.Token,
-  );
-  console.log('DELIDE Test03', '/', userName, id, userToken);
+  // console.log('DELIDE Test', body);
+  // console.log(
+  // 'DELIDE Test02',
+  //  '/',
+  // LodeData.ID,
+  // LodeData.UserName,
+  // LodeData.Token,
+  // );
+  // console.log('DELIDE Test03', '/', userName, id, userToken);
 
   if (!userToken) {
     return NextResponse.json(
@@ -92,9 +92,9 @@ export async function PATCH(
   const id = LodeData.ID;
   const userToken = LodeData.Token;
 
-  console.log('Push Test', body);
-  console.log('DELIDE Test02', '/ ', LodeData.UserName);
-  console.log('Pusch Test03', LodeData, '/');
+  // console.log('Push Test', body);
+  // console.log('DELIDE Test02', '/ ', LodeData.UserName);
+  // console.log('Pusch Test03', LodeData, '/');
 
   if (!userToken) {
     return NextResponse.json(
