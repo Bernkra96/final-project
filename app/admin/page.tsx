@@ -9,7 +9,7 @@ export default async function AdminPage() {
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  bg-gray-100 ">
       <h1 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
         {' '}
-        Admin Panel{' '}
+        Hallo Admin{' '}
       </h1>
       <ul className=" justify-center items items-center ">
         {users.map(async (user) => (
