@@ -66,6 +66,11 @@ export default async function userProfilePage({ params }: Props) {
       <h3 className=" items text-center font-extrabold  text-green-400">
         User Posts
       </h3>
+      <h3 className=" items text-center font-extrabold  text-green-400">
+        {' '}
+        nuber of posts: {profliePosts.length}{' '}
+      </h3>
+
       <ul className=" justify-center items items-center ">
         {profliePosts.map(async (post) => (
           <li
