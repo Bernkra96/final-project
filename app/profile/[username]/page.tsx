@@ -42,7 +42,7 @@ export default async function userProfilePage({ params }: Props) {
 
   return (
     <section>
-      <h3 className=" items text-center font-extrabold  text-green-400 ">
+      <h3 className=" items text-center font-extrabold  text-green-400">
         Profle of {params.username}
       </h3>
       {(await isAdmin(proflieUserid)) ? (
@@ -100,7 +100,7 @@ export default async function userProfilePage({ params }: Props) {
                 ) : null}
 
                 <p className="mx-auto justify-center p-1  text-green-700   ">
-                  Post ID: {post.id}{' '}
+                  Post Nr: {post.id}{' '}
                 </p>
               </Link>
               {(await editpermiston(
