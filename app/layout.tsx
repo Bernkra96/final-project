@@ -45,9 +45,12 @@ export default async function RootLayout(
             <section className="mx-auto flex   p-6 ">
               {user ? (
                 <>
-                  <section className="mt-2.5 block font-semibold text-green-500 mx-auto justify-center p-1 ">
-                    Hallo {user.username}
-                  </section>
+                  <Link href={`/profile/${user.username}`}>
+                    <section className="mt-2.5 block font-semibold text-green-500 mx-auto justify-center p-1 ">
+                      Hallo {user.username}
+                    </section>
+                  </Link>
+
                   <LogoutButton />
                   <Link
                     href={`/profile/${user.username}`}

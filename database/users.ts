@@ -123,6 +123,28 @@ export const updateUser = cache(
   },
 );
 
+export const getnumberOfUsers = cache(async () => {
+  const [user] = await sql<{ count: number }[]>`
+    SELECT
+      COUNT(*)
+    FROM
+      users
+  `;
+  return user;
+});
+
+export const getnumerofPostsbysingleUser = cache(async (id: number) => {
+  const [user] = await sql<{ count: number }[]>`
+    SELECT
+      COUNT(*)
+    FROM
+      posts
+    WHERE
+      user_id = ${id}
+  `;
+  return user;
+});
+
 export const DeliteUserbyId = cache(async (id: number) => {
   const [user] = await sql<{ id: number; username: string }[]>`
     DELETE FROM
