@@ -62,10 +62,16 @@ export default function Ceradepost(props: Props) {
             onChange={(e) => setImage(e.currentTarget.value)}
             className=" justify-center p-3 border-2 m-2 border-gray-300 rounded-md  w-11/12"
           />
-
-          <button className=" mx-auto flex  justify-center rounded-md bg-green-600 p-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 m-2 w-11/12">
-            Make Post
-          </button>
+          {(title.length !== 0 && post.length !== 0) ||
+          (title.length !== 0 && image.length !== 0) ? (
+            <button className=" mx-auto flex  justify-center rounded-md bg-green-600 p-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 m-2 w-11/12">
+              Make Post
+            </button>
+          ) : (
+            <p className=" mx-auto flex  justify-center rounded-md bg-gray-600 p-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 m-2 w-11/12">
+              Make Post
+            </p>
+          )}
         </section>
       </form>
     </section>

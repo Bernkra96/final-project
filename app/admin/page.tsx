@@ -26,14 +26,14 @@ export default async function AdminPage() {
         Here are the list of users{' '}
       </h2>
 
-      <ul className=" justify-center items items-center p-3  rounded-lg ">
+      <ul className=" justify-center items items-center   bg-green-50  rounded-lg ">
         {users.map(async (user) => (
           <li
             key={`user-${user.id}`}
-            className="flex flex-col justify-center items-center p-3  bg-green-50 rounded-lg "
+            className="flex flex-col justify-center items-cente  p-3  "
           >
             <section
-              className="flex flex-col justify-center items-center   bg-green-100 w-full
+              className="flex flex-col justify-center items-center  bg-green-100 w-full
              rounded-lg shadow-lg py-5 px-6   "
             >
               <Link
