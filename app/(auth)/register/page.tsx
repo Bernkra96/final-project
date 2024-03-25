@@ -24,6 +24,14 @@ export default async function RegisterPage() {
         {' '}
         Makre a User Prfile{' '}
       </h2>
+      <p className=" items text-center font-bold  text-green-400">
+        {' '}
+        Nusername : No Spaces and at least 3 characters
+      </p>
+      <p className=" items text-center font-bold  text-green-400">
+        {' '}
+        Password : At least 6 characters{' '}
+      </p>
       <RegisterFrom />
     </>
   );
