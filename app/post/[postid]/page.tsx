@@ -94,6 +94,10 @@ export default async function ItemProfilePage(props: {
         {' '}
         Comments
       </h3>
+      <h3 className="items text-center font-extrabold  text-green-400">
+        {' '}
+        nuber of Comments: {comments.length}{' '}
+      </h3>
       <ul className=" justify-center items items-center ">
         {comments.map(async (comment) => (
           <li
