@@ -26,7 +26,7 @@ export default async function RegisterPage() {
       </h2>
       <p className=" items text-center font-bold  text-green-400">
         {' '}
-        Nusername : No Spaces and at least 3 characters
+        Nusername : No Spaces , Only A-Z a-z 0-9 , at least 3 characters
       </p>
       <p className=" items text-center font-bold  text-green-400">
         {' '}
