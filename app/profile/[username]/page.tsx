@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import { isAdmin } from '../../../database/admins';
+import { getAllCommentswithUserName } from '../../../database/commnts';
 import {
   getPostpostidwithUserName,
   getPostswithUserid,
@@ -62,7 +63,6 @@ export default async function userProfilePage({ params }: Props) {
           Token={tokenCooke}
         />
       ) : null}
-
       <h3 className=" items text-center font-extrabold  text-green-400">
         User Posts
       </h3>
@@ -71,6 +71,7 @@ export default async function userProfilePage({ params }: Props) {
         nuber of posts: {profliePosts.length}{' '}
       </h3>
 
+      <h3 className=" items text-center font-extrabold  text-green-400"> </h3>
       <ul className=" justify-center items items-center ">
         {profliePosts.map(async (post) => (
           <li
@@ -121,4 +122,7 @@ export default async function userProfilePage({ params }: Props) {
       </ul>
     </section>
   );
+}
+function getAllCommentsbyUserId(arg0: number) {
+  throw new Error('Function not implemented.');
 }

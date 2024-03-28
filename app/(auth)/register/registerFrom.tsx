@@ -8,7 +8,7 @@ export default function RegisterFrom() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const usernameValidatonRegex = /^^\S*$/;
+  const usernameValidatonRegex = /^[a-zA-Z0-9]+$/;
   const router = useRouter();
 
   async function handelregister(event: React.FormEvent<HTMLFormElement>) {
