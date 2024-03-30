@@ -25,7 +25,7 @@ export default async function ItemProfilePage(props: {
   const itemId = Number(props.params.postid);
   const posts = await getPostpostidwithUserName(itemId);
   const postid = Number(posts[0]?.id);
-  const comments = await getCommentsByPostId(postid);
+  const comments = await getCommentsByPostIdwithUserName(postid);
 
   const tokenCooke = cookies().get('sessionToken');
   const seactionIdUser = String(tokenCooke?.value);
@@ -114,11 +114,23 @@ export default async function ItemProfilePage(props: {
 
               rounded-lg shadow-lg py-5 px-6 "
             >
-              <p className="mx-auto justify-center p-1 ">{comment.post}</p>
-
-              <p className="mx-auto justify-center p-1  text-green-700   ">
-                User ID: {comment.userId}
+              <p className="mx-auto justify-center text-center p-1 ">
+                {comment.post}
               </p>
+
+              <p className="mx-auto justify-center p-1 text-center text-green-700   ">
+                Comment ID: {comment.id}
+              </p>
+              <Link href={`/profile/${comment.username}`}>
+                <p className="mx-auto justify-center p-1 text-center  text-green-700   ">
+                  Comment by {comment.username}
+                </p>
+
+                <p className="mx-auto justify-center text-center p-1  text-green-700   ">
+                  User ID: {comment.userId}
+                </p>
+              </Link>
+
               {(await editpermiston(
                 comment.userId,
                 userid,
