@@ -9,7 +9,11 @@ import {
   getCommentsByPostIdwithUserName,
 } from '../../../database/commnts';
 import { getPostpostidwithUserName } from '../../../database/posts';
-import { getUserBySessionToken } from '../../../database/users';
+import {
+  getUserBySessionToken,
+  getUserByUserId,
+  getusernamebyId,
+} from '../../../database/users';
 import { editpermiston } from '../../../util/editpermiston';
 import DeletePost from '../../newposts/delidepostButton';
 import CreateComment from './ceadteCommentFrom';
@@ -29,7 +33,7 @@ export default async function ItemProfilePage(props: {
   const userid = Number(user?.id);
 
   // console.log('tokenCookie', tokenCooke, seactionIdUser);
-
+  // console.log(comments);
   return (
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
       <h3 className="items text-center font-extrabold  text-green-400 ">
@@ -113,9 +117,8 @@ export default async function ItemProfilePage(props: {
               <p className="mx-auto justify-center p-1 ">{comment.post}</p>
 
               <p className="mx-auto justify-center p-1  text-green-700   ">
-                Commend ID: {comment.id}
+                User ID: {comment.userId}
               </p>
-
               {(await editpermiston(
                 comment.userId,
                 userid,

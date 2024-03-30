@@ -1,6 +1,7 @@
 import { Sql } from 'postgres';
 
 export type Comment = {
+  userId(userId: any): number;
   postId: number;
   id: number;
   user_id: number;
