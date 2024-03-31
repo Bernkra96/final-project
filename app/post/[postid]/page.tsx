@@ -100,7 +100,7 @@ export default async function ItemProfilePage(props: {
       </h3>
       <h3 className="items text-center font-extrabold  text-green-400">
         {' '}
-        nuber of Comments: {comments.length}{' '}
+        Nuber of Comments: {comments.length}{' '}
       </h3>
       <ul className=" justify-center items items-center ">
         {comments.map(async (comment) => (
@@ -130,6 +130,8 @@ export default async function ItemProfilePage(props: {
                   User ID: {comment.userId}
                 </p>
               </Link>
+
+
 
               {(await editpermiston(
                 comment.userId,
