@@ -68,7 +68,7 @@ export default async function userProfilePage({ params }: Props) {
       </h3>
       <h3 className=" items text-center font-extrabold  text-green-400">
         {' '}
-        nuber of posts: {profliePosts.length}{' '}
+        Nuber of posts: {profliePosts.length}{' '}
       </h3>
 
       <h3 className=" items text-center font-extrabold  text-green-400"> </h3>
@@ -122,7 +122,4 @@ export default async function userProfilePage({ params }: Props) {
       </ul>
     </section>
   );
-}
-function getAllCommentsbyUserId(arg0: number) {
-  throw new Error('Function not implemented.');
 }

@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { isAdmin } from '../../database/admins';
+import { getadminbyuserid, isAdmin } from '../../database/admins';
+import { getAllComments } from '../../database/commnts';
+import { getAllPosts } from '../../database/posts';
 import {
   getnumberOfUsers,
   getnumerofPostsbysingleUser,
@@ -9,6 +11,8 @@ import {
 export default async function AdminPage() {
   const users = await getusers();
   const nubberofUsers = await getnumberOfUsers();
+  const nuberofPosts = await getAllPosts();
+  const nuberofComments = await getAllComments();
 
   return (
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  bg-gray-100  rounded-lg  ">
@@ -16,6 +20,14 @@ export default async function AdminPage() {
         {' '}
         Hallo Admin{' '}
       </h1>
+      <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
+        {' '}
+        There are {nuberofPosts.length} posts{' '}
+      </h2>
+      <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
+        {' '}
+        There are {nuberofComments.length} comment{' '}
+      </h2>
       <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
         {' '}
         There are {nubberofUsers?.count} users{' '}
