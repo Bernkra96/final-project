@@ -37,7 +37,7 @@ export default async function RootLayout(
             <section className="mx-auto  p-6 ">
               <Link
                 href="/"
-                className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+                className="  flex justify-center rounded-md bg-green-600 px-3 py-1 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
               >
                 Home
               </Link>
@@ -46,9 +46,9 @@ export default async function RootLayout(
               {user ? (
                 <>
                   <Link href={`/profile/${user.username}`}>
-                    <section className="mt-2.5 block font-semibold text-green-500 mx-auto justify-center p-1 ">
-                      Hallo {user.username}
-                    </section>
+                    <div className="mt-2.5 font-semibold text-green-500 text-center p-1">
+                      Welcome Back {user.username}
+                    </div>
                   </Link>
 
                   <LogoutButton />
