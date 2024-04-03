@@ -51,12 +51,7 @@ export default async function userProfilePage({ params }: Props) {
           Is Admin
         </p>
       ) : null}
-      {(await editpermiston(
-        proflieUserid,
-        Number(user?.id),
-        tokenCooke,
-        proflieUserid,
-      )) ? (
+      {(await editpermiston) && params.username == user?.username ? (
         <DeleteuserButton
           UserName={params.username}
           ID={user?.id}
