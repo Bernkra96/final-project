@@ -21,11 +21,13 @@ export async function DELETE(
   request: NextRequest,
 ): Promise<NextResponse<ProfileResponseBodyPost>> {
   const body = await request.json();
+  const tokenCookie = cookies().get('sessionToken');
+  const cookieToken = tokenCookie?.value;
   const LodeData = body.UserName;
   const userName = LodeData.UserName;
   const id = LodeData.ID;
   const userToken = LodeData.Token;
-  const userByToken = await getUserBySessionToken(body.id.Token);
+  const userByToken = await getUserBySessionToken(cookieToken ?? '');
   const admin = await isAdmin(Number(userByToken?.id));
   // console.log('commnt id3.8', userByToken?.id, admin?.user_id);
 
@@ -39,7 +41,7 @@ export async function DELETE(
   // );
   // console.log('DELIDE Test03', '/', userName, id, userToken);
 
-  if (!userToken) {
+  if (!tokenCookie) {
     return NextResponse.json(
       { errors: [{ message: 'Session token not found' }] },
       { status: 401 },
@@ -73,9 +75,9 @@ export async function DELETE(
     );
   }
 
-  //  const delesetUser = await DeliteUserbyId(Number(id));
-  // if (userToken) await deleteSessionByToken(String(userToken));
-  //  await cookies().set('sessionToken', '', { maxAge: -1 });
+  const delesetUser = await DeliteUserbyId(Number(id));
+  if (cookieToken) await deleteSessionByToken(String(cookieToken));
+  await cookies().set('sessionToken', '', { maxAge: -1 });
 
   return NextResponse.json({
     user: delesetUser,

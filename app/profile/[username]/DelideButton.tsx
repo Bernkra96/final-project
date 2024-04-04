@@ -1,8 +1,11 @@
 'use client';
 
+import router from 'next/router';
 import React from 'react';
 import { getCookie } from '../../../util/cookies';
 import { ProfileResponseBodyPost } from '../../api/profile/route';
+
+type Props = { searchParams?: string | string[]; id: number };
 
 export default function DeleteuserButton(
   UserName: string,
@@ -22,7 +25,8 @@ export default function DeleteuserButton(
     });
 
     const data: ProfileResponseBodyPost = await response.json();
-    // console.log('Check : ', data);
+    console.log('Check : ', data);
+    await router.push(`/`); // router.refresh();
   }
 
   return (

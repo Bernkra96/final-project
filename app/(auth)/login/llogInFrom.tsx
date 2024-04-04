@@ -72,7 +72,7 @@ export default function LoginFrom(props: Props) {
             Login
           </button>
         ) : (
-          <p className=" w-full justify-center rounded-md  bg-gray-600  m-3 px-3 py-1.5  font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
+          <p className=" w-full justify-center rounded-md  bg-gray-600  m-3 px-3 py-1.5  font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
             Login
           </p>
         )}
