@@ -22,20 +22,20 @@ export default async function AdminPage() {
       </h1>
       <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
         {' '}
-        There are {nuberofPosts.length} posts{' '}
+        There are {nuberofPosts.length} Posts{' '}
       </h2>
       <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
         {' '}
-        There are {nuberofComments.length} comment{' '}
+        There are {nuberofComments.length} Comments{' '}
       </h2>
       <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
         {' '}
-        There are {nubberofUsers?.count} users{' '}
+        There are {nubberofUsers?.count} Users{' '}
       </h2>
 
       <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
         {' '}
-        Here are the list of users{' '}
+        Here are the list of Users{' '}
       </h2>
 
       <ul className=" justify-center items items-center   bg-green-50  rounded-lg ">

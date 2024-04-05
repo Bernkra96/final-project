@@ -5,8 +5,6 @@ import React from 'react';
 import { getCookie } from '../../../util/cookies';
 import { ProfileResponseBodyPost } from '../../api/profile/route';
 
-type Props = { searchParams?: string | string[]; id: number };
-
 export default function DeleteuserButton(
   UserName: string,
   ID: number,

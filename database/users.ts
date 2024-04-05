@@ -135,6 +135,21 @@ export const updateUser = cache(
   },
 );
 
+export const updateUserperUderId = cache(
+  async (id: number, newUsername: string) => {
+    const [user] = await sql<User[]>`
+    UPDATE users
+    SET
+     username= ${newUsername}
+    WHERE
+      id= ${id},
+    RETURNING  id,
+        username
+  `;
+    return user;
+  },
+);
+
 export const getnumberOfUsers = cache(async () => {
   const [user] = await sql<{ count: number }[]>`
     SELECT
