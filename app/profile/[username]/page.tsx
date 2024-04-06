@@ -52,18 +52,20 @@ export default async function userProfilePage({ params }: Props) {
         </p>
       ) : null}
       {(await editpermiston) && params.username == user?.username ? (
-        <DeleteuserButton
-          UserName={params.username}
-          ID={user?.id}
-          Token={tokenCooke}
-        />
+        <>
+          <DeleteuserButton
+            UserName={params.username}
+            ID={user?.id}
+            Token={tokenCooke}
+          />
+        </>
       ) : null}
       <h3 className=" items text-center font-extrabold  text-green-400">
         User Posts
       </h3>
       <h3 className=" items text-center font-extrabold  text-green-400">
         {' '}
-        Nuber of posts: {profliePosts.length}{' '}
+        Nuber of Posts: {profliePosts.length}{' '}
       </h3>
 
       <h3 className=" items text-center font-extrabold  text-green-400"> </h3>
