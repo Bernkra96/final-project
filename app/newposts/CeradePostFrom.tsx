@@ -27,7 +27,25 @@ export default function Ceradepost(props: Props) {
 
     const data: PostResponseBodyPost = await response.json();
     // console.log('Check : ', data);
-    router.refresh();
+
+    if (response.ok) {
+      cleerInput();
+      router.refresh();
+    }
+  }
+
+  function cleerInput() {
+    setTitle('');
+    setPost('');
+    setImage('');
+    const titleCleer = document.getElementById('title') as HTMLInputElement;
+    const postCleer = document.getElementById('post') as HTMLInputElement;
+    const imageURlCleer = document.getElementById(
+      'imageUrl',
+    ) as HTMLInputElement;
+    titleCleer.value = '';
+    postCleer.value = '';
+    imageURlCleer.value = '';
   }
 
   return (
@@ -46,18 +64,21 @@ export default function Ceradepost(props: Props) {
              rounded-lg  py-5 px-6 sm:py-6 sm:px-10  "
         >
           <input
+            id="title"
             placeholder="Your Title "
             onChange={(e) => setTitle(e.currentTarget.value)}
             className="mx-auto justify-center p-3 border-2 m-2 border-gray-300 rounded-md  w-11/12"
           />
 
           <textarea
+            id="post"
             placeholder="Your Post"
             onChange={(e) => setPost(e.currentTarget.value)}
             className="mx-auto justify-center p-3 border-2 m-2 border-gray-300 rounded-md  w-11/12"
           />
 
           <input
+            id="imageUrl"
             placeholder="Your ImageUrl "
             onChange={(e) => setImage(e.currentTarget.value)}
             className=" justify-center p-3 border-2 m-2 border-gray-300 rounded-md  w-11/12"
