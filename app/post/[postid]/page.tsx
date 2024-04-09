@@ -1,19 +1,8 @@
 import { cookies } from 'next/headers';
-import Image from 'next/image';
 import Link from 'next/link';
-import { number } from 'zod';
-import {
-  getAllComments,
-  getCommentByCommentId,
-  getCommentsByPostId,
-  getCommentsByPostIdwithUserName,
-} from '../../../database/commnts';
+import { getCommentsByPostIdwithUserName } from '../../../database/commnts';
 import { getPostpostidwithUserName } from '../../../database/posts';
-import {
-  getUserBySessionToken,
-  getUserByUserId,
-  getusernamebyId,
-} from '../../../database/users';
+import { getUserBySessionToken } from '../../../database/users';
 import { editpermiston } from '../../../util/editpermiston';
 import DeletePost from '../../newposts/delidepostButton';
 import CreateComment from './ceadteCommentFrom';
@@ -130,8 +119,6 @@ export default async function ItemProfilePage(props: {
                   User ID: {comment.userId}
                 </p>
               </Link>
-
-
 
               {(await editpermiston(
                 comment.userId,
