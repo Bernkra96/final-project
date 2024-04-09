@@ -63,6 +63,18 @@ export const getUserByUserId = cache(async (userId: number) => {
   return user;
 });
 
+export const getusernamebyId = cache(async (userId: number) => {
+  const [user] = await sql<User[]>`
+    SELECT
+      username
+    FROM
+      users
+    WHERE
+      id = ${userId}
+  `;
+  return user;
+});
+
 export const getUserWithPasswordHashByUsername = cache(
   async (username: string) => {
     const [user] = await sql<UserWithPasswordHash[]>`
@@ -122,6 +134,43 @@ export const updateUser = cache(
     return user;
   },
 );
+
+export const updateUserperUderId = cache(
+  async (id: number, newUsername: string) => {
+    const [user] = await sql<User[]>`
+    UPDATE users
+    SET
+     username= ${newUsername}
+    WHERE
+      id= ${id},
+    RETURNING  id,
+        username
+  `;
+    return user;
+  },
+);
+
+export const getnumberOfUsers = cache(async () => {
+  const [user] = await sql<{ count: number }[]>`
+    SELECT
+      COUNT(*)
+    FROM
+      users
+  `;
+  return user;
+});
+
+export const getnumerofPostsbysingleUser = cache(async (id: number) => {
+  const [user] = await sql<{ count: number }[]>`
+    SELECT
+      COUNT(*)
+    FROM
+      posts
+    WHERE
+      user_id = ${id}
+  `;
+  return user;
+});
 
 export const DeliteUserbyId = cache(async (id: number) => {
   const [user] = await sql<{ id: number; username: string }[]>`

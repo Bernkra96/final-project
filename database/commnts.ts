@@ -100,7 +100,7 @@ export const getCommentsByPostIdwithUserName = cache(
     ON
       comments.user_id = users.id
     WHERE
-      comments.id = ${post_id}
+      comments.post_id = ${post_id}
   `;
     return comments;
   },

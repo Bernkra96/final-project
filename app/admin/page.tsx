@@ -1,33 +1,65 @@
 import Link from 'next/link';
-import { isAdmin } from '../../database/admins';
-import { getusers } from '../../database/users';
+import { getadminbyuserid, isAdmin } from '../../database/admins';
+import { getAllComments } from '../../database/commnts';
+import { getAllPosts } from '../../database/posts';
+import {
+  getnumberOfUsers,
+  getnumerofPostsbysingleUser,
+  getusers,
+} from '../../database/users';
 
 export default async function AdminPage() {
   const users = await getusers();
+  const nubberofUsers = await getnumberOfUsers();
+  const nuberofPosts = await getAllPosts();
+  const nuberofComments = await getAllComments();
 
   return (
-    <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  bg-gray-100 ">
+    <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  bg-gray-100  rounded-lg  ">
       <h1 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
         {' '}
         Hallo Admin{' '}
       </h1>
-      <ul className=" justify-center items items-center ">
+      <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
+        {' '}
+        There are {nuberofPosts.length} Posts{' '}
+      </h2>
+      <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
+        {' '}
+        There are {nuberofComments.length} Comments{' '}
+      </h2>
+      <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
+        {' '}
+        There are {nubberofUsers?.count} Users{' '}
+      </h2>
+
+      <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
+        {' '}
+        Here are the list of Users{' '}
+      </h2>
+
+      <ul className=" justify-center items items-center   bg-green-50  rounded-lg ">
         {users.map(async (user) => (
           <li
             key={`user-${user.id}`}
-            className="flex flex-col justify-center items-center  bg-green-50"
+            className="flex flex-col justify-center items-cente  p-3  "
           >
             <section
               className="flex flex-col justify-center items-center  bg-green-100 w-full
-             rounded-lg shadow-lg py-5 px-6 "
+             rounded-lg shadow-lg py-5 px-6   "
             >
               <Link
                 className="mx-auto justify-center p-6 lg:px-4 "
                 href={`/profile/${user.username}`}
               >
-                <p className="mx-auto justify-center p-1  text-green-700   ">
+                <p className="mx-auto justify-center   text-green-700   ">
                   {' '}
                   {user.username}{' '}
+                </p>
+
+                <p className="mx-auto justify-center   text-green-700   ">
+                  {' '}
+                  User ID {user.id}{' '}
                 </p>
 
                 {(await isAdmin(user.id)) ? (

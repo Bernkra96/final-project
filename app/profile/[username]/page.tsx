@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import { isAdmin } from '../../../database/admins';
+import { getAllCommentswithUserName } from '../../../database/commnts';
 import {
   getPostpostidwithUserName,
   getPostswithUserid,
@@ -50,22 +51,24 @@ export default async function userProfilePage({ params }: Props) {
           Is Admin
         </p>
       ) : null}
-      {(await editpermiston(
-        proflieUserid,
-        Number(user?.id),
-        tokenCooke,
-        proflieUserid,
-      )) ? (
-        <DeleteuserButton
-          UserName={params.username}
-          ID={user?.id}
-          Token={tokenCooke}
-        />
+      {(await editpermiston) && params.username == user?.username ? (
+        <>
+          <DeleteuserButton
+            UserName={params.username}
+            ID={user?.id}
+            Token={tokenCooke}
+          />
+        </>
       ) : null}
-
       <h3 className=" items text-center font-extrabold  text-green-400">
         User Posts
       </h3>
+      <h3 className=" items text-center font-extrabold  text-green-400">
+        {' '}
+        Nuber of Posts: {profliePosts.length}{' '}
+      </h3>
+
+      <h3 className=" items text-center font-extrabold  text-green-400"> </h3>
       <ul className=" justify-center items items-center ">
         {profliePosts.map(async (post) => (
           <li

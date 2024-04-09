@@ -4,7 +4,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { string } from 'zod';
 import { isAdmin } from '../../../database/admins';
 import { deleteSessionByToken } from '../../../database/sessions';
-import { DeliteUserbyId, getUserBySessionToken } from '../../../database/users';
+import {
+  DeliteUserbyId,
+  getUserBySessionToken,
+  updateUser,
+  updateUserperUderId,
+} from '../../../database/users';
 import { User } from '../../../migrations/00000-crateUsersTable';
 
 export type ProfileResponseBodyPost = {
@@ -21,11 +26,13 @@ export async function DELETE(
   request: NextRequest,
 ): Promise<NextResponse<ProfileResponseBodyPost>> {
   const body = await request.json();
+  const tokenCookie = cookies().get('sessionToken');
+  const cookieToken = tokenCookie?.value;
   const LodeData = body.UserName;
   const userName = LodeData.UserName;
   const id = LodeData.ID;
   const userToken = LodeData.Token;
-  const userByToken = await getUserBySessionToken(body.id.Token);
+  const userByToken = await getUserBySessionToken(cookieToken ?? '');
   const admin = await isAdmin(Number(userByToken?.id));
   // console.log('commnt id3.8', userByToken?.id, admin?.user_id);
 
@@ -39,7 +46,7 @@ export async function DELETE(
   // );
   // console.log('DELIDE Test03', '/', userName, id, userToken);
 
-  if (!userToken) {
+  if (!tokenCookie) {
     return NextResponse.json(
       { errors: [{ message: 'Session token not found' }] },
       { status: 401 },
@@ -73,9 +80,9 @@ export async function DELETE(
     );
   }
 
-  //  const delesetUser = await DeliteUserbyId(Number(id));
-  // if (userToken) await deleteSessionByToken(String(userToken));
-  //  await cookies().set('sessionToken', '', { maxAge: -1 });
+  const delesetUser = await DeliteUserbyId(Number(id));
+  if (cookieToken) await deleteSessionByToken(String(cookieToken));
+  await cookies().set('sessionToken', '', { maxAge: -1 });
 
   return NextResponse.json({
     user: delesetUser,
@@ -86,23 +93,26 @@ export async function PATCH(
   request: NextRequest,
 ): Promise<NextResponse<ProfileResponseBodyPost>> {
   const body = await request.json();
-
-  const LodeData = body.username;
-  const userName = LodeData.username;
+  const tokenCookie = cookies().get('sessionToken');
+  const cookieToken = tokenCookie?.value;
+  const LodeData = body.UserName;
+  const userName = LodeData.UserName;
   const id = LodeData.ID;
   const userToken = LodeData.Token;
+  const newUserName = body.newUsername;
 
-  // console.log('Push Test', body);
-  // console.log('DELIDE Test02', '/ ', LodeData.UserName);
+  //  console.log('Push Test', body);
+  // console.log('push Test02', '/ ', LodeData.UserName);
   // console.log('Pusch Test03', LodeData, '/');
+  // console.log('Pusch Test04', '/', userName, id, userToken, newUserName);
 
-  if (!userToken) {
+  if (!cookieToken) {
     return NextResponse.json(
       { errors: [{ message: 'Session token not found' }] },
       { status: 401 },
     );
   }
-  const user = await getUserBySessionToken(userToken);
+  const user = await getUserBySessionToken(cookieToken);
   if (!userName) {
     return NextResponse.json(
       { errors: [{ message: 'User not found' }] },
@@ -130,8 +140,8 @@ export async function PATCH(
       { status: 401 },
     );
   }
-
+  const updateUser = await updateUserperUderId(Number(id), newUserName);
   return NextResponse.json({
-    user: body,
+    user: updateUser,
   } as ProfileResponseBodyPost);
 }

@@ -9,7 +9,11 @@ import {
   getCommentsByPostIdwithUserName,
 } from '../../../database/commnts';
 import { getPostpostidwithUserName } from '../../../database/posts';
-import { getUserBySessionToken } from '../../../database/users';
+import {
+  getUserBySessionToken,
+  getUserByUserId,
+  getusernamebyId,
+} from '../../../database/users';
 import { editpermiston } from '../../../util/editpermiston';
 import DeletePost from '../../newposts/delidepostButton';
 import CreateComment from './ceadteCommentFrom';
@@ -21,7 +25,7 @@ export default async function ItemProfilePage(props: {
   const itemId = Number(props.params.postid);
   const posts = await getPostpostidwithUserName(itemId);
   const postid = Number(posts[0]?.id);
-  const comments = await getCommentsByPostId(postid);
+  const comments = await getCommentsByPostIdwithUserName(postid);
 
   const tokenCooke = cookies().get('sessionToken');
   const seactionIdUser = String(tokenCooke?.value);
@@ -29,7 +33,7 @@ export default async function ItemProfilePage(props: {
   const userid = Number(user?.id);
 
   // console.log('tokenCookie', tokenCooke, seactionIdUser);
-
+  // console.log(comments);
   return (
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
       <h3 className="items text-center font-extrabold  text-green-400 ">
@@ -94,6 +98,10 @@ export default async function ItemProfilePage(props: {
         {' '}
         Comments
       </h3>
+      <h3 className="items text-center font-extrabold  text-green-400">
+        {' '}
+        Nuber of Comments: {comments.length}{' '}
+      </h3>
       <ul className=" justify-center items items-center ">
         {comments.map(async (comment) => (
           <li
@@ -106,11 +114,24 @@ export default async function ItemProfilePage(props: {
 
               rounded-lg shadow-lg py-5 px-6 "
             >
-              <p className="mx-auto justify-center p-1 ">{comment.post}</p>
-
-              <p className="mx-auto justify-center p-1  text-green-700   ">
-                Commend ID: {comment.id}
+              <p className="mx-auto justify-center text-center p-1 ">
+                {comment.post}
               </p>
+
+              <p className="mx-auto justify-center p-1 text-center text-green-700   ">
+                Comment ID: {comment.id}
+              </p>
+              <Link href={`/profile/${comment.username}`}>
+                <p className="mx-auto justify-center p-1 text-center  text-green-700   ">
+                  Comment by {comment.username}
+                </p>
+
+                <p className="mx-auto justify-center text-center p-1  text-green-700   ">
+                  User ID: {comment.userId}
+                </p>
+              </Link>
+
+
 
               {(await editpermiston(
                 comment.userId,

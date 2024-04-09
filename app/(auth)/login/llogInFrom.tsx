@@ -67,10 +67,15 @@ export default function LoginFrom(props: Props) {
           placeholder="Password"
           className="mx-auto flex justify-center p-3 border-2 m-1 border-gray-300 rounded-md"
         />
-
-        <button className=" w-full justify-center rounded-md bg-green-600  m-3 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
-          Login
-        </button>
+        {username.length > 2 && password.length > 2 ? (
+          <button className=" w-full justify-center rounded-md bg-green-600  m-3 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
+            Login
+          </button>
+        ) : (
+          <p className=" w-full justify-center rounded-md  bg-gray-600  m-3 px-3 py-1.5  font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
+            Login
+          </p>
+        )}
       </form>
 
       {error.length > 0 ? (
