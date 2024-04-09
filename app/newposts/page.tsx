@@ -1,9 +1,7 @@
 import { cookies } from 'next/headers';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { User } from '../../database/createTableusers';
-import { getAllPosts, getAllPostswithUserName } from '../../database/posts';
+import { getAllPostswithUserName } from '../../database/posts';
 import { getUserBySessionToken } from '../../database/users';
 import { editpermiston } from '../../util/editpermiston';
 import Ceradepost from './CeradePostFrom';
@@ -16,7 +14,7 @@ export default async function newPostspage() {
   const user = await getUserBySessionToken(seactionIdUser);
   const userId = Number(user?.id);
 
- // console.log('tokenCookie', tokenCookie, seactionIdUser);
+  // console.log('tokenCookie', tokenCookie, seactionIdUser);
   return (
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
       <Ceradepost />

@@ -1,11 +1,10 @@
 'use client';
 
-import { SearchParamsContext } from 'next/dist/shared/lib/hooks-client-context.shared-runtime';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { PostResponseBodyPost } from '../api/post/route';
 
-type Props = { searchParams?: string | string[] };
+type Props = { SearchParamsContext ?: string | string[] };
 
 export default function Ceradepost(props: Props) {
   const [title, setTitle] = useState('');

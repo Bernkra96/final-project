@@ -20,13 +20,13 @@ export default async function RootLayout(
   },
   props: Props,
 ) {
-  const cookieStore = cookies();
+  // const cookieStore = cookies();
   const tokenSeession = cookies().get('sessionToken');
   // console.log('tokenSeession', tokenSeession);
 
   const user =
     tokenSeession && (await getUserBySessionToken(tokenSeession.value));
-  const isadmin = await isAdmin(user?.id);
+  const isadmin = await isAdmin(user?.id ?? -0);
   // console.log('tokenSeession user', user);
 
   return (
