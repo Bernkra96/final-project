@@ -37,10 +37,6 @@ export default async function userProfilePage({ params }: Props) {
   const proflieUserid = Number(proflieUser?.id);
   const profliePosts = await getPostswithUserid(Number(proflieUserid));
 
-  // if (!session || user?.username != params.username) {
-  //   redirect('/');
-  // }
-
   return (
     <section>
       <h3 className=" items text-center font-extrabold  text-green-400 ">

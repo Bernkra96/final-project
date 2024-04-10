@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { getadminbyuserid, isAdmin } from '../../database/admins';
 import { getAllComments } from '../../database/commnts';
@@ -5,6 +6,7 @@ import { getAllPosts } from '../../database/posts';
 import {
   getnumberOfUsers,
   getnumerofPostsbysingleUser,
+  getUserBySessionToken,
   getusers,
 } from '../../database/users';
 
@@ -18,7 +20,7 @@ export default async function AdminPage() {
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  bg-gray-100  rounded-lg  ">
       <h1 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
         {' '}
-        Hallo Admin{' '}
+        Hallo Admin
       </h1>
       <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
         {' '}
