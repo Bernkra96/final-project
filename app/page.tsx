@@ -1,15 +1,7 @@
-import { v2 as cloudinary } from 'cloudinary';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
-import {
-  getAllComments,
-  getAllCommentswithUserName,
-  getCommentsByPostIdwithUserName,
-} from '../database/commnts';
-import { createUser, getUserBySessionToken, getusers } from '../database/users';
-import { setCloudinaryEnvVars } from '../util/cloudinary';
+import { getUserBySessionToken } from '../database/users';
 import LoginPage from './(auth)/login/page';
-import RegisterPage from './(auth)/register/page';
 import NewPostsPage from './newposts/page';
 
 export default async function Home() {

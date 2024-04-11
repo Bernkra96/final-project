@@ -26,7 +26,7 @@ export default async function LoginPage({ searchParams }: Props) {
 
       <p className=" items text-center font-bold  text-green-400">
         {' '}
-        Nusername & Paswort: At least 3 characters
+        Nusername & Password: At least 3 characte
       </p>
       <LoginFrom />
     </>
