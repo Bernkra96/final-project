@@ -58,6 +58,24 @@ export default async function AdminPage() {
                   {' '}
                   {user.username}{' '}
                 </p>
+                <p className="mx-auto justify-center   text-green-700   ">
+                  {' '}
+                  Nuber of Posts{' '}
+                  {
+                    nuberofPosts.filter(
+                      (post) => Number(post.userId) === Number(user.id),
+                    ).length
+                  }{' '}
+                </p>
+                <p className="mx-auto justify-center   text-green-700   ">
+                  {' '}
+                  Nuber of Comments{' '}
+                  {
+                    nuberofComments.filter(
+                      (comment) => Number(comment.userId) === Number(user.id),
+                    ).length
+                  }{' '}
+                </p>
 
                 <p className="mx-auto justify-center   text-green-700   ">
                   {' '}
