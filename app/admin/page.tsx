@@ -51,25 +51,25 @@ export default async function AdminPage() {
         Here are the list of Users{' '}
       </h2>
 
-      <ul className=" justify-center items items-center   bg-green-50  rounded-lg ">
+      <ul className=" justify-center  items-center   bg-green-50  rounded-lg ">
         {users.map(async (user) => (
           <li
             key={`user-${user.id}`}
-            className="flex flex-col justify-center items-cente  p-3  "
+            className="flex flex-col justify-center items-center  p-3  "
           >
             <section
               className="flex flex-col justify-center items-center  bg-green-100 w-full
            rounded-lg shadow-lg py-5 px-6   "
             >
               <Link
-                className="mx-auto justify-center p-6 lg:px-4 "
+                className="mx-auto justify-center p-6 "
                 href={`/profile/${user.username}`}
               >
-                <p className="mx-auto justify-center   text-green-700   ">
+                <p className="mx-auto justify-center text-center  text-green-700   ">
                   {' '}
                   {user.username}{' '}
                 </p>
-                <p className="mx-auto justify-center   text-green-700   ">
+                <p className="mx-auto justify-center  text-center text-green-700   ">
                   {' '}
                   Nuber of Posts{' '}
                   {
@@ -78,7 +78,7 @@ export default async function AdminPage() {
                     ).length
                   }{' '}
                 </p>
-                <p className="mx-auto justify-center   text-green-700   ">
+                <p className="mx-auto justify-center text-center  text-green-700   ">
                   {' '}
                   Nuber of Comments{' '}
                   {
@@ -88,7 +88,7 @@ export default async function AdminPage() {
                   }{' '}
                 </p>
 
-                <p className="mx-auto justify-center   text-green-700   ">
+                <p className="mx-auto justify-center text-center   text-green-700   ">
                   {' '}
                   User ID {user.id}{' '}
                 </p>
