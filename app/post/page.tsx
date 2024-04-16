@@ -1,7 +1,4 @@
-import { redirect } from 'next/dist/server/api-utils';
-import { cookies } from 'next/headers';
 import Link from 'next/link';
-import { Router } from 'next/router';
 
 export default async function ItemPage() {
   // console.log('tokenCookie', tokenCooke, seactionIdUser);

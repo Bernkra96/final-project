@@ -3,11 +3,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import { isAdmin } from '../../../database/admins';
-import { getAllCommentswithUserName } from '../../../database/commnts';
-import {
-  getPostpostidwithUserName,
-  getPostswithUserid,
-} from '../../../database/posts';
+import { getPostswithUserid } from '../../../database/posts';
 import { getValidSessionByToken } from '../../../database/sessions';
 import {
   getUserBySessionToken,
@@ -17,7 +13,6 @@ import { getCookie } from '../../../util/cookies';
 import { editpermiston } from '../../../util/editpermiston';
 import DeletePost from '../../newposts/delidepostButton';
 import DeleteuserButton from './DelideButton';
-import EditFrom from './EditFrom';
 
 type Props = {
   params: { username: string };
@@ -47,14 +42,12 @@ export default async function userProfilePage({ params }: Props) {
           Is Admin
         </p>
       ) : null}
-      {(await editpermiston) && params.username == user?.username ? (
-        <>
-          <DeleteuserButton
-            UserName={params.username}
-            ID={user?.id}
-            Token={tokenCooke}
-          />
-        </>
+      {params.username === user?.username ? (
+        <DeleteuserButton
+          UserName={params.username}
+          ID={user?.id}
+          Token={tokenCooke}
+        />
       ) : null}
       <h3 className=" items text-center font-extrabold  text-green-400">
         User Posts
@@ -68,7 +61,7 @@ export default async function userProfilePage({ params }: Props) {
       <ul className=" justify-center items items-center ">
         {profliePosts.map(async (post) => (
           <li
-            key={post.id}
+            key={`user-${user?.id}`}
             className="flex flex-col justify-center items-center  bg-green-50
             rounded-lg shadow-lg py-5 px-6 sm:py-6 sm:px-10"
           >
@@ -89,7 +82,7 @@ export default async function userProfilePage({ params }: Props) {
                   <img
                     src={post.image}
                     className="h-50 w-50 flex-none  bg-gray-50"
-                    alt="Picture of the author"
+                    alt="post"
                   />
                 ) : null}
 
