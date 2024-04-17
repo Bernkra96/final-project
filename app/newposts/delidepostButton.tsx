@@ -1,9 +1,7 @@
 'use client';
 
-import { SearchParamsContext } from 'next/dist/shared/lib/hooks-client-context.shared-runtime';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
-import { string } from 'zod';
 import { PostResponseBodyPost } from '../api/post/route';
 
 export default function DeletePost(
@@ -15,7 +13,7 @@ export default function DeletePost(
 
   async function handelPostDelete(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-   //  console.log('Post Button page delite ', PostuserId, id, Token);
+    //  console.log('Post Button page delite ', PostuserId, id, Token);
     const response = await fetch('/api/post', {
       method: 'DELETE',
       body: JSON.stringify({
