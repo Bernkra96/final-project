@@ -1,18 +1,13 @@
-import { redirect } from 'next/dist/server/api-utils';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { Router } from 'next/router';
 import { getadminbyuserid, isAdmin } from '../../database/admins';
 import { getAllComments } from '../../database/commnts';
 import { getAllPosts } from '../../database/posts';
 import {
   getnumberOfUsers,
-  getnumerofPostsbysingleUser,
   getUserBySessionToken,
   getusers,
 } from '../../database/users';
-import { getSafeReturnToPath } from '../../util/validation';
 
 export default async function AdminPage() {
   const users = await getusers();
