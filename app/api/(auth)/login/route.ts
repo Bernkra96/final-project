@@ -1,4 +1,3 @@
-import { Console } from 'node:console';
 import crypto from 'node:crypto';
 import bcrypt from 'bcrypt';
 import { cookies } from 'next/headers';

@@ -18,13 +18,13 @@ export default async function newPostspage() {
   return (
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
       <Ceradepost />
+
       <div>
         <h2 className=" items text-center font-extrabold  text-green-400">
           {' '}
           New Posts{' '}
         </h2>
       </div>
-
       <ul className=" justify-center items items-center ">
         {posts.map(async (post) => (
           <li
