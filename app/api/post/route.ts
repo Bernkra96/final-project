@@ -1,22 +1,11 @@
-import { error } from 'console';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 import { NextRequest, NextResponse } from 'next/server';
 import { string, z } from 'zod';
 import { isAdmin } from '../../../database/admins';
 import { deleteCommintByPostId } from '../../../database/commnts';
-import {
-  createPost,
-  deletePost,
-  getpostByPostId,
-  getUserIdfromPost,
-} from '../../../database/posts';
-import {
-  getUserBySessionToken,
-  getUserByUserId,
-} from '../../../database/users';
+import { createPost, deletePost } from '../../../database/posts';
+import { getUserBySessionToken } from '../../../database/users';
 import { Post } from '../../../migrations/00002-crateTablePosts';
-import { editpermiston } from '../../../util/editpermiston';
 
 export type PostResponseBodyPost = {
   post: Post;
@@ -84,19 +73,13 @@ export async function DELETE(
   // console.log('post id3', userIdPage);
   // console.log('post id3.5', tokenFromPage);
 
-  const userpuostid = await getpostByPostId(postId);
   // console.log('post id3.6', userpuostid[0]);
   const tokenCookie = cookies().get('sessionToken');
   const cookieToken = tokenCookie?.value;
   // console.log('post id3.7', tokenCookie, cookieToken);
   const user = await getUserBySessionToken(cookieToken);
   const admin = await isAdmin(user.id);
-  const permission = await editpermiston(
-    userIdPage,
-    user?.id,
-    tokenFromPage,
-    postId,
-  );
+
   // console.log('post id3.8', user.id, admin?.user_id);
   if (!tokenCookie) {
     return NextResponse.json(
@@ -128,12 +111,12 @@ export async function DELETE(
       );
     }
   }
-  const deleteCommint = await deleteCommintByPostId(postId);
+  const deleteCommit = await deleteCommintByPostId(postId);
 
   const deletetPost = await deletePost(postId);
 
   return NextResponse.json({
     post: deletetPost,
-    deleteCommint,
+    deleteCommint: deleteCommit,
   } as PostResponseBodyPost);
 }

@@ -1,14 +1,10 @@
-import { error } from 'console';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
-import router from 'next/router';
 import { NextRequest, NextResponse } from 'next/server';
-import { string, z } from 'zod';
+import { string } from 'zod';
 import { isAdmin } from '../../../database/admins';
 import {
   createComment,
   deleteCommintByCommentId,
-  deleteCommintByPostId,
   getCommentByCommentId,
   getUserIdperCommentId,
 } from '../../../database/commnts';
@@ -66,8 +62,7 @@ export async function DELETE(
   request: NextRequest,
 ): Promise<NextResponse<CommentResponseBodyPost>> {
   const body = await request.json();
-  const userIdPage = body.id.userIdPage;
-  const postId = body.postId;
+
   let commentId = body.id.id;
   const user = await getUserBySessionToken(body.id.Token);
   const admin = await isAdmin(user.id);
