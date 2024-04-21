@@ -22,12 +22,12 @@ export default async function RootLayout(
   props: Props,
 ) {
   // const cookieStore = cookies();
-  const tokenSeession = cookies().get('sessionToken');
+  const tokenSession = cookies().get('sessionToken');
   // console.log('tokenSeession', tokenSeession);
 
   const user =
-    tokenSeession && (await getUserBySessionToken(tokenSeession.value));
-  const isadmin = await isAdmin(user?.id ?? -0);
+    tokenSession && (await getUserBySessionToken(tokenSession.value));
+  const isAdminBool = await isAdmin(user?.id ?? -0);
   // console.log('tokenSeession user', user);
 
   return (
@@ -63,9 +63,9 @@ export default async function RootLayout(
                     href="/newposts"
                     className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 m-2"
                   >
-                    Newposts
+                    New posts
                   </Link>
-                  {isadmin ? (
+                  {isAdminBool ? (
                     <Link
                       href="/admin"
                       className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 m-2"

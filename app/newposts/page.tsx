@@ -10,8 +10,8 @@ import DeletePost from './delidepostButton';
 export default async function newPostspage() {
   const posts = await getAllPostswithUserName();
   const tokenCookie = await cookies().get('sessionToken');
-  const seactionIdUser = String(tokenCookie?.value);
-  const user = await getUserBySessionToken(seactionIdUser);
+  const sectionIdUser = String(tokenCookie?.value);
+  const user = await getUserBySessionToken(sectionIdUser);
   const userId = Number(user?.id);
 
   // console.log('tokenCookie', tokenCookie, seactionIdUser);
@@ -64,13 +64,13 @@ export default async function newPostspage() {
               {(await editpermiston(
                 post.userId,
                 userId,
-                seactionIdUser,
+                sectionIdUser,
                 post.id,
               )) ? (
                 <DeletePost
                   id={post.id}
-                  PostuserId={post.userId}
-                  Token={seactionIdUser}
+                  PostUserId={post.userId}
+                  Token={sectionIdUser}
                 />
               ) : null}
             </section>

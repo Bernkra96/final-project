@@ -11,15 +11,15 @@ import {
 
 export default async function AdminPage() {
   const users = await getusers();
-  const nubberofUsers = await getnumberOfUsers();
-  const nuberofPosts = await getAllPosts();
-  const nuberofComments = await getAllComments();
-  const seaaionToken = cookies().get('sessionToken');
-  const user = await getUserBySessionToken(seaaionToken?.value || '');
+  const numberUsers = await getnumberOfUsers();
+  const numberPosts = await getAllPosts();
+  const numberComments = await getAllComments();
+  const seasonToken = cookies().get('sessionToken');
+  const user = await getUserBySessionToken(seasonToken?.value || '');
   const userID = user?.id || -1;
-  const admin = await isAdmin(Number(userID));
-  const adminbyUserID = await getadminbyuserid(Number(userID));
-  const adminUserID = adminbyUserID?.userId;
+
+  const adminByUserID = await getadminbyuserid(Number(userID));
+  const adminUserID = adminByUserID?.userId;
 
   return Number(adminUserID) === Number(userID) ? (
     // Content to render if the condition is true
@@ -30,15 +30,15 @@ export default async function AdminPage() {
       </h1>
       <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
         {' '}
-        There are {nuberofPosts.length} Posts{' '}
+        There are {numberPosts.length} Posts{' '}
       </h2>
       <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
         {' '}
-        There are {nuberofComments.length} Comments{' '}
+        There are {numberComments.length} Comments{' '}
       </h2>
       <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
         {' '}
-        There are {nubberofUsers?.count} Users{' '}
+        There are {numberUsers?.count} Users{' '}
       </h2>
 
       <h2 className="mx-auto justify-center p-1  flex font-semibold text-gray-900 ">
@@ -66,18 +66,18 @@ export default async function AdminPage() {
                 </p>
                 <p className="mx-auto justify-center  text-center text-green-700   ">
                   {' '}
-                  Nuber of Posts{' '}
+                  Number of Posts{' '}
                   {
-                    nuberofPosts.filter(
+                    numberPosts.filter(
                       (post) => Number(post.userId) === Number(user.id),
                     ).length
                   }{' '}
                 </p>
                 <p className="mx-auto justify-center text-center  text-green-700   ">
                   {' '}
-                  Nuber of Comments{' '}
+                  Number of Comments{' '}
                   {
-                    nuberofComments.filter(
+                    numberComments.filter(
                       (comment) => Number(comment.userId) === Number(user.id),
                     ).length
                   }{' '}
