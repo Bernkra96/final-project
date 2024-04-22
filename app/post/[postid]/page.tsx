@@ -43,6 +43,9 @@ export default async function ItemProfilePage(props: {
               <h3 className=" items text-center font-extrabold  text-green-400">
                 {post.title}
               </h3>
+              <p className="mx-auto justify-center p-1  text-green-700   ">
+                Date: {new Date(post.postTime).toString()}
+              </p>
               <p className="mx-auto justify-center p-1 ">{post.post}</p>
               <p className="mx-auto justify-center p-1  text-green-700   ">
                 {' '}
@@ -113,6 +116,9 @@ export default async function ItemProfilePage(props: {
               <Link href={`/profile/${comment.username}`}>
                 <p className="mx-auto justify-center p-1 text-center  text-green-700   ">
                   Comment by {comment.username}
+                </p>
+                <p className="mx-auto justify-center p-1  text-green-700   ">
+                  Date: {new Date(comment.postTime).toString()}
                 </p>
 
                 <p className="mx-auto justify-center text-center p-1  text-green-700   ">
