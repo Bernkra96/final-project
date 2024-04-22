@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react';
@@ -12,7 +11,7 @@ import {
 import { getCookie } from '../../../util/cookies';
 import { editpermiston } from '../../../util/editpermiston';
 import DeletePost from '../../newposts/delidepostButton';
-import DeleteuserButton from './DelideButton';
+import DeleteUserButton from './DelideButton';
 
 type Props = {
   params: { username: string };
@@ -28,22 +27,22 @@ export default async function userProfilePage({ params }: Props) {
   }
   const user = await getUserBySessionToken(tokenCooke);
 
-  const proflieUser = await getUserByUsername(params.username);
-  const proflieUserid = Number(proflieUser?.id);
-  const profliePosts = await getPostswithUserid(Number(proflieUserid));
+  const profileUser = await getUserByUsername(params.username);
+  const profileUserId = Number(profileUser?.id);
+  const profilePosts = await getPostswithUserid(Number(profileUserId));
 
   return (
     <section>
       <h3 className=" items text-center font-extrabold  text-green-400 ">
-        Profle of {params.username}
+        Profile of {params.username}
       </h3>
-      {(await isAdmin(proflieUserid)) ? (
+      {(await isAdmin(profileUserId)) ? (
         <p className="  items text-center font-extrabold  text-orange-400 ">
           Is Admin
         </p>
       ) : null}
       {params.username === user?.username ? (
-        <DeleteuserButton
+        <DeleteUserButton
           UserName={params.username}
           ID={user?.id}
           Token={tokenCooke}
@@ -54,12 +53,12 @@ export default async function userProfilePage({ params }: Props) {
       </h3>
       <h3 className=" items text-center font-extrabold  text-green-400">
         {' '}
-        Nuber of Posts: {profliePosts.length}{' '}
+        Number of Posts: {profilePosts.length}{' '}
       </h3>
 
       <h3 className=" items text-center font-extrabold  text-green-400"> </h3>
       <ul className=" justify-center items items-center ">
-        {profliePosts.map(async (post) => (
+        {profilePosts.map(async (post) => (
           <li
             key={`user-${user?.id}`}
             className="flex flex-col justify-center items-center  bg-green-50

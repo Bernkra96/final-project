@@ -13,13 +13,13 @@ export default async function ItemProfilePage(props: {
 }) {
   const itemId = Number(props.params.postid);
   const posts = await getPostpostidwithUserName(itemId);
-  const postid = Number(posts[0]?.id);
-  const comments = await getCommentsByPostIdwithUserName(postid);
+  const postId = Number(posts[0]?.id);
+  const comments = await getCommentsByPostIdwithUserName(postId);
 
   const tokenCooke = cookies().get('sessionToken');
-  const seactionIdUser = String(tokenCooke?.value);
-  const user = await getUserBySessionToken(seactionIdUser);
-  const userid = Number(user?.id);
+  const sectionIdUser = String(tokenCooke?.value);
+  const user = await getUserBySessionToken(sectionIdUser);
+  const userId = Number(user?.id);
 
   // console.log('tokenCookie', tokenCooke, seactionIdUser);
   // console.log(comments);
@@ -64,14 +64,14 @@ export default async function ItemProfilePage(props: {
 
               {(await editpermiston(
                 post.userId,
-                userid,
-                seactionIdUser,
+                userId,
+                sectionIdUser,
                 post.id,
               )) ? (
                 <DeletePost
                   id={post.id}
                   PostuserId={post.userId}
-                  Token={seactionIdUser}
+                  Token={sectionIdUser}
                 />
               ) : null}
             </section>
@@ -89,7 +89,7 @@ export default async function ItemProfilePage(props: {
       </h3>
       <h3 className="items text-center font-extrabold  text-green-400">
         {' '}
-        Nuber of Comments: {comments.length}{' '}
+        Number of Comments: {comments.length}{' '}
       </h3>
       <ul className=" justify-center items items-center ">
         {comments.map(async (comment) => (
@@ -116,20 +116,20 @@ export default async function ItemProfilePage(props: {
                 </p>
 
                 <p className="mx-auto justify-center text-center p-1  text-green-700   ">
-                  User ID: {comment.userId}
+                  User ID: {String(comment.userId)}
                 </p>
               </Link>
 
               {(await editpermiston(
-                comment.userId,
-                userid,
-                seactionIdUser,
+                Number(comment.userId),
+                userId,
+                sectionIdUser,
                 comment.id,
               )) ? (
                 <CommntDelide
                   id={comment.id}
                   userIdPage={comment.user_id}
-                  Token={seactionIdUser}
+                  Token={sectionIdUser}
                   className="mx-auto justify-center p-1 "
                 />
               ) : null}

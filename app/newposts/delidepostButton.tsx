@@ -6,7 +6,7 @@ import { PostResponseBodyPost } from '../api/post/route';
 
 export default function DeletePost(
   id: number,
-  PostuserId: number,
+  PostUserId: number,
   Token: string,
 ) {
   const router = useRouter();
@@ -18,7 +18,7 @@ export default function DeletePost(
       method: 'DELETE',
       body: JSON.stringify({
         id,
-        PostuserId,
+        PostuserId: PostUserId,
         Token,
       }),
     });
@@ -33,7 +33,7 @@ export default function DeletePost(
   return (
     <form onSubmit={async (event) => await handelPostDelete(event)}>
       <button className="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
-        Post Delite
+        Post DELETE
       </button>
     </form>
   );

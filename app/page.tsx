@@ -5,14 +5,10 @@ import LoginPage from './(auth)/login/page';
 import NewPostsPage from './newposts/page';
 
 export default async function Home() {
-  const tokenSeession = cookies().get('sessionToken'); // get sessionToken from cookies
-  // console.log('tokenSeession', tokenSeession);
-  // get  user from database by sessionToken
+  const tokenSession = cookies().get('sessionToken'); // get sessionToken from cookies
 
   const user =
-    tokenSeession && (await getUserBySessionToken(tokenSeession.value));
-
-  // chanege bedewen login/register and newposts
+    tokenSession && (await getUserBySessionToken(tokenSession.value));
 
   return (
     <main className=" mx-auto flex max-w-7xl items-center justify-between p-6 ">
@@ -23,7 +19,7 @@ export default async function Home() {
           <>
             <h1 className=" items text-center font-extrabold  text-green-400">
               {' '}
-              Welcomme to CanvasView{' '}
+              Welcome to CanvasView{' '}
             </h1>
             <br />
             <p className="mt-1 block font-semibold text-green-500 mx-auto justify-center p-1 ">

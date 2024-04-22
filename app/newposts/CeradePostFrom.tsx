@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { PostResponseBodyPost } from '../api/post/route';
 
-type Props = { SearchParamsContext ?: string | string[] };
+type Props = { SearchParamsContext?: string | string[] };
 
 export default function Ceradepost(props: Props) {
   const [title, setTitle] = useState('');
@@ -28,23 +28,23 @@ export default function Ceradepost(props: Props) {
     // console.log('Check : ', data);
 
     if (response.ok) {
-      cleerInput();
+      clearInput();
       router.refresh();
     }
   }
 
-  function cleerInput() {
+  function clearInput() {
     setTitle('');
     setPost('');
     setImage('');
-    const titleCleer = document.getElementById('title') as HTMLInputElement;
-    const postCleer = document.getElementById('post') as HTMLInputElement;
-    const imageURlCleer = document.getElementById(
+    const titleClear = document.getElementById('title') as HTMLInputElement;
+    const postClear = document.getElementById('post') as HTMLInputElement;
+    const imageURlClear = document.getElementById(
       'imageUrl',
     ) as HTMLInputElement;
-    titleCleer.value = '';
-    postCleer.value = '';
-    imageURlCleer.value = '';
+    titleClear.value = '';
+    postClear.value = '';
+    imageURlClear.value = '';
   }
 
   return (

@@ -18,15 +18,15 @@ export default async function RegisterPage() {
     <>
       <h1 className=" items text-center font-extrabold  text-green-400">
         {' '}
-        Welcomme to CanvasView{' '}
+        Welcome to CanvasView{' '}
       </h1>
       <h2 className=" items text-center font-extrabold  text-green-400">
         {' '}
-        Makre a User Prfile{' '}
+        Make a User Profile{' '}
       </h2>
       <p className=" items text-center font-bold  text-green-400">
         {' '}
-        Nusername : No Spaces , Only A-Z a-z 0-9 , at least 3 Characters
+        Username : No Spaces , Only A-Z a-z 0-9 , at least 3 Characters
       </p>
       <p className=" items text-center font-bold  text-green-400">
         {' '}

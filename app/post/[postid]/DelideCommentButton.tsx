@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { CommentResponseBodyPost } from '../../api/comment/route';
 
 type Props = { searchParams?: string | string[]; id: number };
@@ -11,9 +10,6 @@ export default function CommntDelide(
   userIdPage: number,
   Token: string,
 ) {
-  const [title, setTitle] = useState('');
-  const [post, setPost] = useState('');
-  const [image, setImage] = useState('');
   const router = useRouter();
 
   async function handelPostDelete(event: React.FormEvent<HTMLFormElement>) {
