@@ -58,6 +58,10 @@ export default async function newPostspage() {
                 </p>
 
                 <p className="mx-auto justify-center p-1  text-green-700   ">
+                  Date: {new Date(post.postTime).toString()}
+                </p>
+
+                <p className="mx-auto justify-center p-1  text-green-700   ">
                   Post ID: {post.id}{' '}
                 </p>
               </Link>

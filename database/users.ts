@@ -42,6 +42,7 @@ export const getUserByUsername = cache(async (username: string) => {
     SELECT
       id,
       username
+
     FROM
       users
     WHERE
