@@ -64,6 +64,7 @@ export default async function AdminPage() {
                   {' '}
                   {user.username}{' '}
                 </p>
+                git
                 <p className="mx-auto justify-center  text-center text-green-700   ">
                   {' '}
                   Number of Posts{' '}
@@ -82,12 +83,10 @@ export default async function AdminPage() {
                     ).length
                   }{' '}
                 </p>
-
                 <p className="mx-auto justify-center text-center   text-green-700   ">
                   {' '}
                   User ID {user.id}{' '}
                 </p>
-
                 {(await isAdmin(user.id)) ? (
                   <p className="  items text-center font-extrabold  text-orange-400 ">
                     Is Admin
