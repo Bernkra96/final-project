@@ -64,7 +64,7 @@ export default async function AdminPage() {
                   {' '}
                   {user.username}{' '}
                 </p>
-                git
+
                 <p className="mx-auto justify-center  text-center text-green-700   ">
                   {' '}
                   Number of Posts{' '}
