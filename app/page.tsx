@@ -9,6 +9,7 @@ export default async function Home() {
 
   const user =
     tokenSession && (await getUserBySessionToken(tokenSession.value));
+  let registerMode = false;
 
   return (
     <main className=" mx-auto flex max-w-7xl items-center justify-between p-6 ">
@@ -32,6 +33,7 @@ export default async function Home() {
             <p className=" items text-center font-extrabold  text-green-400">
               Login
             </p>
+
             <LoginPage />
 
             <Link
