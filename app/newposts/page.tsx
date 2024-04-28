@@ -14,7 +14,7 @@ export default async function newPostspage() {
   const user = await getUserBySessionToken(sectionIdUser);
   const userId = Number(user?.id);
 
-  // console.log('tokenCookie', tokenCookie, seactionIdUser);
+
   return (
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
       <Ceradepost />

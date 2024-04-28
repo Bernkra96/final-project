@@ -18,9 +18,9 @@ type Props = {
 };
 
 export default async function userProfilePage({ params }: Props) {
-  // console.log('ceck', params);
+
   const tokenCooke = await getCookie('sessionToken');
-  // console.log('tokenCooke', tokenCooke);
+
   const session = tokenCooke && (await getValidSessionByToken(tokenCooke));
   if (!session) {
     redirect('/');
