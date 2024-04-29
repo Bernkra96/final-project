@@ -21,7 +21,7 @@ export default function CommntDelide(
     });
 
     const data: CommentResponseBodyPost = await response.json();
-    // console.log('Check : ', data);
+
     router.refresh();
   }
 

@@ -1,9 +1,6 @@
 import Link from 'next/link';
 
 export default async function ItemPage() {
-  // console.log('tokenCookie', tokenCooke, seactionIdUser);
-  // console.log(comments);
-
   return (
     <>
       <h1 className="items text-center font-extrabold text-green-400">

@@ -21,8 +21,6 @@ export default async function ItemProfilePage(props: {
   const user = await getUserBySessionToken(sectionIdUser);
   const userId = Number(user?.id);
 
-  // console.log('tokenCookie', tokenCooke, seactionIdUser);
-  // console.log(comments);
   return (
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
       <h3 className="items text-center font-extrabold  text-green-400 ">

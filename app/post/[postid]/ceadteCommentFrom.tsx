@@ -19,7 +19,7 @@ export default function CreateComment(postid: number) {
     });
 
     const data: CommentResponseBodyPost = await response.json();
-    // console.log('Check : ', data);
+
 
     if (response.ok) {
       await cleerInput();
@@ -33,7 +33,6 @@ export default function CreateComment(postid: number) {
     input.value = '';
   }
 
-  // console.log('postid', postid);
   return (
     <section className="  mx-auto   items-center  rounded-lg  ">
       <h2 className="items text-center font-extrabold  text-green-400">
