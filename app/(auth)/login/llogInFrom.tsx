@@ -30,7 +30,6 @@ export default function LoginFrom(props: Props) {
     });
 
     const data: LoginResponseBodyPost = await response.json();
-    // console.log('Check : ', data);
 
     if ('errors' in data) {
       setErrror(
@@ -39,8 +38,7 @@ export default function LoginFrom(props: Props) {
 
       return;
     }
-    // console.log(error);
-    // console.log(SearchParamsContext);
+
     // if (props.returnTo) {
     // router.push(props.returnTo);
     // return;

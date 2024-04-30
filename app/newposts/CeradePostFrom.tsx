@@ -25,7 +25,7 @@ export default function Ceradepost(props: Props) {
     });
 
     const data: PostResponseBodyPost = await response.json();
-    // console.log('Check : ', data);
+
 
     if (response.ok) {
       clearInput();
