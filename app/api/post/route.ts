@@ -113,10 +113,10 @@ export async function DELETE(
   }
   const deleteCommit = await deleteCommintByPostId(postId);
 
-  const deletetPost = await deletePost(postId);
+  const deletePostPerId = await deletePost(postId);
 
   return NextResponse.json({
-    post: deletetPost,
+    post: deletePostPerId,
     deleteCommint: deleteCommit,
   } as PostResponseBodyPost);
 }

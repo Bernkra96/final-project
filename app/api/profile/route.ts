@@ -32,7 +32,7 @@ export async function DELETE(
   const id = LodeData.ID;
   const userToken = LodeData.Token;
   const userByToken = await getUserBySessionToken(cookieToken ?? '');
-  const admin = await isAdmin(Number(userByToken?.id));
+
   // console.log('commnt id3.8', userByToken?.id, admin?.user_id);
 
   // console.log('DELIDE Test', body);

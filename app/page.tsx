@@ -9,7 +9,6 @@ export default async function Home() {
 
   const user =
     tokenSession && (await getUserBySessionToken(tokenSession.value));
-  let registerMode = false;
 
   return (
     <main className=" mx-auto flex max-w-7xl items-center justify-between p-6 ">
