@@ -76,7 +76,7 @@ export async function DELETE(
   const commentData = await getCommentByCommentId(commentId);
 
   // console.log('id3.5', admin?.level > 1);
-  const commentuserId = await getUserIdperCommentId(commentId);
+  // const commentUserId = await getUserIdperCommentId(commentId);
 
   // console.log('id3.5.5', commentuserId);
   const tokenCookie = cookies().get('sessionToken');

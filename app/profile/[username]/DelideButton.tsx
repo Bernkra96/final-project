@@ -24,7 +24,7 @@ export default function DeleteuserButton(
 
     const data: ProfileResponseBodyPost = await response.json();
     console.log('Check : ', data);
-    await router.push(`/`); // router.refresh();
+    await router.push(`/`);
   }
 
   return (

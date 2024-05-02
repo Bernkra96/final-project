@@ -12,7 +12,7 @@ export default async function RegisterPage() {
   if (session) {
     redirect('/');
   }
-  // console.log(session);
+
 
   return (
     <>
