@@ -21,14 +21,13 @@ export default async function RootLayout(
   },
   props: Props,
 ) {
-  // const cookieStore = cookies();
+
   const tokenSession = cookies().get('sessionToken');
-  // console.log('tokenSeession', tokenSeession);
+
 
   const user =
     tokenSession && (await getUserBySessionToken(tokenSession.value));
   const isAdminBool = await isAdmin(user?.id ?? -0);
-  // console.log('tokenSeession user', user);
 
   return (
     <html lang="en">
