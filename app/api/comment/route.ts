@@ -25,9 +25,9 @@ export async function POST(
   request: NextRequest,
 ): Promise<NextResponse<CommentResponseBodyPost>> {
   const body = await request.json();
-  // console.log(body);
+
   const postID = body.postid.postid;
-  // console.log(postID);
+
   const tokenCookie = cookies().get('sessionToken');
   if (!tokenCookie) {
     return NextResponse.json(
@@ -67,9 +67,7 @@ export async function DELETE(
   const user = await getUserBySessionToken(body.id.Token);
   const admin = await isAdmin(user.id);
 
-
   const commentData = await getCommentByCommentId(commentId);
-
 
   const tokenCookie = cookies().get('sessionToken');
   if (!tokenCookie) {
