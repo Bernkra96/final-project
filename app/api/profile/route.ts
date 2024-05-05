@@ -33,18 +33,6 @@ export async function DELETE(
   const userToken = LodeData.Token;
   const userByToken = await getUserBySessionToken(cookieToken ?? '');
 
-  // console.log('commnt id3.8', userByToken?.id, admin?.user_id);
-
-  // console.log('DELIDE Test', body);
-  // console.log(
-  // 'DELIDE Test02',
-  //  '/',
-  // LodeData.ID,
-  // LodeData.UserName,
-  // LodeData.Token,
-  // );
-  // console.log('DELIDE Test03', '/', userName, id, userToken);
-
   if (!tokenCookie) {
     return NextResponse.json(
       { errors: [{ message: 'Session token not found' }] },
@@ -99,11 +87,6 @@ export async function PATCH(
   const id = LodeData.ID;
   const userToken = LodeData.Token;
   const newUserName = body.newUsername;
-
-  //  console.log('Push Test', body);
-  // console.log('push Test02', '/ ', LodeData.UserName);
-  // console.log('Pusch Test03', LodeData, '/');
-  // console.log('Pusch Test04', '/', userName, id, userToken, newUserName);
 
   if (!cookieToken) {
     return NextResponse.json(
