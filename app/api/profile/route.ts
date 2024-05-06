@@ -1,12 +1,10 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { string } from 'zod';
-import { isAdmin } from '../../../database/admins';
 import { deleteSessionByToken } from '../../../database/sessions';
 import {
   DeliteUserbyId,
   getUserBySessionToken,
-  updateUser,
   updateUserperUderId,
 } from '../../../database/users';
 import { User } from '../../../migrations/00000-crateUsersTable';

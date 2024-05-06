@@ -6,7 +6,6 @@ import {
   createComment,
   deleteCommintByCommentId,
   getCommentByCommentId,
-  getUserIdperCommentId,
 } from '../../../database/commnts';
 import { getpostByPostId } from '../../../database/posts';
 import { getUserBySessionToken } from '../../../database/users';
@@ -63,7 +62,7 @@ export async function DELETE(
 ): Promise<NextResponse<CommentResponseBodyPost>> {
   const body = await request.json();
 
-  let commentId = body.id.id;
+  const commentId = body.id.id;
   const user = await getUserBySessionToken(body.id.Token);
   const admin = await isAdmin(user.id);
 
