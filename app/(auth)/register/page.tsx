@@ -13,7 +13,6 @@ export default async function RegisterPage() {
     redirect('/');
   }
 
-
   return (
     <>
       <h1 className=" items text-center font-extrabold  text-green-400">
@@ -22,7 +21,7 @@ export default async function RegisterPage() {
       </h1>
       <h2 className=" items text-center font-extrabold  text-green-400">
         {' '}
-        Make a User Profile{' '}
+        Make your user Profile{' '}
       </h2>
       <p className=" items text-center font-bold  text-green-400">
         {' '}
