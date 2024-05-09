@@ -85,7 +85,7 @@ export default async function RootLayout(
                     href="/login"
                     className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6 m-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                   >
-                    Log in
+                    Login
                   </Link>
                 </>
               )}
