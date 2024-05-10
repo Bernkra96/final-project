@@ -13,7 +13,11 @@ export default async function newPostspage() {
   const sectionIdUser = String(tokenCookie?.value);
   const user = await getUserBySessionToken(sectionIdUser);
   const userId = Number(user?.id);
-
+  const sortedPostsByDate = posts.sort(function (a, b) {
+    const dateA = new Date(a.postTime).getTime();
+    const dateB = new Date(b.postTime).getTime();
+    return dateA - dateB;
+  });
 
   return (
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
@@ -26,7 +30,7 @@ export default async function newPostspage() {
         </h2>
       </div>
       <ul className=" justify-center items items-center ">
-        {posts.map(async (post) => (
+        {sortedPostsByDate.map(async (post) => (
           <li
             key={`post-${post.id}`}
             className="flex flex-col justify-center items-center  rounded-lg bg-green-50

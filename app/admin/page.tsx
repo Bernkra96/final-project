@@ -47,9 +47,9 @@ export default async function AdminPage() {
       </h2>
 
       <ul className=" justify-center  items-center   bg-green-50  rounded-lg ">
-        {users.map(async (userPeMap) => (
+        {users.map(async (userPerMap) => (
           <li
-            key={`user-${userPeMap.id}`}
+            key={`user-${userPerMap.id}`}
             className="flex flex-col justify-center items-center  p-3  "
           >
             <section
@@ -58,11 +58,11 @@ export default async function AdminPage() {
             >
               <Link
                 className="mx-auto justify-center p-6 "
-                href={`/profile/${userPeMap.username}`}
+                href={`/profile/${userPerMap.username}`}
               >
                 <p className="mx-auto justify-center text-center  text-green-700   ">
                   {' '}
-                  {userPeMap.username}{' '}
+                  {userPerMap.username}{' '}
                 </p>
 
                 <p className="mx-auto justify-center  text-center text-green-700   ">
@@ -70,7 +70,7 @@ export default async function AdminPage() {
                   Number of Posts{' '}
                   {
                     numberPosts.filter(
-                      (post) => Number(post.userId) === Number(userPeMap.id),
+                      (post) => Number(post.userId) === Number(userPerMap.id),
                     ).length
                   }{' '}
                 </p>
@@ -80,15 +80,15 @@ export default async function AdminPage() {
                   {
                     numberComments.filter(
                       (comment) =>
-                        Number(comment.userId) === Number(userPeMap.id),
+                        Number(comment.userId) === Number(userPerMap.id),
                     ).length
                   }{' '}
                 </p>
                 <p className="mx-auto justify-center text-center   text-green-700   ">
                   {' '}
-                  User ID {userPeMap.id}{' '}
+                  User ID {userPerMap.id}{' '}
                 </p>
-                {(await isAdmin(userPeMap.id)) ? (
+                {(await isAdmin(userPerMap.id)) ? (
                   <p className="  items text-center font-extrabold  text-orange-400 ">
                     Is Admin
                   </p>
