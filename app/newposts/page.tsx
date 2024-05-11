@@ -3,8 +3,8 @@ import Link from 'next/link';
 import React from 'react';
 import { getAllPostswithUserName } from '../../database/posts';
 import { getUserBySessionToken } from '../../database/users';
-import { editpermiston } from '../../util/editpermiston';
-import Ceradepost from './CeradePostFrom';
+import { editPermission } from '../../util/editpermiston';
+import CeratePost from './CeradePostFrom';
 import DeletePost from './delidepostButton';
 
 export default async function newPostspage() {
@@ -21,12 +21,11 @@ export default async function newPostspage() {
 
   return (
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
-      <Ceradepost />
+      <CeratePost />
 
       <div>
         <h2 className=" items text-center font-extrabold  text-green-400">
-          {' '}
-          New Posts{' '}
+          New Posts
         </h2>
       </div>
       <ul className=" justify-center items items-center ">
@@ -69,7 +68,7 @@ export default async function newPostspage() {
                   Post ID: {post.id}{' '}
                 </p>
               </Link>
-              {(await editpermiston(
+              {(await editPermission(
                 post.userId,
                 userId,
                 sectionIdUser,

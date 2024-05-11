@@ -25,10 +25,10 @@ export async function DELETE(
   const body = await request.json();
   const tokenCookie = cookies().get('sessionToken');
   const cookieToken = tokenCookie?.value;
-  const LodeData = body.UserName;
-  const userName = LodeData.UserName;
-  const id = LodeData.ID;
-  const userToken = LodeData.Token;
+  const lodeData = body.UserName;
+  const userName = lodeData.UserName;
+  const id = lodeData.ID;
+  const userToken = lodeData.Token;
   const userByToken = await getUserBySessionToken(cookieToken ?? '');
 
   if (!tokenCookie) {
@@ -37,7 +37,7 @@ export async function DELETE(
       { status: 401 },
     );
   }
-  const user = await getUserBySessionToken(userToken);
+
   if (!userName) {
     return NextResponse.json(
       { errors: [{ message: 'User not found' }] },
@@ -53,14 +53,14 @@ export async function DELETE(
 
   if (userByToken.username !== userName) {
     return NextResponse.json(
-      { errors: [{ message: 'No pemiston' }] },
+      { errors: [{ message: 'No permission' }] },
       { status: 401 },
     );
   }
 
   if (userByToken.id !== id) {
     return NextResponse.json(
-      { errors: [{ message: 'No pemiston' }] },
+      { errors: [{ message: 'No permission' }] },
       { status: 401 },
     );
   }
@@ -80,10 +80,10 @@ export async function PATCH(
   const body = await request.json();
   const tokenCookie = cookies().get('sessionToken');
   const cookieToken = tokenCookie?.value;
-  const LodeData = body.UserName;
-  const userName = LodeData.UserName;
-  const id = LodeData.ID;
-  const userToken = LodeData.Token;
+  const lodeData = body.UserName;
+  const userName = lodeData.UserName;
+  const id = lodeData.ID;
+
   const newUserName = body.newUsername;
 
   if (!cookieToken) {
@@ -109,14 +109,14 @@ export async function PATCH(
 
   if (user.username !== userName) {
     return NextResponse.json(
-      { errors: [{ message: 'No pemiston' }] },
+      { errors: [{ message: 'No permission' }] },
       { status: 401 },
     );
   }
 
   if (user.id !== id) {
     return NextResponse.json(
-      { errors: [{ message: 'No pemiston' }] },
+      { errors: [{ message: 'No permission' }] },
       { status: 401 },
     );
   }

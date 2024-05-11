@@ -9,7 +9,7 @@ import {
   getUserByUsername,
 } from '../../../database/users';
 import { getCookie } from '../../../util/cookies';
-import { editpermiston } from '../../../util/editpermiston';
+import { editPermission } from '../../../util/editpermiston';
 import DeletePost from '../../newposts/delidepostButton';
 import DeleteUserButton from './DelideButton';
 
@@ -18,7 +18,6 @@ type Props = {
 };
 
 export default async function userProfilePage({ params }: Props) {
-
   const tokenCooke = await getCookie('sessionToken');
 
   const session = tokenCooke && (await getValidSessionByToken(tokenCooke));
@@ -94,7 +93,7 @@ export default async function userProfilePage({ params }: Props) {
                   Post ID: {post.id}{' '}
                 </p>
               </Link>
-              {(await editpermiston(
+              {(await editPermission(
                 post.userId,
                 Number(user?.id),
                 tokenCooke,

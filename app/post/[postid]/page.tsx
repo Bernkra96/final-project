@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getCommentsByPostIdwithUserName } from '../../../database/commnts';
 import { getPostpostidwithUserName } from '../../../database/posts';
 import { getUserBySessionToken } from '../../../database/users';
-import { editpermiston } from '../../../util/editpermiston';
+import { editPermission } from '../../../util/editpermiston';
 import DeletePost from '../../newposts/delidepostButton';
 import CreateComment from './ceadteCommentFrom';
 import CommntDelide from './DelideCommentButton';
@@ -63,7 +63,7 @@ export default async function ItemProfilePage(props: {
                 </p>
               </Link>
 
-              {(await editpermiston(
+              {(await editPermission(
                 post.userId,
                 userId,
                 sectionIdUser,
@@ -124,7 +124,7 @@ export default async function ItemProfilePage(props: {
                 </p>
               </Link>
 
-              {(await editpermiston(
+              {(await editPermission(
                 Number(comment.userId),
                 userId,
                 sectionIdUser,

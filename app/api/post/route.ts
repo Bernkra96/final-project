@@ -91,14 +91,14 @@ export async function DELETE(
   if (!admin?.level && Number(admin?.level) > 1) {
     if (userID !== userIdPage) {
       return NextResponse.json(
-        { errors: [{ message: 'Wrong user USEU ID' }] },
+        { errors: [{ message: 'Wrong user ID' }] },
         { status: 401 },
       );
     }
 
     if (cookieToken !== tokenFromPage) {
       return NextResponse.json(
-        { errors: [{ message: 'Wrong user Tocken' }] },
+        { errors: [{ message: 'Wrong user Token' }] },
         { status: 401 },
       );
     }

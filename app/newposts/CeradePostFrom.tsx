@@ -6,13 +6,13 @@ import { PostResponseBodyPost } from '../api/post/route';
 
 type Props = { SearchParamsContext?: string | string[] };
 
-export default function Ceradepost(props: Props) {
+export default function CeratePost(props: Props) {
   const [title, setTitle] = useState('');
   const [post, setPost] = useState('');
   const [image, setImage] = useState('');
   const router = useRouter();
 
-  async function handelregister(event: React.FormEvent<HTMLFormElement>) {
+  async function HandelPost(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const response = await fetch('/api/post', {
@@ -26,7 +26,6 @@ export default function Ceradepost(props: Props) {
 
     const data: PostResponseBodyPost = await response.json();
 
-
     if (response.ok) {
       clearInput();
       router.refresh();
@@ -39,9 +38,7 @@ export default function Ceradepost(props: Props) {
     setImage('');
     const titleClear = document.getElementById('title') as HTMLInputElement;
     const postClear = document.getElementById('post') as HTMLInputElement;
-    const imageURlClear = document.getElementById(
-      'imageUrl',
-    ) as HTMLInputElement;
+    const imageURlClear = document.getElementById('imageUrl' ) as HTMLInputElement;
     titleClear.value = '';
     postClear.value = '';
     imageURlClear.value = '';
@@ -56,7 +53,7 @@ export default function Ceradepost(props: Props) {
       <form
         className=" w flex-col justify-center items-center  shadow-lg rounded-lg bg-green-100
         py-5 px-6 sm:py-6 sm:px"
-        onSubmit={async (event) => await handelregister(event)}
+        onSubmit={async (event) => await HandelPost(event)}
       >
         <section
           className="flex flex-col justify-center items-center  bg-green-100
