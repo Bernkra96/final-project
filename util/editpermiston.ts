@@ -3,11 +3,10 @@ import { number } from 'zod';
 import { getadminbyuserid, isAdmin } from '../database/admins';
 import { getUserBySessionToken } from '../database/users';
 
-export async function editpermiston(
-  PostuserId: number,
+export async function editPermission(
+  PostUserId: number,
   userId: number,
   Token: string,
-  postId: number,
 ) {
   const loginUser = await getUserBySessionToken(Token);
   const admin = await getadminbyuserid(userId);
@@ -16,5 +15,5 @@ export async function editpermiston(
 
   // console.log('loginUser', loginUser?.id);
 
-  return loginUser?.id == PostuserId || Number(admin?.level) > 1;
+  return loginUser?.id === PostUserId || Number(admin?.level) > 1;
 }
