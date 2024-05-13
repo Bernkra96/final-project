@@ -68,12 +68,7 @@ export default async function newPostspage() {
                   Post ID: {post.id}{' '}
                 </p>
               </Link>
-              {(await editPermission(
-                post.userId,
-                userId,
-                sectionIdUser,
-                post.id,
-              )) ? (
+              {(await editPermission(post.userId, userId, sectionIdUser)) ? (
                 <DeletePost
                   id={post.id}
                   PostUserId={post.userId}

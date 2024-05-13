@@ -10,7 +10,7 @@ export default function RegisterFrom() {
   const usernameValidationRegex = /^[a-zA-Z0-9]+$/;
   const router = useRouter();
 
-  async function handelregister(event: React.FormEvent<HTMLFormElement>) {
+  async function handelRegister(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const response = await fetch('/api/register', {
@@ -38,7 +38,7 @@ export default function RegisterFrom() {
 
   return (
     <>
-      <form onSubmit={async (event) => await handelregister(event)}>
+      <form onSubmit={async (event) => await handelRegister(event)}>
         <input
           type="username"
           onChange={(e) => setUsername(e.currentTarget.value)}
