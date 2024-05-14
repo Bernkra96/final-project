@@ -20,7 +20,11 @@ export default async function ItemProfilePage(props: {
   const sectionIdUser = String(tokenCooke?.value);
   const user = await getUserBySessionToken(sectionIdUser);
   const userId = Number(user?.id);
-
+  const sortedCommentsByDate = comments.sort(function (a, b) {
+    const dateA = new Date(a.postTime).getTime();
+    const dateB = new Date(b.postTime).getTime();
+    return dateB - dateA;
+  });
   return (
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
       <h3 className="items text-center font-extrabold  text-green-400 ">
@@ -93,7 +97,7 @@ export default async function ItemProfilePage(props: {
         Number of Comments: {comments.length}{' '}
       </h3>
       <ul className=" justify-center items items-center ">
-        {comments.map(async (comment) => (
+        {sortedCommentsByDate.map(async (comment) => (
           <li
             key={`commentid-${comment.id}`}
             className="flex flex-col justify-center items-center  bg-green-50

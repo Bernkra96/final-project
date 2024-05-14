@@ -16,7 +16,7 @@ export default async function newPostspage() {
   const sortedPostsByDate = posts.sort(function (a, b) {
     const dateA = new Date(a.postTime).getTime();
     const dateB = new Date(b.postTime).getTime();
-    return dateA - dateB;
+    return dateB - dateA;
   });
 
   return (

@@ -29,6 +29,11 @@ export default async function userProfilePage({ params }: Props) {
   const profileUser = await getUserByUsername(params.username);
   const profileUserId = Number(profileUser?.id);
   const profilePosts = await getPostswithUserid(Number(profileUserId));
+  const sortedProfilePostsByDate = profilePosts.sort(function (a, b) {
+    const dateA = new Date(a.postTime).getTime();
+    const dateB = new Date(b.postTime).getTime();
+    return dateB - dateA;
+  });
 
   return (
     <section>
@@ -58,7 +63,7 @@ export default async function userProfilePage({ params }: Props) {
 
       <h3 className=" items text-center font-extrabold  text-green-400"> </h3>
       <ul className=" justify-center items items-center ">
-        {profilePosts.map(async (post) => (
+        {sortedProfilePostsByDate.map(async (post) => (
           <li
             key={`user-${user?.id}`}
             className="flex flex-col justify-center items-center  bg-green-50
