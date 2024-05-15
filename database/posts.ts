@@ -51,7 +51,7 @@ export const getAllPosts = cache(async () => {
   return posts;
 });
 //  SELECT       *    FROM     posts;
-export const getpostByPostId = cache(async (postid: number) => {
+export const getPostByPostId = cache(async (postid: number) => {
   const post = await sql<Post[]>`
     SELECT
       *
@@ -63,7 +63,7 @@ export const getpostByPostId = cache(async (postid: number) => {
   return post;
 });
 
-export const getAllPostswithUserName = cache(async () => {
+export const getAllPostsWithUserName = cache(async () => {
   const posts = await sql<Post[]>`
     SELECT
       posts.id,
@@ -81,7 +81,7 @@ export const getAllPostswithUserName = cache(async () => {
   return posts;
 });
 
-export const getPostpostidwithUserName = cache(async (postid: number) => {
+export const getPostWithUserIdAndUsername = cache(async (postid: number) => {
   const post = await sql<Post[]>`
     SELECT
       posts.id,
@@ -101,7 +101,7 @@ export const getPostpostidwithUserName = cache(async (postid: number) => {
   return post;
 });
 
-export const getPostswithUserid = cache(async (userid: number) => {
+export const getPostsWithUserId = cache(async (userid: number) => {
   const posts = await sql<Post[]>`
     SELECT
       *
@@ -113,7 +113,7 @@ export const getPostswithUserid = cache(async (userid: number) => {
   return posts;
 });
 
-export const getUserIdfromPost = cache(async (postid: number) => {
+export const getUserIdFromPost = cache(async (postid: number) => {
   const post = await sql<Post[]>`
     SELECT
       user_id

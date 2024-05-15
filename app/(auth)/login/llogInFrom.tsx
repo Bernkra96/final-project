@@ -12,7 +12,7 @@ type Props = {
 export default function LoginFrom(props: Props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setErrror] = useState('');
+  const [error, setError] = useState('');
 
   const router = useRouter();
 
@@ -30,7 +30,7 @@ export default function LoginFrom(props: Props) {
     const data: LoginResponseBodyPost = await response.json();
 
     if ('errors' in data) {
-      setErrror(
+      setError(
         'Error: ' + data.errors[0].message ? data.errors[0].message : ' Error',
       );
 
@@ -75,7 +75,7 @@ export default function LoginFrom(props: Props) {
       </form>
 
       {error.length > 0 ? (
-        <p className=" w-full justify-center rounded-md bg-red-600  m-3 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-smfocus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+        <p className=" w-full justify-center rounded-md bg-red-600  m-3 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
           {error}
         </p>
       ) : null}

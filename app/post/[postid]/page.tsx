@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import Link from 'next/link';
-import { getCommentsByPostIdwithUserName } from '../../../database/commnts';
-import { getPostpostidwithUserName } from '../../../database/posts';
+import { getCommentsByPostIdWithUserName } from '../../../database/commnts';
+import { getPostWithUserIdAndUsername } from '../../../database/posts';
 import { getUserBySessionToken } from '../../../database/users';
 import { editPermission } from '../../../util/editpermiston';
 import DeletePost from '../../newposts/delidepostButton';
@@ -12,9 +12,9 @@ export default async function ItemProfilePage(props: {
   params: { postid: any };
 }) {
   const itemId = Number(props.params.postid);
-  const posts = await getPostpostidwithUserName(itemId);
+  const posts = await getPostWithUserIdAndUsername(itemId);
   const postId = Number(posts[0]?.id);
-  const comments = await getCommentsByPostIdwithUserName(postId);
+  const comments = await getCommentsByPostIdWithUserName(postId);
 
   const tokenCooke = cookies().get('sessionToken');
   const sectionIdUser = String(tokenCooke?.value);

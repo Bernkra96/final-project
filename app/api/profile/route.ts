@@ -3,9 +3,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { string } from 'zod';
 import { deleteSessionByToken } from '../../../database/sessions';
 import {
-  DeliteUserbyId,
+  deleteUserById,
   getUserBySessionToken,
-  updateUserperUderId,
+  updateUserPerUserId,
 } from '../../../database/users';
 import { User } from '../../../migrations/00000-crateUsersTable';
 
@@ -28,7 +28,7 @@ export async function DELETE(
   const lodeData = body.UserName;
   const userName = lodeData.UserName;
   const id = lodeData.ID;
-  const userToken = lodeData.Token;
+
   const userByToken = await getUserBySessionToken(cookieToken ?? '');
 
   if (!tokenCookie) {
@@ -65,7 +65,7 @@ export async function DELETE(
     );
   }
 
-  const delesetUser = await DeliteUserbyId(Number(id));
+  const delesetUser = await deleteUserById(Number(id));
   if (cookieToken) await deleteSessionByToken(String(cookieToken));
   await cookies().set('sessionToken', '', { maxAge: -1 });
 
@@ -120,7 +120,7 @@ export async function PATCH(
       { status: 401 },
     );
   }
-  const updateUser = await updateUserperUderId(Number(id), newUserName);
+  const updateUser = await updateUserPerUserId(Number(id), newUserName);
   return NextResponse.json({
     user: updateUser,
   } as ProfileResponseBodyPost);

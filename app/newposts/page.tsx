@@ -1,14 +1,14 @@
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import React from 'react';
-import { getAllPostswithUserName } from '../../database/posts';
+import { getAllPostsWithUserName } from '../../database/posts';
 import { getUserBySessionToken } from '../../database/users';
 import { editPermission } from '../../util/editpermiston';
 import CeratePost from './CeradePostFrom';
 import DeletePost from './delidepostButton';
 
 export default async function newPostspage() {
-  const posts = await getAllPostswithUserName();
+  const posts = await getAllPostsWithUserName();
   const tokenCookie = await cookies().get('sessionToken');
   const sectionIdUser = String(tokenCookie?.value);
   const user = await getUserBySessionToken(sectionIdUser);
