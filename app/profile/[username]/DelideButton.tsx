@@ -2,7 +2,6 @@
 
 import router from 'next/router';
 import React from 'react';
-import { getCookie } from '../../../util/cookies';
 import { ProfileResponseBodyPost } from '../../api/profile/route';
 
 export default function DeleteuserButton(
@@ -10,7 +9,7 @@ export default function DeleteuserButton(
   ID: number,
   Token: string,
 ) {
-  async function handeldele(event: React.FormEvent<HTMLFormElement>) {
+  async function handelDelete(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.log('UserName Button page delite ', UserName, ID, Token);
     const response = await fetch('/api/profile', {
@@ -29,7 +28,7 @@ export default function DeleteuserButton(
 
   return (
     <form
-      onSubmit={async (event) => await handeldele(event)}
+      onSubmit={async (event) => await handelDelete(event)}
       className=" mx-auto   items-center  p-6 lg:px-0 rounded-lg  "
     >
       <button
