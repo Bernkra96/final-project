@@ -4,10 +4,10 @@ import { string } from 'zod';
 import { isAdmin } from '../../../database/admins';
 import {
   createComment,
-  deleteCommintByCommentId,
+  deleteCommentByCommentId,
   getCommentByCommentId,
 } from '../../../database/commnts';
-import { getpostByPostId } from '../../../database/posts';
+import { getPostByPostId } from '../../../database/posts';
 import { getUserBySessionToken } from '../../../database/users';
 
 export type CommentResponseBodyPost = {
@@ -110,7 +110,7 @@ export async function DELETE(
       );
     }
   }
-  const deleteCommint = await deleteCommintByCommentId(commentId);
+  const deleteCommint = await deleteCommentByCommentId(commentId);
 
   return NextResponse.json({
     comment: deleteCommint,

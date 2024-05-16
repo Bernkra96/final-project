@@ -1,24 +1,24 @@
 import { cookies } from 'next/headers';
 import Link from 'next/link';
-import { getadminbyuserid, isAdmin } from '../../database/admins';
+import { getAdminByUserId, isAdmin } from '../../database/admins';
 import { getAllComments } from '../../database/commnts';
 import { getAllPosts } from '../../database/posts';
 import {
-  getnumberOfUsers,
+  getNumberOfUsers,
   getUserBySessionToken,
-  getusers,
+  geUsers,
 } from '../../database/users';
 
 export default async function AdminPage() {
-  const users = await getusers();
-  const numberUsers = await getnumberOfUsers();
+  const users = await geUsers();
+  const numberUsers = await getNumberOfUsers();
   const numberPosts = await getAllPosts();
   const numberComments = await getAllComments();
   const seasonToken = cookies().get('sessionToken');
   const user = await getUserBySessionToken(seasonToken?.value || '');
   const userID = user?.id || -1;
 
-  const adminByUserID = await getadminbyuserid(Number(userID));
+  const adminByUserID = await getAdminByUserId(Number(userID));
   const adminUserID = adminByUserID?.userId;
 
   return Number(adminUserID) === Number(userID) ? (

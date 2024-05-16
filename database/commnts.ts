@@ -60,7 +60,7 @@ export const getCommentsByPostId = cache(async (post_id: number) => {
   `;
   return comments;
 });
-export const getAllCommentswithUserName = cache(async () => {
+export const getCommentsWithUserNames = cache(async () => {
   const comments = await sql<Comment[]>`
     SELECT
       comments.id,
@@ -82,7 +82,7 @@ export const getAllCommentswithUserName = cache(async () => {
 
 //    SELECT comments.id, comments.user_id, comments.post_id, comments.post,comments.post_time,comments.score,users.username FROM comments INNER JOINusers ON comments.user_id = users.id WHERE comments.id = ${post_id}
 
-export const getCommentsByPostIdwithUserName = cache(
+export const getCommentsByPostIdWithUserName = cache(
   async (post_id: number) => {
     const comments = await sql<Comment[]>`
     SELECT
@@ -106,7 +106,7 @@ export const getCommentsByPostIdwithUserName = cache(
   },
 );
 
-export const getUserIdperCommentId = cache(async (id: number) => {
+export const getUserIdPerCommentId = cache(async (id: number) => {
   const comments = await sql<Comment[]>`
     SELECT
       user_id
@@ -130,7 +130,7 @@ export const getCommentByCommentId = cache(async (id: number) => {
   return comments;
 });
 
-export const deleteCommintByPostId = cache(async (post_id: number) => {
+export const deleteCommentByPostId = cache(async (post_id: number) => {
   await sql`
     DELETE FROM
       comments
@@ -139,7 +139,7 @@ export const deleteCommintByPostId = cache(async (post_id: number) => {
   `;
 });
 
-export const deleteCommintByCommentId = cache(async (id: number) => {
+export const deleteCommentByCommentId = cache(async (id: number) => {
   await sql`
     DELETE FROM
       comments

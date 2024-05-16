@@ -22,12 +22,12 @@ export default function CreateComment(postid: number) {
 
 
     if (response.ok) {
-      await cleerInput();
+      await clearInput();
       await router.refresh();
     }
   }
 
-  function cleerInput() {
+  function clearInput() {
     setPost('');
     const input = document.getElementById('CommentBox') as HTMLInputElement;
     input.value = '';

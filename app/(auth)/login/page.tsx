@@ -28,7 +28,7 @@ export default async function LoginPage({ searchParams }: Props) {
         {' '}
         Username & Password: At least 3 Characters Login
       </p>
-      <LoginFrom />
+      <LoginFrom returnTo={undefined} />
     </>
   );
 }

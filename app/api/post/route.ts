@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { string } from 'zod';
 import { isAdmin } from '../../../database/admins';
-import { deleteCommintByPostId } from '../../../database/commnts';
+import { deleteCommentByPostId } from '../../../database/commnts';
 import { createPost, deletePost } from '../../../database/posts';
 import { getUserBySessionToken } from '../../../database/users';
 import { Post } from '../../../migrations/00002-crateTablePosts';
@@ -70,22 +70,28 @@ export async function DELETE(
   const tokenCookie = cookies().get('sessionToken');
   const cookieToken = tokenCookie?.value;
 
-  const user = await getUserBySessionToken(cookieToken);
-  const admin = await isAdmin(user.id);
-
-  if (!tokenCookie) {
+  if (!tokenCookie || !cookieToken) {
     return NextResponse.json(
       { errors: [{ message: 'Session token not found' }] },
       { status: 401 },
     );
   }
-
+  const user = await getUserBySessionToken(cookieToken);
   if (!user) {
     return NextResponse.json(
       { errors: [{ message: 'User not found' }] },
       { status: 401 },
     );
   }
+  const admin = await isAdmin(user.id);
+
+  if (!admin) {
+    return NextResponse.json(
+      { errors: [{ message: 'Admin not found' }] },
+      { status: 401 },
+    );
+  }
+
   const userID = user.id;
 
   if (!admin?.level && Number(admin?.level) > 1) {
@@ -103,7 +109,7 @@ export async function DELETE(
       );
     }
   }
-  const deleteCommit = await deleteCommintByPostId(postId);
+  const deleteCommit = await deleteCommentByPostId(postId);
 
   const deletePostPerId = await deletePost(postId);
 

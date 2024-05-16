@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import Link from 'next/link';
-import { getCommentsByPostIdwithUserName } from '../../../database/commnts';
-import { getPostpostidwithUserName } from '../../../database/posts';
+import { getCommentsByPostIdWithUserName } from '../../../database/commnts';
+import { getPostWithUserIdAndUsername } from '../../../database/posts';
 import { getUserBySessionToken } from '../../../database/users';
 import { editPermission } from '../../../util/editpermiston';
 import DeletePost from '../../newposts/delidepostButton';
@@ -12,15 +12,19 @@ export default async function ItemProfilePage(props: {
   params: { postid: any };
 }) {
   const itemId = Number(props.params.postid);
-  const posts = await getPostpostidwithUserName(itemId);
+  const posts = await getPostWithUserIdAndUsername(itemId);
   const postId = Number(posts[0]?.id);
-  const comments = await getCommentsByPostIdwithUserName(postId);
+  const comments = await getCommentsByPostIdWithUserName(postId);
 
   const tokenCooke = cookies().get('sessionToken');
   const sectionIdUser = String(tokenCooke?.value);
   const user = await getUserBySessionToken(sectionIdUser);
   const userId = Number(user?.id);
-
+  const sortedCommentsByDate = comments.sort(function (a, b) {
+    const dateA = new Date(a.postTime).getTime();
+    const dateB = new Date(b.postTime).getTime();
+    return dateB - dateA;
+  });
   return (
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
       <h3 className="items text-center font-extrabold  text-green-400 ">
@@ -93,7 +97,7 @@ export default async function ItemProfilePage(props: {
         Number of Comments: {comments.length}{' '}
       </h3>
       <ul className=" justify-center items items-center ">
-        {comments.map(async (comment) => (
+        {sortedCommentsByDate.map(async (comment) => (
           <li
             key={`commentid-${comment.id}`}
             className="flex flex-col justify-center items-center  bg-green-50

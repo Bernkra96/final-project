@@ -37,7 +37,7 @@ export const isAdmin = cache(async (user_id: number) => {
   return admin;
 });
 
-export const getadminbyuserid = cache(async (user_id: number) => {
+export const getAdminByUserId = cache(async (user_id: number) => {
   const [admin] = await sql<Admin[]>`
     SELECT
       *

@@ -23,7 +23,7 @@ export const createUser = cache(
   },
 );
 
-export const getusers = cache(async () => {
+export const geUsers = cache(async () => {
   const users = await sql<User[]>`
     SELECT
      id,
@@ -64,7 +64,7 @@ export const getUserByUserId = cache(async (userId: number) => {
   return user;
 });
 
-export const getusernamebyId = cache(async (userId: number) => {
+export const getUserNameById = cache(async (userId: number) => {
   const [user] = await sql<User[]>`
     SELECT
       username
@@ -109,7 +109,7 @@ export const getUserBySessionToken = cache(async (token: string) => {
   return user;
 });
 
-export const deleteUserbyName = cache(async (username: string) => {
+export const deleteUserByName = cache(async (username: string) => {
   const [user] = await sql<{ id: number; username: string }[]>`
     DELETE FROM
       users
@@ -136,7 +136,7 @@ export const updateUser = cache(
   },
 );
 
-export const updateUserperUderId = cache(
+export const updateUserPerUserId = cache(
   async (id: number, newUsername: string) => {
     const [user] = await sql<User[]>`
     UPDATE users
@@ -151,7 +151,7 @@ export const updateUserperUderId = cache(
   },
 );
 
-export const getnumberOfUsers = cache(async () => {
+export const getNumberOfUsers = cache(async () => {
   const [user] = await sql<{ count: number }[]>`
     SELECT
       COUNT(*)
@@ -161,7 +161,7 @@ export const getnumberOfUsers = cache(async () => {
   return user;
 });
 
-export const getnumerofPostsbysingleUser = cache(async (id: number) => {
+export const getNumberOfPostsBySingleUser = cache(async (id: number) => {
   const [user] = await sql<{ count: number }[]>`
     SELECT
       COUNT(*)
@@ -173,7 +173,7 @@ export const getnumerofPostsbysingleUser = cache(async (id: number) => {
   return user;
 });
 
-export const DeliteUserbyId = cache(async (id: number) => {
+export const deleteUserById = cache(async (id: number) => {
   const [user] = await sql<{ id: number; username: string }[]>`
     DELETE FROM
       users

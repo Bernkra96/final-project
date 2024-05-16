@@ -1,6 +1,6 @@
 import { isArrayBindingElement } from 'typescript';
 import { number } from 'zod';
-import { getadminbyuserid, isAdmin } from '../database/admins';
+import { getAdminByUserId, isAdmin } from '../database/admins';
 import { getUserBySessionToken } from '../database/users';
 
 export async function editPermission(
@@ -9,7 +9,7 @@ export async function editPermission(
   Token: string,
 ) {
   const loginUser = await getUserBySessionToken(Token);
-  const admin = await getadminbyuserid(userId);
+  const admin = await getAdminByUserId(userId);
 
   // console.log('admin', admin?.start, admin?.level);
 
