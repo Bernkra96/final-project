@@ -15,5 +15,7 @@ export async function editPermission(
 
   // console.log('loginUser', loginUser?.id);
 
-  return loginUser?.id === PostUserId || Number(admin?.level) > 1;
+  return (
+    Number(loginUser?.id) === Number(PostUserId) || Number(admin?.level) > 1
+  );
 }
