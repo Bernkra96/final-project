@@ -4,7 +4,7 @@ import router from 'next/router';
 import React from 'react';
 import { ProfileResponseBodyPost } from '../../api/profile/route';
 
-export default function DeleteuserButton(
+export default function DeleteUserButton(
   UserName: string,
   ID: number,
   Token: string,

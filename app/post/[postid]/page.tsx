@@ -71,7 +71,7 @@ export default async function ItemProfilePage(props: {
                 post.userId,
                 userId,
                 sectionIdUser,
-                post.id,
+
               )) ? (
                 <DeletePost
                   id={post.id}

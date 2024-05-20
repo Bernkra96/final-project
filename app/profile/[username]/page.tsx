@@ -102,7 +102,7 @@ export default async function userProfilePage({ params }: Props) {
                 post.userId,
                 Number(user?.id),
                 tokenCooke,
-                post.id,
+
               )) ? (
                 <DeletePost
                   id={post.id}
