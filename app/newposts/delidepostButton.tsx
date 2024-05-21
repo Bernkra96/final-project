@@ -18,13 +18,12 @@ export default function DeletePost(
       method: 'DELETE',
       body: JSON.stringify({
         id,
-        PostuserId: PostUserId,
+        postUserId: PostUserId,
         Token,
       }),
     });
 
     const data: PostResponseBodyPost = await response.json();
-
 
     router.push(`/`);
     router.refresh();
