@@ -63,7 +63,7 @@ export async function DELETE(
 ): Promise<NextResponse<PostResponseBodyPost>> {
   const body = await request.json();
   const sideData = body.id;
-  const userIdPage = sideData.PostuserId;
+  const userIdPage = sideData.postUserId;
   const postId = sideData.id;
   const tokenFromPage = sideData.Token;
 
