@@ -67,27 +67,38 @@ export default async function ItemProfilePage(props: {
                 </p>
               </Link>
 
-              {(await editPermission(
-                post.userId,
-                userId,
-                sectionIdUser,
-
-              )) ? (
-                <DeletePost
-                  id={post.id}
-                  PostuserId={post.userId}
-                  Token={sectionIdUser}
-                />
+              {user ? (
+                <>
+                  {' '}
+                  {(await editPermission(
+                    post.userId,
+                    userId,
+                    sectionIdUser,
+                  )) ? (
+                    <DeletePost
+                      id={post.id}
+                      PostUserId={post.userId}
+                      Token={sectionIdUser}
+                    />
+                  ) : null}
+                </>
               ) : null}
             </section>
           </li>
         ))}
       </ul>
 
-      <CreateComment
-        postid={itemId}
-        className=" justify-center items items-center "
-      />
+      {user ? (
+        <CreateComment
+          postid={itemId}
+          className=" justify-center items items-center "
+        />
+      ) : (
+        <h2 className=" items text-center font-extrabold  text-red-400">
+          Login / Register to Comment
+        </h2>
+      )}
+
       <h3 className="items text-center font-extrabold  text-green-400">
         {' '}
         Comments
@@ -127,19 +138,23 @@ export default async function ItemProfilePage(props: {
                   User ID: {String(comment.userId)}
                 </p>
               </Link>
-
-              {(await editPermission(
-                Number(comment.userId),
-                userId,
-                sectionIdUser,
-                comment.id,
-              )) ? (
-                <CommntDelide
-                  id={comment.id}
-                  userIdPage={comment.user_id}
-                  Token={sectionIdUser}
-                  className="mx-auto justify-center p-1 "
-                />
+              {user ? (
+                <>
+                  {' '}
+                  {(await editPermission(
+                    Number(comment.userId),
+                    userId,
+                    sectionIdUser,
+                    comment.id,
+                  )) ? (
+                    <CommntDelide
+                      id={comment.id}
+                      userIdPage={comment.user_id}
+                      Token={sectionIdUser}
+                      className="mx-auto justify-center p-1 "
+                    />
+                  ) : null}
+                </>
               ) : null}
             </section>
           </li>
