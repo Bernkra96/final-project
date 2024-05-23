@@ -21,7 +21,13 @@ export default async function newPostspage() {
 
   return (
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
-      <CeratePost />
+      {user ? (
+        <CeratePost />
+      ) : (
+        <h2 className=" items text-center font-extrabold  text-green-400">
+          Login / Register to Post
+        </h2>
+      )}
 
       <div>
         <h2 className=" items text-center font-extrabold  text-green-400">
@@ -68,12 +74,21 @@ export default async function newPostspage() {
                   Post ID: {post.id}{' '}
                 </p>
               </Link>
-              {(await editPermission(post.userId, userId, sectionIdUser)) ? (
-                <DeletePost
-                  id={post.id}
-                  PostUserId={post.userId}
-                  Token={sectionIdUser}
-                />
+              {user ? (
+                <>
+                  {' '}
+                  {(await editPermission(
+                    post.userId,
+                    userId,
+                    sectionIdUser,
+                  )) ? (
+                    <DeletePost
+                      id={post.id}
+                      PostUserId={post.userId}
+                      Token={sectionIdUser}
+                    />
+                  ) : null}
+                </>
               ) : null}
             </section>
           </li>
