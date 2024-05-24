@@ -87,6 +87,13 @@ export default async function RootLayout(
                   >
                     Login
                   </Link>
+
+                  <Link
+                    href="/newposts"
+                    className="  flex justify-center rounded-md bg-green-600 px-3 py-1.5 p-6  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 m-2"
+                  >
+                    New posts
+                  </Link>
                 </>
               )}
             </section>
