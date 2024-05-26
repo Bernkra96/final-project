@@ -7,7 +7,7 @@ import { CommentResponseBodyPost } from '../../api/comment/route';
 export default function CreateComment(postid: number) {
   const [post, setPost] = useState('');
   const router = useRouter();
-  async function handelpost(event: React.FormEvent<HTMLFormElement>) {
+  async function handelPost(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const response = await fetch('/api/comment', {
@@ -19,7 +19,6 @@ export default function CreateComment(postid: number) {
     });
 
     const data: CommentResponseBodyPost = await response.json();
-
 
     if (response.ok) {
       await clearInput();
@@ -40,7 +39,7 @@ export default function CreateComment(postid: number) {
       </h2>
 
       <form
-        onSubmit={async (event) => await handelpost(event)}
+        onSubmit={async (event) => await handelPost(event)}
         className=" mx-auto   items-center  p-6 lg:px-0 rounded-lg  "
       >
         <textarea
