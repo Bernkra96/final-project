@@ -70,12 +70,6 @@ export async function DELETE(
   const tokenCookie = cookies().get('sessionToken');
   const cookieToken = tokenCookie?.value;
 
-  if (!tokenCookie || !cookieToken) {
-    return NextResponse.json(
-      { errors: [{ message: 'Session token not found' }] },
-      { status: 401 },
-    );
-  }
   const user = await getUserBySessionToken(cookieToken);
   if (!user) {
     return NextResponse.json(
@@ -84,13 +78,6 @@ export async function DELETE(
     );
   }
   const admin = await isAdmin(user.id);
-
-  if (!admin) {
-    return NextResponse.json(
-      { errors: [{ message: 'Admin not found' }] },
-      { status: 401 },
-    );
-  }
 
   const userID = user.id;
 
