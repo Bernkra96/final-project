@@ -88,7 +88,7 @@ export async function DELETE(
         { status: 401 },
       );
     }
-    console.log('frame 05');
+
     if (cookieToken !== tokenFromPage) {
       return NextResponse.json(
         { errors: [{ message: 'Wrong user Token' }] },
