@@ -20,6 +20,16 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+/\*\*
+
+- Migrations
+-
+- This section of the code is responsible for managing database migrations.
+- Migrations are used to make changes to the database schema over time, such as creating or modifying tables.
+- This file serves as the main entry point for managing migrations in the project.
+  \*/
+  Migrations
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

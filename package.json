@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev",
     "lint": "next lint",
-    "migrate": "ley --require tsm"
+    "migrate": "ley --require tsx/cjs",
+    "start": "next start"
   },
   "dependencies": {
     "@cloudinary/react": "^1.11.2",
@@ -17,16 +17,18 @@
     "cloudinary": "^1.41.0",
     "csrf": "^3.1.0",
     "dotenv": "^16.3.1",
-    "ley": "^0.8.1",
-    "next": "latest",
+    "migrate": "^2.1.0",
+    "next": "14.2.3",
     "postcss": "^8.4.31",
-    "postgres": "^3.4.2",
+    "postgres": "3.4.2",
     "react": "latest",
     "react-dom": "latest",
     "sass": "^1.69.5",
     "sharp": "^0.32.6",
+    "sql": "^0.78.0",
     "tailwindcss": "^3.3.5",
     "tsm": "^2.3.0",
+    "tsx": "^4.11.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -36,8 +38,11 @@
     "@types/react-dom": "latest",
     "eslint-config-upleveled": "^5.1.1",
     "install": "^0.13.0",
+    "ley": "^0.8.1",
     "stylelint": "^15.11.0",
     "stylelint-config-upleveled": "^1.0.2",
     "typescript": "^5.2.2"
-  }
+  },
+  "packageManager": "pnpm@9.1.4+sha512.9df9cf27c91715646c7d675d1c9c8e41f6fce88246f1318c1aa6a1ed1aeb3c4f032fcdf4ba63cc69c4fe6d634279176b5358727d8f2cc1e65b65f43ce2f8bfb0",
+  "target": "esnext"
 }
