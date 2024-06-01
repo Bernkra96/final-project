@@ -1,3 +1,4 @@
+import { url } from 'inspector';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { getCommentsByPostIdWithUserName } from '../../../database/commnts';
@@ -53,12 +54,17 @@ export default async function ItemProfilePage(props: {
                 {' '}
                 Post ID: {post.id}
               </p>
+
               {post.image ? (
-                <img
-                  src={post.image}
-                  className="h-30 w-30 flex-none bg-gray-50"
-                  alt=""
-                />
+                <>
+                  <Link href={`${post.image}`}>
+                    <img
+                      src={post.image}
+                      className="h-30 w-30 flex-none bg-gray-50"
+                      alt=""
+                    />
+                  </Link>
+                </>
               ) : null}
 
               <Link href={`/profile/${post.username}`}>
