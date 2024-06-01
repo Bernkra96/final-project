@@ -83,11 +83,13 @@ export default async function userProfilePage({ params }: Props) {
                 <p className="mx-auto justify-center p-1 ">{post.post}</p>
 
                 {post.image ? (
-                  <img
-                    src={post.image}
-                    className="h-50 w-50 flex-none  bg-gray-50"
-                    alt="post"
-                  />
+                  <>
+                    <img
+                      src={post.image}
+                      className="h-30 w-30 flex-none bg-gray-50"
+                      alt=""
+                    />
+                  </>
                 ) : null}
 
                 <p className="mx-auto justify-center p-1  text-green-700   ">
@@ -102,7 +104,6 @@ export default async function userProfilePage({ params }: Props) {
                 post.userId,
                 Number(user?.id),
                 tokenCooke,
-
               )) ? (
                 <DeletePost
                   id={post.id}
