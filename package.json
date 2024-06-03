@@ -6,7 +6,7 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "migrate": "ley --require tsx/cjs",
+    "migrate": "ley --require tsm",
     "start": "next start"
   },
   "dependencies": {
@@ -14,9 +14,9 @@
     "@cloudinary/url-gen": "^1.13.0",
     "autoprefixer": "^10.4.16",
     "bcrypt": "^5.1.1",
-    "cloudinary": "^1.41.0",
     "csrf": "^3.1.0",
     "dotenv": "^16.3.1",
+    "ley": "^0.8.1",
     "migrate": "^2.1.0",
     "next": "14.2.3",
     "postcss": "^8.4.31",
@@ -38,7 +38,6 @@
     "@types/react-dom": "latest",
     "eslint-config-upleveled": "^5.1.1",
     "install": "^0.13.0",
-    "ley": "^0.8.1",
     "stylelint": "^15.11.0",
     "stylelint-config-upleveled": "^1.0.2",
     "typescript": "^5.2.2"
