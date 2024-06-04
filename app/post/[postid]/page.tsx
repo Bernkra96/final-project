@@ -1,6 +1,8 @@
 import { url } from 'inspector';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
+import { redirect, useRouter } from 'next/navigation';
+import { Router } from 'next/router';
 import { getCommentsByPostIdWithUserName } from '../../../database/commnts';
 import { getPostWithUserIdAndUsername } from '../../../database/posts';
 import { getUserBySessionToken } from '../../../database/users';
@@ -15,8 +17,12 @@ export default async function ItemProfilePage(props: {
   const itemId = Number(props.params.postid);
   const posts = await getPostWithUserIdAndUsername(itemId);
   const postId = Number(posts[0]?.id);
-  const comments = await getCommentsByPostIdWithUserName(postId);
 
+  if (itemId != posts[0]?.id) {
+    console.log('TESt');
+    redirect('/post'); // if user has input wrong post number
+  }
+  const comments = await getCommentsByPostIdWithUserName(postId);
   const tokenCooke = cookies().get('sessionToken');
   const sectionIdUser = String(tokenCooke?.value);
   const user = await getUserBySessionToken(sectionIdUser);
@@ -26,6 +32,7 @@ export default async function ItemProfilePage(props: {
     const dateB = new Date(b.postTime).getTime();
     return dateB - dateA;
   });
+
   return (
     <section className=" mx-auto  max-w-7xl items-center p-6 lg:px-8  rounded-lg  bg-green-100 ">
       <h3 className="items text-center font-extrabold  text-green-400 ">

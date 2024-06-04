@@ -28,6 +28,9 @@ export default async function userProfilePage({ params }: Props) {
 
   const profileUser = await getUserByUsername(params.username);
   const profileUserId = Number(profileUser?.id);
+  if (!profileUser) {
+    redirect('/profile');
+  }
   const profilePosts = await getPostsWithUserId(Number(profileUserId));
   const sortedProfilePostsByDate = profilePosts.sort(function (a, b) {
     const dateA = new Date(a.postTime).getTime();
