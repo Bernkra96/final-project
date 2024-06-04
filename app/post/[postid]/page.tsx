@@ -19,7 +19,6 @@ export default async function ItemProfilePage(props: {
   const postId = Number(posts[0]?.id);
 
   if (itemId != posts[0]?.id) {
-    console.log('TESt');
     redirect('/post'); // if user has input wrong post number
   }
   const comments = await getCommentsByPostIdWithUserName(postId);
