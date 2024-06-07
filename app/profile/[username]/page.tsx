@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import { isAdmin } from '../../../database/admins';
+import { getCommentsByPostId } from '../../../database/commnts';
 import { getPostsWithUserId } from '../../../database/posts';
 import { getValidSessionByToken } from '../../../database/sessions';
 import {
@@ -28,6 +29,9 @@ export default async function userProfilePage({ params }: Props) {
 
   const profileUser = await getUserByUsername(params.username);
   const profileUserId = Number(profileUser?.id);
+  if (!profileUser) {
+    redirect('/profile');
+  }
   const profilePosts = await getPostsWithUserId(Number(profileUserId));
   const sortedProfilePostsByDate = profilePosts.sort(function (a, b) {
     const dateA = new Date(a.postTime).getTime();
@@ -98,6 +102,11 @@ export default async function userProfilePage({ params }: Props) {
 
                 <p className="mx-auto justify-center p-1  text-green-700   ">
                   Post ID: {post.id}{' '}
+                </p>
+
+                <p className="mx-auto justify-center p-1  text-green-700   ">
+                  Number of Comments:{' '}
+                  {(await getCommentsByPostId(Number(post.id))).length}
                 </p>
               </Link>
               {(await editPermission(

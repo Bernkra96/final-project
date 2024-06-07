@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import React from 'react';
+import { getCommentsByPostId } from '../../database/commnts';
 import { getAllPostsWithUserName } from '../../database/posts';
 import { getUserBySessionToken } from '../../database/users';
 import { editPermission } from '../../util/editpermiston';
@@ -72,6 +73,11 @@ export default async function newPostspage() {
 
                 <p className="mx-auto justify-center p-1  text-green-700   ">
                   Post ID: {post.id}{' '}
+                </p>
+
+                <p className="mx-auto justify-center p-1  text-green-700   ">
+                  Number of Comments:{' '}
+                  {(await getCommentsByPostId(Number(post.id))).length}
                 </p>
               </Link>
               {user ? (
