@@ -101,10 +101,6 @@ export default async function userProfilePage({ params }: Props) {
                 </p>
 
                 <p className="mx-auto justify-center p-1  text-green-700   ">
-                  Post ID: {post.id}{' '}
-                </p>
-
-                <p className="mx-auto justify-center p-1  text-green-700   ">
                   Number of Comments:{' '}
                   {(await getCommentsByPostId(Number(post.id))).length}
                 </p>

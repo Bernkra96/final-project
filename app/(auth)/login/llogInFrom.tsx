@@ -54,7 +54,7 @@ export default function LoginFrom(props: Props) {
           type="username"
           onChange={(e) => setUsername(e.currentTarget.value)}
           placeholder="User Name"
-          className="mx-auto  flex justify-center p-3 border-2 m-1 border-gray-300 rounded-md"
+          className="mx-auto flex justify-center p-3 border-2 m-1 border-gray-300 rounded-md"
         />
 
         <input
@@ -68,14 +68,14 @@ export default function LoginFrom(props: Props) {
             Login
           </button>
         ) : (
-          <p className=" w-full justify-center rounded-md  bg-gray-600  m-3 px-3 py-1.5  font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
+          <div className=" w-full justify-center rounded-md  bg-gray-600  m-3 px-3 py-1.5  font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
             Login
-          </p>
+          </div>
         )}
       </form>
 
       {error.length > 0 ? (
-        <p className=" w-full justify-center rounded-md bg-red-600  m-3 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+        <p className=" w-80 justify-center rounded-md bg-red-600  m-3 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
           {error}
         </p>
       ) : null}
