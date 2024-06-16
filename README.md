@@ -30,6 +30,15 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
   \*/
   Migrations
 
+## DoTo
+
+[] Modular comment system
+--[] check if item has comments
+--[] return comments
+--[] Make new comments box
+
+[] update UI
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
