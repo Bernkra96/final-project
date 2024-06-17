@@ -143,6 +143,7 @@ export default async function ItemProfilePage(props: {
                   User ID: {String(comment.userId)}
                 </p>
               </Link>
+
               {user ? (
                 <>
                   {' '}
