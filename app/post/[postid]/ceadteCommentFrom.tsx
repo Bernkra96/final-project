@@ -26,6 +26,9 @@ export default function CreateComment(postid: number) {
     }
   }
 
+  /**
+   * Clears the input field and sets the post state to an empty string.
+   */
   function clearInput() {
     setPost('');
     const input = document.getElementById('CommentBox') as HTMLInputElement;
