@@ -3,6 +3,13 @@ import { number } from 'zod';
 import { getAdminByUserId, isAdmin } from '../database/admins';
 import { getUserBySessionToken } from '../database/users';
 
+/**
+ * Edits the permission for a user to perform an action.
+ * @param {number} PostUserId - The ID of the user who posted the content.
+ * @param {number} userId - The ID of the user whose permission is being edited.
+ * @param {string} Token - The session token of the logged-in user.
+ * @returns {Promise<boolean>} - A promise that resolves to a boolean indicating whether the user has permission to perform the action.
+ */
 export async function editPermission(
   PostUserId: number,
   userId: number,
