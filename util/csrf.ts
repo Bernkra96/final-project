@@ -1,5 +1,7 @@
 import Tokens from 'csrf';
 
+// Token Manger
+
 const tokens = new Tokens();
 
 export function createCsrfSecret() {
