@@ -162,6 +162,7 @@ export default async function ItemProfilePage(props: {
                   ) : null}
                 </>
               ) : null}
+              <hr className=" bg-gray-500 w-full h-auto m-1" />
             </section>
           </li>
         ))}

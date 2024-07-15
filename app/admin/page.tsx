@@ -94,6 +94,7 @@ export default async function AdminPage() {
                   </p>
                 ) : null}
               </Link>
+              <hr className=" bg-gray-500 w-full h-auto " />
             </section>
           </li>
         ))}

@@ -116,6 +116,7 @@ export default async function userProfilePage({ params }: Props) {
                   Token={tokenCooke}
                 />
               ) : null}
+              <hr className=" bg-gray-500 w-full h-auto m-1" />
             </section>
           </li>
         ))}

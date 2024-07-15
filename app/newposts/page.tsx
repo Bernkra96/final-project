@@ -76,6 +76,7 @@ export default async function newPostspage() {
                   {(await getCommentsByPostId(Number(post.id))).length}
                 </p>
               </Link>
+              <hr className=" bg-gray-500 w-fit " />
               {user ? (
                 <>
                   {' '}
@@ -92,6 +93,7 @@ export default async function newPostspage() {
                   ) : null}
                 </>
               ) : null}
+              <hr className=" bg-gray-500 w-full h-auto " />
             </section>
           </li>
         ))}
