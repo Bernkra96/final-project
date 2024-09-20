@@ -1,16 +1,27 @@
-app = "final-project-uplevelt"
-primary_region = "otp"
+# fly.toml app configuration file generated for final-project-uplevelt on 2024-09-20T18:32:31+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-# Apps without volume: Comment out the [mounts] configuration below
-[mounts]
-  source = "postgres"
-  destination = "/postgres-volume"
+app = 'final-project-uplevelt'
+primary_region = 'otp'
+
+[build]
 
 [env]
-  PORT = "8080"
+  PORT = '3000'
+
+[[mounts]]
+  source = 'postgres'
+  destination = '/postgres-volume'
 
 [http_service]
-  internal_port = 8080
+  internal_port = 3000
   force_https = true
-  auto_stop_machines = true
+  auto_stop_machines = 'stop'
   auto_start_machines = true
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
