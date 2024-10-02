@@ -138,10 +138,6 @@ export default async function ItemProfilePage(props: {
                 <p className="mx-auto justify-center p-1  text-green-700   ">
                   Date: {new Date(comment.postTime).toString()}
                 </p>
-
-                <p className="mx-auto justify-center text-center p-1  text-green-700   ">
-                  User ID: {String(comment.userId)}
-                </p>
               </Link>
 
               {user ? (
